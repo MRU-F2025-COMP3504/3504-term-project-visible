@@ -1,5 +1,5 @@
 //Communication channel
-// Discord (Place holder)
+// Discord (https://discord.gg/jsw3u5gD)
 
 
 //Shared Google folder
