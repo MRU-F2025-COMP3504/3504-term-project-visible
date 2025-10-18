@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 
 interface GigListings {
+    id: number;
     author: string;
     description: string;
     budget: string;
@@ -26,7 +27,7 @@ function App() {
             </thead>
             <tbody>
                 {gigs.map(gig =>
-                    <tr key={gig.author}>
+                    <tr key={gig.id}>
                         <td>{gig.author}</td>
                         <td>{gig.description}</td>
                         <td>{gig.budget}</td>

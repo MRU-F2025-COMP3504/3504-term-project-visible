@@ -19,6 +19,8 @@
       - 8080:8080
     links:
       - visible-db
+    secrets:
+      - postgres_user_password
   
 secrets:
   postgres_user_password:

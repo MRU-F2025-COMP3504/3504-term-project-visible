@@ -1,6 +1,6 @@
+using Npgsql;
+using visible.Server;
 using visible.Services;
-using System.Data.SqlClient;
-using Microsoft.Data.SqlClient;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +9,15 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddSingleton<IGigListingService, GigListingService>();
+
+// Adds the Docker Secrets configuration
+builder.Configuration.AddSecretsConfiguration();
+
+var password = builder.Configuration["postgres_user_password"];
+var connectionString = builder.Configuration.GetConnectionString("PostgreDB") + password + ";";
+
+builder.Services.AddScoped(provider => new NpgsqlConnection(connectionString));
+builder.Services.AddSingleton<IGigListingRepository, GigListingRepository>();
 
 var app = builder.Build();
 
