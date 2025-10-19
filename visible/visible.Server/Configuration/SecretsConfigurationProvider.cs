@@ -1,28 +1,4 @@
-namespace visible.Server;
-
-public static class ConfigurationManagerExtensions
-{ 
-    /// <summary>
-    /// Adds DockerSecretsConfiguration to the app's configuration manager
-    /// </summary>
-    public static ConfigurationManager AddSecretsConfiguration(this ConfigurationManager manager)
-    {
-        IConfigurationBuilder configurationBuilder = manager;
-        configurationBuilder.Add(new SecretsConfigurationSource());
-        return manager;
-    }
-}
-
-/// <summary>
-/// Configuration source for Docker secrets 
-/// </summary>
-public class SecretsConfigurationSource : IConfigurationSource
-{
-    public IConfigurationProvider Build(IConfigurationBuilder builder)
-    {
-        return new SecretsConfigurationProvider();
-    }
-}
+namespace visible.Server.Configuration;
 
 /// <summary>
 /// Configuration provider for Docker secrets

@@ -1,6 +1,8 @@
 using Npgsql;
-using visible.Server;
+using visible.Server.Configuration;
 using visible.Services;
+using visible.Services.Interfaces;
+using visible.Services.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,9 +19,14 @@ var password = builder.Configuration["postgres_user_password"];
 var connectionString = builder.Configuration.GetConnectionString("PostgreDB") + password + ";";
 
 builder.Services.AddScoped(provider => new NpgsqlConnection(connectionString));
+builder.Services.AddSingleton<InitService>();
 builder.Services.AddSingleton<IGigListingRepository, GigListingRepository>();
 
 var app = builder.Build();
+
+var dataPath = builder.Configuration["DataPath"];
+var initService = app.Services.GetService<InitService>();
+await initService.InitializeDatabase(dataPath);
 
 app.UseDefaultFiles();
 app.UseStaticFiles();

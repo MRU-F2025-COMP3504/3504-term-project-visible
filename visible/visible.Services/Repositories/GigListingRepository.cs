@@ -1,7 +1,9 @@
 using System.Data;
 using Npgsql;
+using visible.Services.Interfaces;
+using visible.Services.Models;
 
-namespace visible.Services;
+namespace visible.Services.Repositories;
 
 /// <summary>
 /// The implementation of IGigListingsRepository interface

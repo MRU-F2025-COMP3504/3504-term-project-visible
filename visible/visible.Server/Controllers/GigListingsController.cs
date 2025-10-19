@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using visible.Services;
+using visible.Services.Interfaces;
 
 namespace visible.Server.Controllers;
 

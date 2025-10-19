@@ -1,4 +1,4 @@
-﻿namespace visible.Services;
+﻿namespace visible.Services.Models;
 
 public class GigListing(int Id, string? Author, string? Description, int Budget)
 {
