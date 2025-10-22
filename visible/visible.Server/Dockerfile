@@ -1,0 +1,33 @@
+﻿FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
+WORKDIR /app
+EXPOSE 8080
+EXPOSE 8081
+RUN apt-get update
+RUN apt-get install -y curl
+RUN apt-get install -y libpng-dev libjpeg-dev curl libxi6 build-essential libgl1-mesa-glx
+RUN curl -sL https://deb.nodesource.com/setup_lts.x | bash -
+RUN apt-get install -y nodejs
+
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+RUN apt-get update
+RUN apt-get install -y curl
+RUN apt-get install -y libpng-dev libjpeg-dev curl libxi6 build-essential libgl1-mesa-glx
+RUN curl -sL https://deb.nodesource.com/setup_lts.x | bash -
+RUN apt-get install -y nodejs
+ARG BUILD_CONFIGURATION=Release
+WORKDIR /src
+COPY ["visible.Server/visible.Server.csproj", "visible.Server/"]
+COPY ["visible.Services/visible.Services.csproj", "visible.Services/"]
+RUN dotnet restore "visible.Server/visible.Server.csproj"
+COPY . .
+WORKDIR "/src/visible.Server"
+RUN dotnet build "./visible.Server.csproj" -c $BUILD_CONFIGURATION -o /app/build
+
+FROM build AS publish
+ARG BUILD_CONFIGURATION=Release
+RUN dotnet publish "./visible.Server.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "visible.Server.dll"]

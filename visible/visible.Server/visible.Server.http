@@ -1,0 +1,8 @@
+@visible.Server_HostAddress = http://localhost:5165
+
+GET {{visible.Server_HostAddress}}/api/giglistings/
+Accept: application/json
+
+
+
+###
