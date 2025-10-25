@@ -1,6 +1,7 @@
 obj/
 bin/
 node_modules/
+package-lock.json
 secrets/
 # Logs
 logs
