@@ -1,0 +1,30 @@
+﻿services:
+
+  visible-db: 
+    image: postgres
+    ports:
+      - 5431:5432
+    environment:
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_user_password
+      POSTGRES_USER: postgres
+    secrets:
+      - postgres_user_password
+
+  visible.server:
+    image: visible.server
+    build:
+      context: .
+      dockerfile: visible.Server/Dockerfile
+    volumes:
+      - ./visible.Server/Data:/app/Data:ro
+    ports:
+      - 8080:8080
+    links:
+      - visible-db
+    secrets:
+      - postgres_user_password
+  
+secrets:
+  postgres_user_password:
+    file: secrets/postgres_user_password
+    
