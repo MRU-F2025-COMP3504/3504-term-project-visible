@@ -17,7 +17,12 @@ This project utilizes **Docker** to containerize the application and database.
 
 - Once you have created the file, start the Docker containers by running the following command:
         
-        docker-compose up
+        docker-compose up --build
+
+- **Note:** If you've previously built the project and have made changes, run the following commands:
+
+        docker-compose down
+        docker-compose up --build
 
 - You should now be able to view the local instance of the project.
   Visit http://localhost:8080 in your browser to see the result.
