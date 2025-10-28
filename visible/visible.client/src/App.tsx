@@ -41,6 +41,9 @@ function App() {
             <h1 id="tableLabel">Recent Gigs</h1>
             <p>This component demonstrates fetching data from the server.</p>
             {contents}
+            <div className='bg-sky-800 m-4 p-2 rounded-md hover:bg-sky-600'>
+                <p>If this div is blue, tailwind is working.</p>
+            </div>
         </div>
     );
 
