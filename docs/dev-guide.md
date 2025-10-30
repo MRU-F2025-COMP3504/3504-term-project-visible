@@ -47,3 +47,25 @@ The package.json file lists these dependencies, and *is* included in the reposit
  They consist of a directory 'node_modules/' and a file 'package-lock.json'.
 
 - **Note:**  Missing these files will cause your IDE to flag the use of the npm libraries as an error. If these files are ever missing from your local repository, they can be reinstalled via the above command.
+
+
+## Populating the Database with Test Data
+
+### Creating Users
+
+Because the user table will contain emails and passwords, I have not committed this file to the repository at this point. The format required to create test users is as seen in the following code snippet.
+
+```SQL
+INSERT INTO users (email, password, first_name, last_name)
+VALUES ('email', 'password', 'First Name', 'Last Name');
+```
+
+### Creating Gig Listings
+
+The `visible/visible.Server/Data` directory contains a file called `gigs.sql` which can be used to populate the Gigs table if you are currently not seeing gig listings on the home page.
+
+To create additional gig listings, use the following format:
+```SQL
+INSERT INTO gigs (author, description, budget)
+VALUES ('Author Name', 'Gig Description', Amount);
+```
