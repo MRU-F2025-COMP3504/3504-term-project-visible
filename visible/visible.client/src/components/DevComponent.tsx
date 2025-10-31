@@ -1,4 +1,4 @@
-//This component is used to compartmentalize debugging and testing components.
+//This component is used for rapid development debugging & testing - it serves as a isolated environment to use for testing, that can be added or removed from the app's component tree as needed
 import { useEffect, useContext } from "react"
 import { Context } from "@/App"
 import { Button } from "@/components/ui/button";
@@ -7,29 +7,30 @@ import { MouseEvent } from 'react';
 
 const DevComponent = ()=>{
     const [gigs, setGigs] = useContext(Context).gigs
-
-    const loadingMsg = <p><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationreact">https://aka.ms/jspsintegrationreact</a> for more details.</em></p>
-    const table =
-                    <table className="table table-striped" aria-labelledby="tableLabel">
-                        <thead>
-                            <tr>
-                                <th>Author</th>
-                                <th>Description</th>
-                                <th>Budget</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {gigs.map(gig =>
-                                <tr key={gig.id}>
-                                    <td>{gig.author}</td>
-                                    <td>{gig.description}</td>
-                                    <td>{gig.budget}</td>
-                                </tr>
-                            )}
-                        </tbody>
-                    </table>
+    console.log(gigs)
     
-    const contents = gigs === undefined ? loadingMsg : table
+    const contents = gigs === undefined
+        ?
+        <p><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationreact">https://aka.ms/jspsintegrationreact</a> for more details.</em></p>
+        :
+        <table className="table table-striped" aria-labelledby="tableLabel">
+            <thead>
+                <tr>
+                    <th>Author</th>
+                    <th>Description</th>
+                    <th>Budget</th>
+                </tr>
+            </thead>
+            <tbody>
+                {gigs.map(gig =>
+                    <tr key={gig.id}>
+                        <td>{gig.author}</td>
+                        <td>{gig.description}</td>
+                        <td>{gig.budget}</td>
+                    </tr>
+                )}
+            </tbody>
+        </table>
 
     useEffect(()=>{
         fetchAllGigListings(setGigs)
