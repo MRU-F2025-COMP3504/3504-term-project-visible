@@ -22,6 +22,7 @@ builder.Services.AddScoped(provider => new NpgsqlConnection(connectionString));
 builder.Services.AddSingleton<InitService>();
 builder.Services.AddSingleton<IGigListingRepository, GigListingRepository>();
 builder.Services.AddSingleton<IAuthenticationRepository, AuthenticationRepository>();
+builder.Services.AddScoped<IInfluencerRepository, InfluencerRepository>();
 
 var app = builder.Build();
 
