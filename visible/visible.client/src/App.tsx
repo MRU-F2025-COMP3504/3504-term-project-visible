@@ -1,17 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, createContext } from 'react';
 import './App.css';
-import { Button } from "@/components/ui/button"
-import { MouseEvent } from 'react';
+import { GigListings } from './modules/interfaces';
+import { Button } from "@/components/ui/button";
+import DevComponent from './components/DevComponent';
 
-interface GigListings {
-    id: number;
-    author: string;
-    description: string;
-    budget: string;
-}
+export const Context = createContext<any>([])
 
 function App() {
+    //data state declarations
     const [gigs, setGigs] = useState<GigListings[]>();
+
+    //context object
+    const contextObj = {
+        gigs:[gigs, setGigs]
+    }
 
     useEffect(() => {
         populateGigPostings();
@@ -39,18 +41,24 @@ function App() {
         </table>;
 
     return (
-        <div>
-            <h1 id="tableLabel">Recent Gigs</h1>
-            <p>This component demonstrates fetching data from the server.</p>
-            {contents}
-            <div className='bg-sky-800 m-4 p-2 rounded-md hover:bg-sky-600'>
-                <p>If this div is blue, tailwind is working.</p>
+        <main>
+        <Context.Provider value={contextObj}>
+            <DevComponent />
+        </Context.Provider>
+            <div>
+                <h1 id="tableLabel">Recent Gigs</h1>
+                <p>This component demonstrates fetching data from the server.</p>
+                {contents}
+                <div className='bg-sky-800 m-4 p-2 rounded-md hover:bg-sky-600'>
+                    <p>If this div is blue, tailwind is working.</p>
+                </div>
+                <Button onClick={(e)=>{
+                    e.preventDefault();
+                    console.log("Button was pressed.")
+                }}>If this button exists, shadcn installed properly.</Button>
             </div>
-            <Button onClick={(e: MouseEvent<HTMLButtonElement>)=>{
-                e.preventDefault();
-                console.log("Button was pressed.")
-            }}>If this button exists, shadcn installed properly.</Button>
-        </div>
+        </main>
+        
     );
 
     async function populateGigPostings() {
