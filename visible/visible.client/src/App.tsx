@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css';
+import { Button } from "@/components/ui/button"
+import { MouseEvent } from 'react';
 
 interface GigListings {
     id: number;
@@ -44,6 +46,10 @@ function App() {
             <div className='bg-sky-800 m-4 p-2 rounded-md hover:bg-sky-600'>
                 <p>If this div is blue, tailwind is working.</p>
             </div>
+            <Button onClick={(e: MouseEvent<HTMLButtonElement>)=>{
+                e.preventDefault();
+                console.log("Button was pressed.")
+            }}>If this button exists, shadcn installed properly.</Button>
         </div>
     );
 
