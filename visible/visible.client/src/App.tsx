@@ -46,13 +46,10 @@ function App() {
             <div className='bg-sky-800 m-4 p-2 rounded-md hover:bg-sky-600'>
                 <p>If this div is blue, tailwind is working.</p>
             </div>
-<<<<<<< HEAD
             <Button onClick={(e: MouseEvent<HTMLButtonElement>)=>{
                 e.preventDefault();
                 console.log("Button was pressed.")
             }}>If this button exists, shadcn installed properly.</Button>
-=======
->>>>>>> origin
         </div>
     );
 
