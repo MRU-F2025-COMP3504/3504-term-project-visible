@@ -4,10 +4,13 @@ This project utilizes **Docker** to containerize the application and database.
 ## Getting Started
 - Follow this link to install [Docker Desktop](https://www.docker.com/get-started/). You will need to create an account, which can be done by linking your Google or GitHub profile.
 
+- Follow this link to install [.NET](https://dotnet.microsoft.com/en-us/download). You will need to install .NET 9.0 to ensure compatibility with the project.
+
 - Open **Docker Desktop**, and ensure that you are signed in to your Docker account.
 
 - In a terminal, navigate to the repository's `visible` directory.
 
+### Configuring Local Secrets
 - In order to authenticate the database instance, you will need to create a `postgres_user_password` file. Use the following two commands:
 
         mkdir secrets
@@ -15,17 +18,21 @@ This project utilizes **Docker** to containerize the application and database.
 
   This file is only for your machine, and should not be added to the repository. The password can be anything you want.
 
+- The front-end application utilizes https, so you will need to create local dev certificates. From the `visible` directory, run the following command:
+
+        dotnet dev-certs https --export-path secrets/visible.client.pem --format Pem --no-password  
+
 - Once you have created the file, start the Docker containers by running the following command:
         
-        docker-compose up --build
+        docker compose up --build --watch
 
 - **Note:** If you've previously built the project and have made changes, run the following commands:
 
-        docker-compose down
-        docker-compose up --build
+        docker compose down
+        docker compose up --build --watch
 
 - You should now be able to view the local instance of the project.
-  Visit http://localhost:8080 in your browser to see the result.
+  Visit http://localhost:5173 in your browser to see the result.
 
 ## Front End Developement
 This project uses **npm** (node package manager) to manage dependencies required by front-end components.
