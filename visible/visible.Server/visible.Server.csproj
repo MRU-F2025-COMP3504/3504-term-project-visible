@@ -4,9 +4,6 @@
         <TargetFramework>net9.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
-        <SpaRoot>..\visible.client</SpaRoot>
-        <SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>
-        <SpaProxyServerUrl>https://localhost:5173</SpaProxyServerUrl>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
@@ -21,9 +18,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\visible.client\visible.client.esproj">
-            <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-        </ProjectReference>
         <ProjectReference Include="..\visible.Services\visible.Services.csproj">
             <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
         </ProjectReference>
