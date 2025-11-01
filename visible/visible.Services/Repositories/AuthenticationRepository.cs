@@ -40,6 +40,6 @@ namespace visible.Services.Repositories
             parameters.AddWithValue("@username", signInRequest.Username);
             parameters.AddWithValue("@password", signInRequest.Password);
         }
-   
+
     }
 }

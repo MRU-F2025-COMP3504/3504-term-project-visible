@@ -1,5 +1,5 @@
-using System.Data;
 using Npgsql;
+using System.Data;
 using visible.Services.Interfaces;
 using visible.Services.Models;
 
