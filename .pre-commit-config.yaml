@@ -20,3 +20,8 @@ repos:
         types:
           - c#
         description: CSharpier is an opinionated C# formatter inspired by Prettier.
+
+  - repo: https://github.com/rbubley/mirrors-prettier
+    rev: "main" # Use the sha / tag you want to point at
+    hooks:
+      - id: prettier

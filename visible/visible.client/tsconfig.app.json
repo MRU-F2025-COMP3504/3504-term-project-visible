@@ -17,16 +17,14 @@
 
     /* Linting */
     "strict": true,
-    "noUnusedLocals": false,              //RENABLE AFTER DEVELOPMENT
+    "noUnusedLocals": false, //RENABLE AFTER DEVELOPMENT
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": false,
 
     /* shadcn */
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
+      "@/*": ["./src/*"]
     }
   },
   "include": ["src"]

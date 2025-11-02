@@ -1,5 +1,4 @@
 ﻿services:
-
   visible-db:
     container_name: visible-db
     image: postgres
