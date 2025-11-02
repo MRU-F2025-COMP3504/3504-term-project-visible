@@ -1,4 +1,5 @@
 # Team Report
+
 ## Project Meeting Agenda
 
 ## Last Week's Goals
@@ -8,10 +9,13 @@
 ## Plans & Goals for Next Week
 
 # Individual Contributions
+
 ## Amy
+
 ### Last Week's Goals
 
 ### Progress & Issues
+
 #### What I did:
 
 #### What went well:
@@ -25,10 +29,13 @@
 ### Plans & Goals for Next Week
 
 ---
+
 ## Alexander
+
 ### Last Week's Goals
 
 ### Progress & Issues
+
 #### What I did:
 
 #### What went well:
@@ -42,10 +49,13 @@
 ### Plans & Goals for Next Week
 
 ---
+
 ## Matthew
+
 ### Last Week's Goals
 
 ### Progress & Issues
+
 #### What I did:
 
 #### What went well:
@@ -59,10 +69,13 @@
 ### Plans & Goals for Next Week
 
 ---
+
 ## Roman
+
 ### Last Week's Goals
 
 ### Progress & Issues
+
 #### What I did:
 
 #### What went well:

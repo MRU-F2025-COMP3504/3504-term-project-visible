@@ -4,7 +4,7 @@ using visible.Services.Interfaces;
 namespace visible.Server.Controllers;
 
 /// <summary>
-/// The entry point for gig listings API. 
+/// The entry point for gig listings API.
 /// </summary>
 /// <param name="gigListingRepository"> The gig listing accessor </param>
 [ApiController]

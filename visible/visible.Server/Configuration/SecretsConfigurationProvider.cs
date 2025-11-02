@@ -13,7 +13,8 @@ public sealed class SecretsConfigurationProvider : ConfigurationProvider
     {
         var secrets = new Dictionary<string, string?>();
         const string path = "/run/secrets/";
-        if (!Directory.Exists(path)) throw new FileNotFoundException(path);
+        if (!Directory.Exists(path))
+            throw new FileNotFoundException(path);
         foreach (var filePath in Directory.GetFiles(path))
         {
             var key = Path.GetFileName(filePath);
