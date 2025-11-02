@@ -10,7 +10,10 @@ namespace visible.Server.Controllers
     /// <param name="authenticationRepository"> The user authentication accessor</param>
     [ApiController]
     [Route("api/[controller]")]
-    public class AuthenticationController(IAuthenticationRepository authenticationRepository, ILogger<AuthenticationController> logger) : ControllerBase
+    public class AuthenticationController(
+        IAuthenticationRepository authenticationRepository,
+        ILogger<AuthenticationController> logger
+    ) : ControllerBase
     {
         [HttpPost("sign-in")]
         public async Task<ActionResult> SignIn([FromForm] SignInRequest signInRequest)

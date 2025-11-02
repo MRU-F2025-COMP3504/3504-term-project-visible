@@ -17,7 +17,8 @@ namespace visible.Services.Repositories
         /// <returns> If the provided username/password combination exists in the Users table. </returns>
         public async Task<bool> SignInAsync(SignInRequest signInRequest)
         {
-            string loginQuery = "SELECT COUNT(*) AS c FROM users WHERE email = @username AND password = @password;";
+            string loginQuery =
+                "SELECT COUNT(*) AS c FROM users WHERE email = @username AND password = @password;";
             using var cmd = connection.CreateCommand();
             cmd.CommandText = loginQuery;
             AddParameters(cmd, signInRequest);
@@ -40,6 +41,5 @@ namespace visible.Services.Repositories
             parameters.AddWithValue("@username", signInRequest.Username);
             parameters.AddWithValue("@password", signInRequest.Password);
         }
-
     }
 }
