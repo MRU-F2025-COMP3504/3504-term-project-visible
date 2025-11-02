@@ -1,11 +1,14 @@
 version: 2.1
-
+orbs:
+  python: circleci/python@3.0.0
 jobs:
   pre-commit:
     docker:
       - image: mcr.microsoft.com/dotnet/sdk:9.0
     steps:
       - checkout
+      - python/install-packages:
+          pkg-manager: pip
       - run:
           name: Install pre-commit
           command: pip install pre-commit
