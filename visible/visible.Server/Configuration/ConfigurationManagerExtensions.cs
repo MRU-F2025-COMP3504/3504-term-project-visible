@@ -1,7 +1,7 @@
 namespace visible.Server.Configuration;
 
 public static class ConfigurationManagerExtensions
-{ 
+{
     /// <summary>
     /// Adds DockerSecretsConfiguration to the app's configuration manager
     /// </summary>

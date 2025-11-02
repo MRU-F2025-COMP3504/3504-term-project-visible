@@ -13,7 +13,8 @@ public class GigListingRepository(NpgsqlConnection connection) : IGigListingRepo
 {
     public void Dispose()
     {
-        if (connection.State != ConnectionState.Closed) connection.Close();
+        if (connection.State != ConnectionState.Closed)
+            connection.Close();
         GC.SuppressFinalize(this);
     }
 
@@ -25,12 +26,14 @@ public class GigListingRepository(NpgsqlConnection connection) : IGigListingRepo
         await connection.OpenAsync();
         using var reader = await cmd.ExecuteReaderAsync();
         while (await reader.ReadAsync())
-            gigs.Add(new GigListing(
-                Convert.ToInt32(reader["id"]),
-                Convert.ToString(reader["author"]),
-                Convert.ToString(reader["description"]),
-                Convert.ToInt32(reader["budget"])
-            ));
+            gigs.Add(
+                new GigListing(
+                    Convert.ToInt32(reader["id"]),
+                    Convert.ToString(reader["author"]),
+                    Convert.ToString(reader["description"]),
+                    Convert.ToInt32(reader["budget"])
+                )
+            );
         await connection.CloseAsync();
         return gigs.ToList();
     }
