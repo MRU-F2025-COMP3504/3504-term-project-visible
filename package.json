@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "fix:prettier": "npm run lint:prettier -- --write",
+    "lint:prettier": "prettier --check"
+  },
+  "devDependencies": {
+    "prettier": "^3.6.2"
+  }
+}
