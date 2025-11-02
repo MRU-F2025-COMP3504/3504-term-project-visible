@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   pre-commit:
     docker:
-      - image: cimg/python:3.9
+      - image: mcr.microsoft.com/dotnet/sdk:9.0
     steps:
       - checkout
       - run:
