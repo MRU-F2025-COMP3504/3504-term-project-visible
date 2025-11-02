@@ -34,6 +34,20 @@ This project utilizes **Docker** to containerize the application and database.
 - You should now be able to view the local instance of the project.
   Visit http://localhost:5173 in your browser to see the result.
 
+### Set Up Pre-Commit
+- This project is using `pre-commit` to enforce C# code styling prescriptively set via `CSharpier`. From the repository's root (`3504-term-project-visible`), install `pre-commit` using the following commands:
+
+        pip3 install pre-commit
+        pre-commit install
+
+### Using Pre-Commit
+- When you attempt to create a commit (`git commit -m "..."`), pre-commit will validate that any changed C# files are conforming to the code styles outlined. If it detects failures, it will modify the files appropriately, and abort the commit. You must then accept the changes by adding the modified files using `git add`, and re-attempt the commit.
+
+- `pre-commit` can be run at any time using the following command:
+        pre-commit run
+
+  - **Note:** pre-commit will only validate files that are currently staged.
+
 ## Front End Developement
 This project uses **npm** (node package manager) to manage dependencies required by front-end components.
 
