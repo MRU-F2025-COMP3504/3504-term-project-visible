@@ -1,0 +1,7 @@
+﻿services:
+  visible.tests:
+    container_name: visible.tests
+    image: visible.tests
+    build:
+      context: .
+      dockerfile: visible.Tests/Dockerfile

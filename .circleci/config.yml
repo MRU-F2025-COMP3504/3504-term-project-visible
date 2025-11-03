@@ -18,8 +18,17 @@ jobs:
       - run:
           name: Run pre-commit hooks
           command: pre-commit run --all-files
+  backend-tests:
+    docker:
+      - image: cimg/base
+    steps:
+      - checkout
+      - run:
+          name: Run C# tests
+          command: docker compose -f compose-tests.yaml up --build
 
 workflows:
-  pre-commit-workflow:
+  verification-workflow:
     jobs:
       - pre-commit
+      - backend-tests
