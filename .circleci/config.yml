@@ -1,0 +1,25 @@
+version: 2.1
+
+jobs:
+  pre-commit:
+    docker:
+      - image: mcr.microsoft.com/dotnet/sdk:9.0
+    steps:
+      - checkout
+      - run:
+          name: Install Python 3 and pip
+          command: apt-get update && apt-get install -y python3
+      - run:
+          name: Install Node
+          command: apt-get update && apt-get install -y nodejs npm
+      - run:
+          name: Install pre-commit
+          command: apt-get update && apt-get install -y pre-commit
+      - run:
+          name: Run pre-commit hooks
+          command: pre-commit run --all-files
+
+workflows:
+  pre-commit-workflow:
+    jobs:
+      - pre-commit
