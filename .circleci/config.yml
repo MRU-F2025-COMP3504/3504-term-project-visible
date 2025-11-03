@@ -20,12 +20,15 @@ jobs:
           command: pre-commit run --all-files
   backend-tests:
     docker:
-      - image: cimg/dotnet:9.0
+      - image: mcr.microsoft.com/dotnet/sdk:9.0
     steps:
       - checkout
       - run:
           name: Run C# tests
-          command: docker compose -f compose-tests.yaml up --build
+          command: |
+            cd visible
+            dotnet restore visible.Tests/visible.Tests.csproj
+            dotnet test visible.Tests/visible.Tests.csproj
 
 workflows:
   verification-workflow:
