@@ -1,6 +1,8 @@
 using Npgsql;
 using visible.Server.Configuration;
 using visible.Services;
+using visible.Services.Data;
+using visible.Services.Data.Interfaces;
 using visible.Services.Interfaces;
 using visible.Services.Repositories;
 
@@ -19,7 +21,9 @@ builder.Configuration.AddSecretsConfiguration();
 var password = builder.Configuration["postgres_user_password"];
 var connectionString = builder.Configuration.GetConnectionString("PostgreDB") + password + ";";
 
-builder.Services.AddScoped(provider => new NpgsqlConnection(connectionString));
+builder.Services.AddScoped<IQueryBuilder, NpgsqlQueryBuilder>(p => new NpgsqlQueryBuilder(
+    connectionString
+));
 builder.Services.AddSingleton<InitService>();
 builder.Services.AddSingleton<IGigListingRepository, GigListingRepository>();
 builder.Services.AddSingleton<IAuthenticationRepository, AuthenticationRepository>();
@@ -31,7 +35,6 @@ var initService = app.Services.GetService<InitService>();
 await initService.InitializeDatabase(dataPath);
 
 app.UseDefaultFiles();
-app.UseStaticFiles();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
