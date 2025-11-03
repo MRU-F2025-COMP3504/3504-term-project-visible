@@ -7,7 +7,6 @@ import { MouseEvent } from "react";
 
 const DevComponent = () => {
   const [gigs, setGigs] = useContext(Context).gigs;
-  console.log(gigs);
 
   const contents =
     gigs === undefined ? (
@@ -59,7 +58,7 @@ const DevComponent = () => {
           console.log("Button was pressed.");
         }}
       >
-        If this button exists, shadcn installed properly.
+        This is a button by shadcn
       </Button>
     </div>
   );
