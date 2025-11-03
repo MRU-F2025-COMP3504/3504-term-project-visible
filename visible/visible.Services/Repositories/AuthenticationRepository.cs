@@ -1,4 +1,4 @@
-using Npgsql;
+using visible.Services.Data.Interfaces;
 using visible.Services.Interfaces;
 using visible.Services.Models;
 
@@ -7,8 +7,8 @@ namespace visible.Services.Repositories
     /// <summary>
     /// The implementation of IAuthenticationRepository interface
     /// </summary>
-    /// <param name="connection"> Connection to the Postgresql database </param>
-    public class AuthenticationRepository(NpgsqlConnection connection) : IAuthenticationRepository
+    /// <param name="builder"> Connection to the Postgresql database </param>
+    public class AuthenticationRepository(IQueryBuilder builder) : IAuthenticationRepository
     {
         /// <summary>
         /// Attempts to authenticate a user's credentials.
@@ -19,27 +19,16 @@ namespace visible.Services.Repositories
         {
             string loginQuery =
                 "SELECT COUNT(*) AS c FROM users WHERE email = @username AND password = @password;";
-            using var cmd = connection.CreateCommand();
-            cmd.CommandText = loginQuery;
-            AddParameters(cmd, signInRequest);
-            await connection.OpenAsync();
-            await cmd.PrepareAsync();
-            using var reader = await cmd.ExecuteReaderAsync();
+            var query = builder.CreateQuery(loginQuery);
+            query.AddParameter("@username", signInRequest.Username);
+            query.AddParameter("@password", signInRequest.Password);
             int count = 0;
-            if (await reader.ReadAsync())
+            await foreach (var row in query.ExecuteAsync())
             {
-                count = Convert.ToInt32(reader["c"]);
+                count = Convert.ToInt32(row.GetColumn("c"));
             }
-            await connection.CloseAsync();
 
             return count.Equals(1);
-        }
-
-        private static void AddParameters(NpgsqlCommand command, SignInRequest signInRequest)
-        {
-            var parameters = command.Parameters;
-            parameters.AddWithValue("@username", signInRequest.Username);
-            parameters.AddWithValue("@password", signInRequest.Password);
         }
     }
 }
