@@ -3,7 +3,9 @@ import "./App.css";
 import { GigListings } from "./modules/interfaces";
 import DevComponent from "./components/DevComponent";
 
-export const Context = createContext<any>([]);
+export const Context = createContext<any>({
+  gigs: [undefined, () => {}],
+});
 
 function App() {
   //data state declarations

@@ -7,7 +7,6 @@ import { MouseEvent } from "react";
 
 const DevComponent = () => {
   const [gigs, setGigs] = useContext(Context).gigs;
-  console.log(gigs);
 
   const contents =
     gigs === undefined ? (
