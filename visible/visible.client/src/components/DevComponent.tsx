@@ -59,7 +59,7 @@ const DevComponent = () => {
           console.log("Button was pressed.");
         }}
       >
-        If this button exists, shadcn installed properly.
+        This is a button by shadcn
       </Button>
     </div>
   );
