@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "fix:prettier": "npm run lint:prettier -- --write",
-    "lint:prettier": "prettier --check"
+    "lint:prettier": "prettier --check",
+    "test": "vitest"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
