@@ -20,7 +20,7 @@ jobs:
           command: pre-commit run --all-files
   backend-tests:
     docker:
-      - image: cimg/base
+      - image: cimg/dotnet:9.0
     steps:
       - checkout
       - run:
