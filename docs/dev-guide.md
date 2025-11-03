@@ -95,3 +95,37 @@ To create additional gig listings, use the following format:
 INSERT INTO gigs (author, description, budget)
 VALUES ('Author Name', 'Gig Description', Amount);
 ```
+
+## Back End Unit Testing
+
+- This project utilizes the `xUnit` framework for unit testing the C#/.NET backend.
+
+### Adding an xUnit Test
+
+- Go to `visible.Tests`. The tests are organized into files based on the unit being tested. For example, `Controllers/GigListingsControllerTests.cs` contains the current tests for the `visible.Server/Controllers/GigListingController.cs` file.
+
+- The project tests should be set up to follow the **Arrange, Act, Assert** pattern, as shown below:
+
+        [Fact]
+        public async Task Test_CanGetGigListings()
+        {
+                // Arrange
+                var mockRepository = new Mock<IGigListingRepository>();
+                var gigListings = new List<GigListing>
+                {
+                new GigListing(1,"Canela","New Product Launch", 300),
+                new GigListing(2,"Breakaway","Instagram Follower Drive", 1000),
+                };
+                mockRepository.Setup(r => r.GetRecentGigListings()).ReturnsAsync(gigListings);
+
+                // Act
+                var controller = new GigListingsController(mockRepository.Object);
+                var result = await controller.Get();
+
+                // Assert
+                Assert.IsType<OkObjectResult>(result);
+                var okResult = result as OkObjectResult;
+                Assert.NotNull(okResult);
+        }
+
+- Ensure that you mock any dependencies as part of the **Arrange** step.
