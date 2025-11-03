@@ -74,6 +74,31 @@ They consist of a directory 'node_modules/' and a file 'package-lock.json'.
 
 - **Note:** Missing these files will cause your IDE to flag the use of the npm libraries as an error. If these files are ever missing from your local repository, they can be reinstalled via the above command.
 
+## Front End Testing
+
+- This project is using vitest to deploy tests for the front end components.
+
+- Several testing libraries have been added in the project for vitest to utilize:
+  - React Testing Library
+    - user-event
+    - jest-dom
+  - jsdom
+
+- To test a front end component, a test file for that component should be created in the same directory with the following name scheme:
+
+        {component_to_test}.tsx
+
+        {component_to_test}.test.tsx
+
+- To run created tests, navigate to the visible.client directory in a terminal, then run the following command:
+
+        npm run test
+
+- Specific instructions to create a test will depend on the component and purpose of the specific test.
+  - [Vitest documentation can be found here](https://vitest.dev/guide/)
+  - [React Testing Library Documentation can be found here](https://testing-library.com/docs/react-testing-library/intro/)
+  - [A video tutorial including simple example component tests can be found here](https://www.youtube.com/watch?v=CxSL0knFxAs)
+
 ## Populating the Database with Test Data
 
 ### Creating Users
