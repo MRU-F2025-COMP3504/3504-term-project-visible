@@ -28,7 +28,49 @@ namespace visible.Services.Repositories
                 count = Convert.ToInt32(row.GetColumn("c"));
             }
 
-            return count.Equals(1);
+            return count == 1;
+        }
+
+        /// <summary>
+        /// Looks for a user with the provided email
+        /// </summary>
+        /// <param name="signupRequest"> The user's username and password information received from the sign-up form. </param>
+        /// <returns> If the email matches a record in the User table. </returns>
+        public async Task<bool> SearchForUserAsync(SignupRequest signupRequest)
+        {
+            string searchQuery = "SELECT COUNT(*) as c from users where email = @username;";
+            var query = builder.CreateQuery(searchQuery);
+            query.AddParameter("@username", signupRequest.Username);
+            int count = 0;
+
+            await foreach (var row in query.ExecuteAsync())
+            {
+                count = Convert.ToInt32(row.GetColumn("c"));
+            }
+
+            return count == 1;
+        }
+
+        /// <summary>
+        /// Creates a new user when provided with a unique email.
+        /// </summary>
+        /// <param name="signupRequest"> The user's username and password information received from form submission. </param>
+        /// <returns> If the user was successfully created. </returns>
+        public async Task<bool> CreateNewUserAsync(SignupRequest signupRequest)
+        {
+            string createStatement =
+                "INSERT INTO users (email, password, first_name, last_name)"
+                + "VALUES (@username, @password, @firstName, @lastName)";
+
+            var query = builder.CreateQuery(createStatement);
+            query.AddParameter("@username", signupRequest.Username);
+            query.AddParameter("@password", signupRequest.Password);
+            query.AddParameter("@firstName", signupRequest.FirstName);
+            query.AddParameter("@lastName", signupRequest.LastName);
+
+            int rowsAffected = await query.ExecuteNonQueryAsync();
+
+            return rowsAffected == 1;
         }
     }
 }

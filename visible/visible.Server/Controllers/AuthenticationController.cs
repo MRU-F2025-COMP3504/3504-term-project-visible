@@ -22,5 +22,17 @@ namespace visible.Server.Controllers
 
             return Ok(await authenticationRepository.SignInAsync(signInRequest));
         }
+
+        [HttpPost("sign-up")]
+        public async Task<ActionResult> SignUp([FromForm] SignupRequest signupRequest)
+        {
+            bool userExists = await authenticationRepository.SearchForUserAsync(signupRequest);
+            if (userExists)
+            {
+                return BadRequest($"Username {signupRequest.Username} already exists");
+            }
+
+            return Ok(await authenticationRepository.CreateNewUserAsync(signupRequest));
+        }
     }
 }

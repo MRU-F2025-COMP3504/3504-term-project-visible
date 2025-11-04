@@ -1,4 +1,3 @@
-using Npgsql;
 using visible.Server.Configuration;
 using visible.Services;
 using visible.Services.Data;
