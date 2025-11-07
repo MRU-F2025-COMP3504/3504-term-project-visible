@@ -17,7 +17,7 @@ function App() {
   };
 
   return (
-    <main>
+    <main className="border-8 border-indigo-500 h-dvh p-[2em] aspect-9/16">
       <Context.Provider value={contextObj}>
         <DevComponent />
       </Context.Provider>
