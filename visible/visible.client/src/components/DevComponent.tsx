@@ -4,9 +4,14 @@ import { Context } from "@/App";
 import { Button } from "@/components/ui/button";
 import { fetchAllGigListings } from "@/modules/data";
 import { MouseEvent } from "react";
+import SignIn from "@/components/SignIn";
 
 const DevComponent = () => {
-  return <div></div>;
+  return (
+    <div>
+      <SignIn />
+    </div>
+  );
 };
 
 export default DevComponent;
