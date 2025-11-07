@@ -7,7 +7,7 @@ const SERVERPORT = "https://localhost:8080/";
 
 // All Gig Listings - Theoretically shouldn't be using this as there could be too many gig listings in the db to reasonably request
 export async function fetchAllGigListings(setter: any) {
-  const response = await fetch(`${serverPort}api/giglistings`);
+  const response = await fetch(`${SERVERPORT}api/giglistings`);
   const data = await response.json();
   setter(data);
 }
@@ -32,7 +32,7 @@ export async function submitSignIn(dataToSend) {
 //encrypt / hashing of user data should be added
 export async function submitSignUp(dataToSend) {
   //POST request to server with given data
-  fetch(`${SERVERPORT}`, {
+  fetch(`${SERVERPORT}api/authentication/sign-up`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
