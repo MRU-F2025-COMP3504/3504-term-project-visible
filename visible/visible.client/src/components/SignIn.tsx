@@ -19,6 +19,7 @@ const SignIn = () => {
 
   return (
     <form
+      // Submit function
       onSubmit={(e) => {
         e.preventDefault();
         console.log(`Sign in submitted with ${username} + ${password}`);
