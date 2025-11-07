@@ -27,7 +27,7 @@ public class NpgsqlQuery : IQuery
         await _connection.CloseAsync();
     }
 
-    public async Task ExecuteNonQueryAsync()
+    public async Task<int> ExecuteNonQueryAsync()
     {
         while (true)
         {
@@ -39,8 +39,9 @@ public class NpgsqlQuery : IQuery
             catch (NpgsqlException) { }
         }
         await _command.PrepareAsync();
-        await _command.ExecuteNonQueryAsync();
+        int returnValue = await _command.ExecuteNonQueryAsync();
         await _connection.CloseAsync();
+        return returnValue;
     }
 
     public void AddParameter(string name, object value)

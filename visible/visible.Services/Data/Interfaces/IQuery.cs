@@ -22,5 +22,5 @@ public interface IQuery
     /// Execute an operation that does not return rows
     /// </summary>
     /// <returns> The asynchronous Task's completion </returns>
-    Task ExecuteNonQueryAsync();
+    Task<int> ExecuteNonQueryAsync();
 }
