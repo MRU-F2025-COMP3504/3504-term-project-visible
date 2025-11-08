@@ -7,3 +7,9 @@ export interface GigListings {
   description: string;
   budget: string;
 }
+
+//Budget range object - used while filtering gig listings
+export interface BudgetRange {
+  low: number;
+  high: number;
+}
