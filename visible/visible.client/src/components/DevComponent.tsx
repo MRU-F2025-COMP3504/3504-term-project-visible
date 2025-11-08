@@ -5,11 +5,13 @@ import { Button } from "@/components/ui/button";
 import { fetchAllGigListings } from "@/modules/data";
 import { MouseEvent } from "react";
 import SignIn from "@/components/SignIn";
+import SignUp from "@/components/SignUp";
 
 const DevComponent = () => {
   return (
     <div>
       <SignIn />
+      <SignUp />
     </div>
   );
 };
