@@ -1,6 +1,8 @@
 import { Context } from "@/App";
 import { useContext, useState } from "react";
 import { BudgetRange } from "@/modules/interfaces";
+import GigListingCard from "./GigListingCard";
+import { GigProps } from "@/modules/interfaces";
 
 //This component implements the view for searching gig listings
 //It manages the state of the array used to build a list of gigs, then utilizes another component to produce that list
@@ -17,6 +19,14 @@ const GigSearch = () => {
   });
 
   //build array of listing components
+  const listItems = gigs.map((gig) => (
+    <GigListingCard
+      imagePath={gig.image}
+      businessTitle={gig.author}
+      description={gig.description}
+      budget={gig.budget}
+    />
+  ));
 
   return (
     <div>

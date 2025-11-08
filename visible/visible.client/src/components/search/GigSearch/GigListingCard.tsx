@@ -1,16 +1,22 @@
 import { GigProps } from "@/modules/interfaces";
 
-const GigListingCard = (props: GigProps) => {
+const GigListingCard = ({
+  //Defining requested parameters, and their default values
+  imagePath = "",
+  businessTitle,
+  description,
+  budget = 0,
+}: GigProps) => {
   return (
     <li>
       {/* Image */}
-      <img src={props.imagePath} alt="business image" />
+      <img src={imagePath} alt="business image" />
       {/* Business Name */}
-      <h2>{props.businessTitle}</h2>
+      <h2>{businessTitle}</h2>
       {/* Gig Description */}
-      <p>{props.description}</p>
+      <p>{description}</p>
       {/* Budget */}
-      <h3>{props.budget}</h3>
+      <h3>{budget}</h3>
     </li>
   );
 };
