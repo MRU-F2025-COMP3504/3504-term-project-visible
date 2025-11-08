@@ -13,3 +13,11 @@ export interface BudgetRange {
   low: number;
   high: number;
 }
+
+//Object containing the props to describe a specific gig
+export interface GigProps {
+  imagePath: string;
+  businessTitle: string;
+  description: string;
+  budget: number;
+}
