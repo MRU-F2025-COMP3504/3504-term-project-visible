@@ -4,7 +4,22 @@
 
 /* All Gig Listings - Theoretically shouldn't be using this as there could be too many gig listings in the db to reasonably request*/
 export async function fetchAllGigListings(setter: any) {
-  const response = await fetch("api/giglistings");
+  const response = await fetch(`api/giglistings`);
   const data = await response.json();
   setter(data);
+}
+
+/* Sign in request handler - function expects an object with 'Username' and 'Password' fields */
+//encrypt / hashing of user data should be added
+export async function submitSignIn(dataToSend) {
+  //Post request to server with given data
+  fetch(`api/authentication/sign-in`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(dataToSend),
+  }).then(() => {
+    console.log(`fetch completed`);
+  });
 }
