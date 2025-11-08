@@ -3,6 +3,8 @@ import { useContext, useState } from "react";
 import { BudgetRange } from "@/modules/interfaces";
 import GigListingCard from "./GigListingCard";
 import { Separator } from "@/components/ui/separator";
+import GigFilter from "./GigFilter";
+import { Button } from "@/components/ui/button";
 
 //This component implements the view for searching gig listings
 //It manages the state of the array used to build a list of gigs, and produces that list
@@ -41,6 +43,7 @@ const GigSearch = () => {
   return (
     <div className="border-2 border-amber-400">
       {/* Filter Component */}
+      <GigFilter />
       {/* List Component */}
       <ul>{listItems}</ul>
     </div>
