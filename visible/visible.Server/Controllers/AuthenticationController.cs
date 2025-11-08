@@ -16,7 +16,7 @@ namespace visible.Server.Controllers
     ) : ControllerBase
     {
         [HttpPost("sign-in")]
-        public async Task<ActionResult> SignIn([FromForm] SignInRequest signInRequest)
+        public async Task<ActionResult> SignIn([FromBody] SignInRequest signInRequest)
         {
             logger.LogInformation("Creating login request for {username}", signInRequest.Username);
 
@@ -24,7 +24,7 @@ namespace visible.Server.Controllers
         }
 
         [HttpPost("sign-up")]
-        public async Task<ActionResult> SignUp([FromForm] SignupRequest signupRequest)
+        public async Task<ActionResult> SignUp([FromBody] SignupRequest signupRequest)
         {
             bool userExists = await authenticationRepository.SearchForUserAsync(signupRequest);
             if (userExists)
