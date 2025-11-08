@@ -55,15 +55,12 @@ var dataPath = builder.Configuration["DataPath"];
 var initService = app.Services.GetService<InitService>();
 await initService.InitializeDatabase(dataPath);
 
-// app.UseDefaultFiles();
-
 // Configure the HTTP request pipeline.
-//if (app.Environment.IsDevelopment())
-//{
-app.UseSwagger();
-app.UseSwaggerUI();
-
-//}
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 app.UseAuthentication();
 app.UseAuthorization();

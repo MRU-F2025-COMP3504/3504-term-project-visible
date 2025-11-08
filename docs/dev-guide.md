@@ -25,6 +25,10 @@ This project utilizes **Docker** to containerize the application and database.
 
         dotnet dev-certs https --export-path secrets/visible.client.pem --format Pem --no-password
 
+- The application also implements authorization using JWT tokens. You will need to create two additional secret files in the `secrets` directory:
+  - **JwtIssuer**: for development purposes, this can be set to _localhost_.
+  - **JwtKey**: this file needs to contain a secret that is at least 256 bits long. [Jwt.io](https://www.jwt.io/) can provide a sample string that meets this criteria.
+
 - Once you have created the file, start the Docker containers by running the following command:
 
         docker compose up --build --watch
