@@ -23,7 +23,7 @@ namespace visible.Server.Controllers
         private IConfiguration _configuration => configuration;
 
         [HttpPost("sign-in")]
-        public async Task<ActionResult> SignIn([FromForm] SignInRequest signInRequest)
+        public async Task<ActionResult> SignIn([FromBody] SignInRequest signInRequest)
         {
             var username = signInRequest.Username;
             logger.LogInformation("Creating login request for {username}", signInRequest.Username);
@@ -61,7 +61,7 @@ namespace visible.Server.Controllers
         }
 
         [HttpPost("sign-up")]
-        public async Task<ActionResult> SignUp([FromForm] SignupRequest signupRequest)
+        public async Task<ActionResult> SignUp([FromBody] SignupRequest signupRequest)
         {
             bool userExists = await authenticationRepository.SearchForUserAsync(signupRequest);
             if (userExists)
