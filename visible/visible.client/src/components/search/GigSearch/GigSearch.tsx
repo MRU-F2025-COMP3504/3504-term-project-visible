@@ -16,6 +16,8 @@ const GigSearch = () => {
     high: Number.MAX_SAFE_INTEGER,
   });
 
+  //build array of listing components
+
   return (
     <div>
       {/* Filter Component */}
