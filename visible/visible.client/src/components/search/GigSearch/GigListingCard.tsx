@@ -8,7 +8,7 @@ const GigListingCard = ({
   budget = 0,
 }: GigProps) => {
   return (
-    <li>
+    <li className="border border-green-400">
       {/* Image */}
       <img src={imagePath} alt="business image" />
       {/* Business Name */}
