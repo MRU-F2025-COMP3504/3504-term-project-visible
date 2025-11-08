@@ -16,8 +16,10 @@ const signUp = () => {
   //form use states
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordConfirm, setPasswordConfirm] = useState("");
-  const [isPasswordIdentical, setIsPasswordIdentical] = useState(true);
+  const [passwordConfirm, setPasswordConfirm] = useState(""); //password confirmation
+  const [isPasswordIdentical, setIsPasswordIdentical] = useState(true); //flag to check passwords match
+  const [firstName, setFirstName] = useState(""); //first name
+  const [lastName, setLastName] = useState(""); //last name
 
   //form submit handler - checks if passwords match, sends the username and password to the api function if they do
   const handleSubmit = () => {
@@ -25,10 +27,11 @@ const signUp = () => {
       setIsPasswordIdentical(false);
     } else {
       setIsPasswordIdentical(true);
-      console.log(`passwords match`);
       submitSignUp({
         Username: username,
         Password: password,
+        FirstName: firstName,
+        LastName: lastName,
       });
     }
   };
@@ -38,9 +41,6 @@ const signUp = () => {
       // Submit function
       onSubmit={(e) => {
         e.preventDefault();
-        console.log(
-          `Sign up submitted with ${username} ${password} ${passwordConfirm}`,
-        );
         handleSubmit();
       }}
       className="border-2 border-indigo-400 p-4"
@@ -52,7 +52,7 @@ const signUp = () => {
           <Input
             id="Username"
             type="text"
-            placeholder="Enter a username"
+            placeholder="Enter a username (required)*"
             required
             onChange={(e) => {
               setUsername(e.target.value);
@@ -65,7 +65,7 @@ const signUp = () => {
           <Input
             id="Password"
             type="password"
-            placeholder="Enter a password"
+            placeholder="Enter a password (required)*"
             required
             onChange={(e) => {
               setPassword(e.target.value);
@@ -78,7 +78,7 @@ const signUp = () => {
           <Input
             id="PasswordConfirm"
             type="password"
-            placeholder="Confirm your password"
+            placeholder="Confirm your password (required)*"
             required
             onChange={(e) => {
               setPasswordConfirm(e.target.value);
@@ -98,6 +98,30 @@ const signUp = () => {
               Please don't select a password that you use for another purpose.
             </i>
           </FieldDescription>
+        </Field>
+        {/* First Name Input NOT REQUIRED */}
+        <Field>
+          <FieldLabel htmlFor="FirstName">First Name</FieldLabel>
+          <Input
+            id="FirstName"
+            type="text"
+            placeholder="Enter your first name"
+            onChange={(e) => {
+              setFirstName(e.target.value);
+            }}
+          />
+        </Field>
+        {/* Last Name Input NOT REQUIRED */}
+        <Field>
+          <FieldLabel htmlFor="LastName">Last Name</FieldLabel>
+          <Input
+            id="LastName"
+            type="text"
+            placeholder="Enter your last name"
+            onChange={(e) => {
+              setLastName(e.target.value);
+            }}
+          />
         </Field>
         {/* Submit Button */}
         <Field orientation="horizontal">
