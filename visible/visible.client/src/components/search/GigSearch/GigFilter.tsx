@@ -27,9 +27,10 @@ const GigFilter = () => {
         </DialogTrigger>
         <DialogContent className="max-w-[600px]">
           <DialogHeader>
-            <DialogTitle>Filter</DialogTitle>
+            <DialogTitle>Search Gigs</DialogTitle>
           </DialogHeader>
-
+          <Label htmlFor="keyword"></Label>
+          <Input id="keyword" name="keyword" placeholder="Search by keyword" />
           <DialogFooter>
             <DialogClose asChild>
               <Button variant="outline">Close</Button>
