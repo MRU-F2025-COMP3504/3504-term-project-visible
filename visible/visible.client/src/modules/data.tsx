@@ -13,7 +13,7 @@ export async function fetchAllGigListings(setter: any) {
 //encrypt / hashing of user data should be added
 export async function submitSignIn(dataToSend) {
   //Post request to server with given data
-  fetch(`api/authentication/sign-up`, {
+  fetch(`api/authentication/sign-in`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
