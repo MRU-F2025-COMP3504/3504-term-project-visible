@@ -23,6 +23,9 @@ builder.Services.AddSingleton<InitService>();
 builder.Services.AddSingleton<IGigListingRepository, GigListingRepository>();
 builder.Services.AddSingleton<IAuthenticationRepository, AuthenticationRepository>();
 builder.Services.AddScoped<IInfluencerRepository, InfluencerRepository>();
+builder.Services.AddScoped<IBusinessRepository, BusinessRepository>();
+
+
 
 var app = builder.Build();
 
