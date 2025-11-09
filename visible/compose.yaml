@@ -24,6 +24,8 @@
       - visible-db
     secrets:
       - postgres_user_password
+      - jwtKey
+      - jwtIssuer
 
   visible.client:
     container_name: visible.client
@@ -56,3 +58,7 @@ secrets:
     file: secrets/visible.client.pem
   visible.client.key:
     file: secrets/visible.client.key
+  jwtKey:
+    file: secrets/JwtKey
+  jwtIssuer:
+    file: secrets/JwtIssuer
