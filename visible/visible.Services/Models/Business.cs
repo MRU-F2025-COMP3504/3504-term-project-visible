@@ -1,4 +1,5 @@
-public class Business {
+public class Business
+{
     public long BusinessId { get; set; }
     public long UserId { get; set; }
     public string BusinessName { get; set; } = string.Empty;
@@ -7,5 +8,4 @@ public class Business {
     public string? DisplayImage { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
-    }
-
+}

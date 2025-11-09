@@ -1,0 +1,40 @@
+repos:
+  - repo: local
+    hooks:
+      - id: dotnet-tool-restore
+        name: Install .NET tools
+        entry: dotnet tool restore
+        language: system
+        always_run: true
+        pass_filenames: false
+        stages:
+          - pre-commit
+          - pre-push
+          - post-checkout
+          - post-rewrite
+        description: Install the .NET tools listed at .config/dotnet-tools.json.
+      - id: npm-restore
+        name: Install npm dependencies
+        entry: npm install
+        language: system
+        always_run: true
+        pass_filenames: false
+        stages:
+          - pre-commit
+          - pre-push
+          - post-checkout
+          - post-rewrite
+        description: Install npm packages
+      - id: csharpier
+        name: Run CSharpier on C# files
+        entry: dotnet tool run CSharpier format visible
+        language: system
+        types:
+          - c#
+        description: CSharpier is an opinionated C# formatter inspired by Prettier.
+      - id: app-prettier
+        name: run prettier
+        language: system
+        files: ^.*$
+        types_or: [yaml, javascript, jsx, ts, tsx, markdown, json]
+        entry: bash -c 'npm run --silent fix:prettier "${@}"' --

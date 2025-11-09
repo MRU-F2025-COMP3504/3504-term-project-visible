@@ -15,7 +15,8 @@ public class BusinessRepository(NpgsqlConnection connection) : IBusinessReposito
 {
     public void Dispose()
     {
-        if (connection.State != ConnectionState.Closed) connection.Close();
+        if (connection.State != ConnectionState.Closed)
+            connection.Close();
         GC.SuppressFinalize(this);
     }
 
@@ -26,7 +27,8 @@ public class BusinessRepository(NpgsqlConnection connection) : IBusinessReposito
     {
         var businesses = new List<Business>();
         using var cmd = connection.CreateCommand();
-        cmd.CommandText = @"
+        cmd.CommandText =
+            @"
             SELECT business_id, user_id, business_name, location, industry, display_image, created_at, updated_at
             FROM businesses";
 
@@ -35,17 +37,19 @@ public class BusinessRepository(NpgsqlConnection connection) : IBusinessReposito
 
         while (await reader.ReadAsync())
         {
-            businesses.Add(new Business
-            {
-                BusinessId = Convert.ToInt32(reader["business_id"]),
-                UserId = Convert.ToInt32(reader["user_id"]),
-                BusinessName = Convert.ToString(reader["business_name"]),
-                Location = Convert.ToString(reader["location"]),
-                Industry = Convert.ToString(reader["industry"]),
-                DisplayImage = reader["display_image"]?.ToString(),
-                CreatedAt = Convert.ToDateTime(reader["created_at"]),
-                UpdatedAt = Convert.ToDateTime(reader["updated_at"])
-            });
+            businesses.Add(
+                new Business
+                {
+                    BusinessId = Convert.ToInt32(reader["business_id"]),
+                    UserId = Convert.ToInt32(reader["user_id"]),
+                    BusinessName = Convert.ToString(reader["business_name"]),
+                    Location = Convert.ToString(reader["location"]),
+                    Industry = Convert.ToString(reader["industry"]),
+                    DisplayImage = reader["display_image"]?.ToString(),
+                    CreatedAt = Convert.ToDateTime(reader["created_at"]),
+                    UpdatedAt = Convert.ToDateTime(reader["updated_at"]),
+                }
+            );
         }
 
         await connection.CloseAsync();
@@ -59,7 +63,8 @@ public class BusinessRepository(NpgsqlConnection connection) : IBusinessReposito
     {
         Business? business = null;
         using var cmd = connection.CreateCommand();
-        cmd.CommandText = @"
+        cmd.CommandText =
+            @"
             SELECT business_id, user_id, business_name, location, industry, display_image, created_at, updated_at
             FROM businesses
             WHERE business_name = @business_name";
@@ -79,7 +84,7 @@ public class BusinessRepository(NpgsqlConnection connection) : IBusinessReposito
                 Industry = Convert.ToString(reader["industry"]),
                 DisplayImage = reader["display_image"]?.ToString(),
                 CreatedAt = Convert.ToDateTime(reader["created_at"]),
-                UpdatedAt = Convert.ToDateTime(reader["updated_at"])
+                UpdatedAt = Convert.ToDateTime(reader["updated_at"]),
             };
         }
 
@@ -93,7 +98,8 @@ public class BusinessRepository(NpgsqlConnection connection) : IBusinessReposito
     public async Task<long> CreateBusinessProfile(Business business)
     {
         using var cmd = connection.CreateCommand();
-        cmd.CommandText = @"
+        cmd.CommandText =
+            @"
             INSERT INTO businesses (user_id, business_name, location, industry, display_image)
             VALUES (@user_id, @business_name, @location, @industry, @display_image)
             RETURNING business_id";
@@ -102,7 +108,10 @@ public class BusinessRepository(NpgsqlConnection connection) : IBusinessReposito
         cmd.Parameters.AddWithValue("@business_name", business.BusinessName);
         cmd.Parameters.AddWithValue("@location", business.Location);
         cmd.Parameters.AddWithValue("@industry", business.Industry);
-        cmd.Parameters.AddWithValue("@display_image", business.DisplayImage ?? (object)DBNull.Value);
+        cmd.Parameters.AddWithValue(
+            "@display_image",
+            business.DisplayImage ?? (object)DBNull.Value
+        );
 
         await connection.OpenAsync();
         var newId = Convert.ToInt64(await cmd.ExecuteScalarAsync());

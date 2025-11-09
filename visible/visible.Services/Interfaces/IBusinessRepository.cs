@@ -2,7 +2,6 @@ using visible.Services.Models;
 
 namespace visible.Services.Interfaces
 {
-
     /// <summary>
     /// This interface defines the contract for accessing and modifying business profile data.
     /// </summary>

@@ -29,7 +29,8 @@ public class InfluencerController(IInfluencerRepository influencerRepository) : 
     public async Task<ActionResult> GetByEmail(string email)
     {
         var influencer = await influencerRepository.GetInfluencerByEmail(email);
-        if (influencer == null) return NotFound($"Influencer with email '{email}' not found.");
+        if (influencer == null)
+            return NotFound($"Influencer with email '{email}' not found.");
         return Ok(influencer);
     }
 
@@ -44,6 +45,6 @@ public class InfluencerController(IInfluencerRepository influencerRepository) : 
             return BadRequest("Influencer data is required.");
 
         var newId = await influencerRepository.CreateInfluencerProfile(influencer);
-       return Ok(new { InfluencerId = newId });
+        return Ok(new { InfluencerId = newId });
     }
 }
