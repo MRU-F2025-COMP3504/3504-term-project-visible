@@ -14,3 +14,17 @@ CREATE TABLE IF NOT EXISTS users(
     last_name text NOT NULL,
     created_at timestamp with time zone not null default now()                                    
 );
+
+
+CREATE TABLE IF NOT EXISTS businesses (
+  business_id bigint GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  user_id bigint NOT NULL,
+  business_name text NOT NULL,
+  location text NOT NULL,
+  industry text NOT NULL,
+  display_image text,
+  created_at timestamp with time zone NOT NULL DEFAULT now(),
+  updated_at timestamp with time zone NOT NULL DEFAULT now(),
+  CONSTRAINT user_id_fkey FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
