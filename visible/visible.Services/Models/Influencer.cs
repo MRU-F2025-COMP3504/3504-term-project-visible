@@ -1,3 +1,5 @@
+namespace visible.Services.Models;
+
 public class Influencer
 {
     public int InfluencerId { get; set; }
