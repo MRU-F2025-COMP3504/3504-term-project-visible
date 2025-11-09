@@ -1,54 +1,28 @@
-import { useEffect, useState } from 'react';
-import './App.css';
+import { useEffect, useState, createContext } from "react";
+import "./App.css";
+import { GigListings } from "./modules/interfaces";
+import DevComponent from "./components/DevComponent";
 
-interface GigListings {
-    id: number;
-    author: string;
-    description: string;
-    budget: string;
-}
+export const Context = createContext<any>({
+  gigs: [undefined, () => {}],
+});
 
 function App() {
-    const [gigs, setGigs] = useState<GigListings[]>();
+  //data state declarations
+  const [gigs, setGigs] = useState<GigListings[]>();
 
-    useEffect(() => {
-        populateGigPostings();
-    }, []);
+  //context object
+  const contextObj = {
+    gigs: [gigs, setGigs],
+  };
 
-    const contents = gigs === undefined
-        ? <p><em>Loading... Please refresh once the ASP.NET backend has started. See <a href="https://aka.ms/jspsintegrationreact">https://aka.ms/jspsintegrationreact</a> for more details.</em></p>
-        : <table className="table table-striped" aria-labelledby="tableLabel">
-            <thead>
-                <tr>
-                    <th>Author</th>
-                    <th>Description</th>
-                    <th>Budget</th>
-                </tr>
-            </thead>
-            <tbody>
-                {gigs.map(gig =>
-                    <tr key={gig.id}>
-                        <td>{gig.author}</td>
-                        <td>{gig.description}</td>
-                        <td>{gig.budget}</td>
-                    </tr>
-                )}
-            </tbody>
-        </table>;
-
-    return (
-        <div>
-            <h1 id="tableLabel">Recent Gigs</h1>
-            <p>This component demonstrates fetching data from the server.</p>
-            {contents}
-        </div>
-    );
-
-    async function populateGigPostings() {
-        const response = await fetch('api/giglistings');
-        const data = await response.json();
-        setGigs(data);
-    }
+  return (
+    <main className="bg-black border-8 border-indigo-500 h-dvh p-[2em] aspect-9/16 mx-auto">
+      <Context.Provider value={contextObj}>
+        <DevComponent />
+      </Context.Provider>
+    </main>
+  );
 }
 
 export default App;

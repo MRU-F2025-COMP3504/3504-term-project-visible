@@ -14,7 +14,8 @@ public class InfluencerRepository(NpgsqlConnection connection) : IInfluencerRepo
 {
     public void Dispose()
     {
-        if (connection.State != ConnectionState.Closed) connection.Close();
+        if (connection.State != ConnectionState.Closed)
+            connection.Close();
         GC.SuppressFinalize(this);
     }
 
@@ -25,7 +26,8 @@ public class InfluencerRepository(NpgsqlConnection connection) : IInfluencerRepo
     {
         var influencers = new List<Influencer>();
         using var cmd = connection.CreateCommand();
-        cmd.CommandText = @"
+        cmd.CommandText =
+            @"
             SELECT influencer_id, user_id, display_name, bio, avatar, portfolio, created_at, updated_at
             FROM influencers";
 
@@ -34,17 +36,19 @@ public class InfluencerRepository(NpgsqlConnection connection) : IInfluencerRepo
 
         while (await reader.ReadAsync())
         {
-            influencers.Add(new Influencer
-            {
-                InfluencerId = Convert.ToInt32(reader["influencer_id"]),
-                UserId = Convert.ToInt32(reader["user_id"]),
-                DisplayName = Convert.ToString(reader["display_name"]),
-                Bio = Convert.ToString(reader["bio"]),
-                Avatar = Convert.ToString(reader["avatar"]),
-                Portfolio = reader["portfolio"]?.ToString(),
-                CreatedAt = Convert.ToDateTime(reader["created_at"]),
-                UpdatedAt = Convert.ToDateTime(reader["updated_at"])
-            });
+            influencers.Add(
+                new Influencer
+                {
+                    InfluencerId = Convert.ToInt32(reader["influencer_id"]),
+                    UserId = Convert.ToInt32(reader["user_id"]),
+                    DisplayName = Convert.ToString(reader["display_name"]),
+                    Bio = Convert.ToString(reader["bio"]),
+                    Avatar = Convert.ToString(reader["avatar"]),
+                    Portfolio = reader["portfolio"]?.ToString(),
+                    CreatedAt = Convert.ToDateTime(reader["created_at"]),
+                    UpdatedAt = Convert.ToDateTime(reader["updated_at"]),
+                }
+            );
         }
 
         await connection.CloseAsync();
@@ -58,7 +62,8 @@ public class InfluencerRepository(NpgsqlConnection connection) : IInfluencerRepo
     {
         Influencer? influencer = null;
         using var cmd = connection.CreateCommand();
-        cmd.CommandText = @"
+        cmd.CommandText =
+            @"
             SELECT i.influencer_id, i.user_id, i.display_name, i.bio, i.avatar, i.portfolio,
                    i.created_at, i.updated_at
             FROM influencers i
@@ -80,7 +85,7 @@ public class InfluencerRepository(NpgsqlConnection connection) : IInfluencerRepo
                 Avatar = Convert.ToString(reader["avatar"]),
                 Portfolio = reader["portfolio"]?.ToString(),
                 CreatedAt = Convert.ToDateTime(reader["created_at"]),
-                UpdatedAt = Convert.ToDateTime(reader["updated_at"])
+                UpdatedAt = Convert.ToDateTime(reader["updated_at"]),
             };
         }
 
@@ -96,7 +101,8 @@ public class InfluencerRepository(NpgsqlConnection connection) : IInfluencerRepo
     public async Task<int> CreateInfluencerProfile(Influencer influencer)
     {
         using var cmd = connection.CreateCommand();
-        cmd.CommandText = @"
+        cmd.CommandText =
+            @"
             INSERT INTO influencers (user_id, display_name, bio, avatar, portfolio)
             VALUES (@UserId, @DisplayName, @Bio, @Avatar, @Portfolio)
             RETURNING influencer_id";

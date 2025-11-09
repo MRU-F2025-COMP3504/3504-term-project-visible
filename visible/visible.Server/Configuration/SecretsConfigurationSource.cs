@@ -1,7 +1,7 @@
 namespace visible.Server.Configuration;
 
 /// <summary>
-/// Configuration source for Docker secrets 
+/// Configuration source for Docker secrets
 /// </summary>
 public class SecretsConfigurationSource : IConfigurationSource
 {

@@ -1,11 +1,10 @@
 ﻿#root {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
-}
-
-th, td {
-    padding-left: 1rem;
-    padding-right: 1rem;
+  width: 100dvw;
+  height: 100dvh;
+  margin: 0;
+  padding: 0;
+  background-size: cover;
+  background-position: center;
+  background-image: url("src/assets/hero.jpg");
+  /* hero image source: https://www.freepik.com/free-vector/futuristic-dark-wavy-background_6436954.htm#fromView=keyword&page=1&position=12&uuid=4f22ecf9-20f4-424f-9a2a-657396283cc7&query=Black+purple */
 }
