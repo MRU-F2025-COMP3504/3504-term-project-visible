@@ -22,10 +22,11 @@ const GigSearch = () => {
 
   //build array of listing components
   const listItems = gigs.map((gig) => (
-    <div>
+    <div key={gig.id}>
       {/* adds a seperator for every gig after the first */}
       {!(gigs[0] === gig) && <Separator className="my-4" />}
       <GigListingCard
+        id={gig.id}
         imagePath={gig.image}
         businessTitle={gig.author}
         description={gig.description}

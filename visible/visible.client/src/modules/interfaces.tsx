@@ -16,6 +16,7 @@ export interface BudgetRange {
 
 //Object containing the props to describe a specific gig
 export interface GigProps {
+  id: number;
   imagePath: string;
   businessTitle: string;
   description: string;

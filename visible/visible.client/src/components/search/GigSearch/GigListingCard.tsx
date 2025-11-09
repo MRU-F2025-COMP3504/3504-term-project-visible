@@ -2,7 +2,8 @@ import { GigProps } from "@/modules/interfaces";
 
 const GigListingCard = ({
   //Defining requested parameters, and their default values
-  imagePath = "",
+  id,
+  imagePath,
   businessTitle,
   description,
   budget = 0,

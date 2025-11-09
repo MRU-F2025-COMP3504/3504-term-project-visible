@@ -12,29 +12,54 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { useState } from "react";
 
 //GigFilter component implements the form to filter the gig list
 const GigFilter = () => {
+  //Dialog (modal) open state
+  const [isOpen, setIsOpen] = useState(false);
   return (
-    <Dialog>
-      <form>
-        <DialogTrigger>
-          {/* overriding some annoying inheritted size attribute somewhere */}
-          <Search className="w-8! h-8! min-w-8! min-h-8!" strokeWidth={2} />
-        </DialogTrigger>
-        <DialogContent className="max-w-[600px]">
-          <DialogHeader>
-            <DialogTitle>Search Gigs</DialogTitle>
-          </DialogHeader>
-          <Label htmlFor="keyword"></Label>
-          <Input id="keyword" name="keyword" placeholder="Search by keyword" />
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <DialogTrigger>
+        {/* overriding some annoying inheritted css size attribute somewhere */}
+        <Search
+          className="w-8! h-8! min-w-8! min-h-8!"
+          strokeWidth={2}
+          onClick={(e) => {
+            e.preventDefault();
+            setIsOpen(true);
+          }}
+        />
+      </DialogTrigger>
+      <DialogContent className="max-w-[600px]">
+        <DialogHeader>
+          <DialogTitle>Search Gigs</DialogTitle>
+        </DialogHeader>
+        {/* Description hidden - used by screen readers */}
+        <DialogDescription hidden={true}>
+          Provide keyword to filter gig listings by attributes.
+        </DialogDescription>
+        <form
+          // Submit Function
+          onSubmit={(e) => {
+            e.preventDefault();
+            console.log(`form submitted`);
+            setIsOpen(false);
+          }}
+        >
+          <Input
+            id="keyword"
+            type="text"
+            placeholder="Search by keyword"
+            className="mt-4"
+          />
           <DialogFooter>
-            <DialogClose asChild>
-              <Button variant="outline">Close</Button>
-            </DialogClose>
+            <Button variant="secondary" type="submit" className="mt-4!">
+              Submit
+            </Button>
           </DialogFooter>
-        </DialogContent>
-      </form>
+        </form>
+      </DialogContent>
     </Dialog>
   );
 };
