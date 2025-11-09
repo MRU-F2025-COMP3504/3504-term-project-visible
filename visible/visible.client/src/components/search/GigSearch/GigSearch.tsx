@@ -11,20 +11,16 @@ import { Button } from "@/components/ui/button";
 const GigSearch = () => {
   //grab gig context from broader app's context
   const [gigs, setGigs] = useContext(Context).gigs;
-
-  //Search parameters -> Default states
-  const [searchByName, setSearchByName] = useState("");
-  const [searchByDescription, setSearchByDescription] = useState("");
-  const [searchByBudget, setSearchByBudget] = useState<BudgetRange>({
-    low: 0,
-    high: Number.MAX_SAFE_INTEGER,
-  });
+  //gig list state for the filtered (& sorted, later) list
+  const [filteredGigs, setFilteredGigs] = useState(gigs);
+  //State to hold the search filter keyword - setter passed to filter component
+  const [searchKeyword, setSearchKeyword] = useState("");
 
   //build array of listing components
-  const listItems = gigs.map((gig) => (
+  const listItems = filteredGigs.map((gig) => (
     <div key={gig.id}>
       {/* adds a seperator for every gig after the first */}
-      {!(gigs[0] === gig) && <Separator className="my-4" />}
+      {!(filteredGigs[0] === gig) && <Separator className="my-4" />}
       <GigListingCard
         id={gig.id}
         imagePath={gig.image}
@@ -46,6 +42,7 @@ const GigSearch = () => {
       {/* Filter Component */}
       <GigFilter />
       {/* List Component */}
+      {/* TODO: Put this in it's own component */}
       <ul>{listItems}</ul>
     </div>
   );
