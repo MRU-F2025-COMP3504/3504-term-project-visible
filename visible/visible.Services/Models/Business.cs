@@ -1,3 +1,5 @@
+namespace visible.Services.Models;
+
 public class Business
 {
     public long BusinessId { get; set; }
