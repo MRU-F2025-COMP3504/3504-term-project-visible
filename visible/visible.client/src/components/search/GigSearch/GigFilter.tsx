@@ -20,10 +20,7 @@ const GigFilter = () => {
       <form>
         <DialogTrigger>
           {/* overriding some annoying inheritted size attribute somewhere */}
-          <Search
-            className="!w-[32px] !h-[32px] !min-w-[32px] !min-h-[32px]"
-            strokeWidth={2}
-          />
+          <Search className="w-8! h-8! min-w-8! min-h-8!" strokeWidth={2} />
         </DialogTrigger>
         <DialogContent className="max-w-[600px]">
           <DialogHeader>
