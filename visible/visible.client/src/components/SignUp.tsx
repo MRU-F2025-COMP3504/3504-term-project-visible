@@ -12,7 +12,7 @@ import { submitSignUp } from "@/modules/data";
 //This component impletements the basic sign up form html
 //Documentation for the 'Field' components can be found here: https://ui.shadcn.com/docs/components/field
 //The form uses a function from the data module to submit the 2 fields 'Username' and 'Password' using a POST request to api/authentication/sign-up
-const signUp = () => {
+const SignUp = ({ parentOnSubmit }) => {
   //form use states
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -33,6 +33,7 @@ const signUp = () => {
         FirstName: firstName,
         LastName: lastName,
       });
+      parentOnSubmit();
     }
   };
 
@@ -132,4 +133,4 @@ const signUp = () => {
   );
 };
 
-export default signUp;
+export default SignUp;
