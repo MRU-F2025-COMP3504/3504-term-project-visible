@@ -14,3 +14,15 @@ CREATE TABLE IF NOT EXISTS users(
     last_name text NOT NULL,
     created_at timestamp with time zone not null default now()                                    
 );
+
+CREATE TABLE IF NOT EXISTS influencers(
+    influencer_id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    user_id int NOT NULL,
+    display_name text,
+    bio text,
+    avatar text,
+    portfolio text,
+    created_at timestamp with time zone NOT NULL DEFAULT now(),
+    updated_at timestamp with time zone NOT NULL DEFAULT now(),
+    CONSTRAINT fk_user_id FOREIGN KEY(user_id) REFERENCES users(user_id)
+);
