@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using visible.Services.Interfaces;
-
-namespace visible.Server.Controllers;
+using visible.Services.Models;
 
 /// <summary>
 /// The entry point for gig listings API.
@@ -9,11 +8,20 @@ namespace visible.Server.Controllers;
 /// <param name="gigListingRepository"> The gig listing accessor </param>
 [ApiController]
 [Route("api/[controller]")]
-public class GigListingsController(IGigListingRepository gigListingRepository) : ControllerBase
+public class GigListingsController(
+    IGigListingRepository gigListingRepository,
+    ILogger<GigListingsController> logger
+) : ControllerBase
 {
     [HttpGet]
     public async Task<ActionResult> Get()
     {
         return Ok(await gigListingRepository.GetRecentGigListings());
+    }
+
+    [HttpPost("create")]
+    public async Task<ActionResult> CreateGigListing([FromBody] GigListing gigListing)
+    {
+        return Ok(await gigListingRepository.CreateNewGigListing(gigListing));
     }
 }
