@@ -12,7 +12,7 @@ import { submitSignIn } from "@/modules/data";
 //This component implements the basic sign-in form html.
 //Documentation for the 'Field' components can be found here: https://ui.shadcn.com/docs/components/field
 //The form submits 2 fields 'Username' and 'Password' using a POST request to api/authentication/sign-in
-const SignIn = () => {
+const SignIn = ({ parentOnSubmit }) => {
   //field input states
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -22,13 +22,12 @@ const SignIn = () => {
       // Submit function
       onSubmit={(e) => {
         e.preventDefault();
-        console.log(`Sign in submitted with ${username} + ${password}`);
         submitSignIn({
           Username: username,
           Password: password,
         });
+        parentOnSubmit();
       }}
-      className="border-2 border-red-400 p-4"
     >
       <FieldGroup className="">
         {/* Username Input */}
