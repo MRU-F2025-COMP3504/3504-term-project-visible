@@ -35,7 +35,7 @@ const GigSearch = () => {
         //Any of (Business Title, Description, Budget) contains keyword
         //value the keyword (if it is a number, or 0 if its not) to show search results above a dollar value
         const keywordValue = isNaN(+searchKeyword.replace(/^\$/, ""))
-          ? 0
+          ? Number.MAX_SAFE_INTEGER
           : searchKeyword.replace(/^\$/, "");
         /* 
           SEARCH LOGIC BELOW - may be useful to wrap this behaviour in a different function
@@ -82,12 +82,21 @@ const GigSearch = () => {
     />
   ));
 
+  //filteredGigs length > 0 boolean - used to conditionall render a no gigs found element
+  const gigsFound = listItems.length > 0;
+
   return (
     <div>
       {/* Filter Component */}
       <GigFilter setSearchKeyword={setSearchKeyword} />
       {/* List Component */}
-      <SearchList listItems={listItems} />
+      {gigsFound && <SearchList listItems={listItems} />}
+      {!gigsFound && !(gigs.length == 0) && (
+        <div>No gigs found. Try broadening your search.</div>
+      )}
+      {gigs.length == 0 && (
+        <div>No gigs could be pulled from the database.</div>
+      )}
     </div>
   );
 };

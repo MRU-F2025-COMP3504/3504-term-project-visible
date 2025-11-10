@@ -10,8 +10,8 @@ const GigListingCard = ({
 }: GigProps) => {
   return (
     <li key={id}>
-      {/* Image */}
-      <img src={imagePath} alt="business image" />
+      {/* Image - commented out until we add images to the database*/}
+      {/* <img src={imagePath} alt="business image" /> */}
       {/* Business Name */}
       <h2>{businessTitle}</h2>
       {/* Gig Description */}
