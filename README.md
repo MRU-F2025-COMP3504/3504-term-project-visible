@@ -25,6 +25,8 @@ This project utilizes **Docker** to containerize the application and database.
 
 - Follow this link to install [.NET](https://dotnet.microsoft.com/en-us/download). You will need to install .NET 9.0 to ensure compatibility with the project.
 
+- Install Node and npm via the [NodeJS](https://nodejs.org/en/download) website.
+
 - Open **Docker Desktop**, and ensure that you are signed in to your Docker account.
 
 - In a terminal, navigate to the repository's `visible` directory.
@@ -44,7 +46,14 @@ This project utilizes **Docker** to containerize the application and database.
 
 - The application also implements authorization using JWT tokens. You will need to create two additional secret files in the `secrets` directory:
   - **JwtIssuer**: for development purposes, this can be set to _localhost_.
+
+        echo "localhost" > secrets/JwtIssuer
+
   - **JwtKey**: this file needs to contain a secret that is at least 256 bits long. [Jwt.io](https://www.jwt.io/) can provide a sample string that meets this criteria.
+
+        echo "a-string-secret-at-least-256-bits-long" > secrets/JwtKey
+
+- **Note:** If you have run any of the above commands in Powershell, you may need to swap the file encoding from `UTF-16LE` to `UTF-8` to ensure compatability.
 
 - Once you have created the file, start the Docker containers by running the following command:
 
