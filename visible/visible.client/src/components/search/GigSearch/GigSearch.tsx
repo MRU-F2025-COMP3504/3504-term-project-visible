@@ -1,11 +1,12 @@
 import { Context } from "@/App";
 import { useContext, useEffect, useState } from "react";
-import { BudgetRange } from "@/modules/interfaces";
 import GigListingCard from "./GigListingCard";
-import { Separator } from "@/components/ui/separator";
 import GigFilter from "./GigFilter";
-import { Button } from "@/components/ui/button";
 import SearchList from "@/components/search/SearchList";
+
+//TODO:
+// - Add a clear search button
+// - Wrap the search logic in it's function for easier maintenance
 
 //This component implements the view for searching gig listings
 //It manages the state of the array used to build a list of gigs, and produces that list
@@ -26,16 +27,27 @@ const GigSearch = () => {
     // if search is not empty, filter the list -> checking every attribute for the keyword, item included in list if any attribute includes the keyword
     else {
       const newGigsList: any = [];
+      //define regular expression for comparisons
+      const regex = new RegExp(searchKeyword.toLowerCase());
+      const regexBudget = new RegExp("\\$?" + searchKeyword.replace(/^\$/, "")); //normalize string in case user add $ while looking for budget
       gigs.forEach((gig) => {
         //check keyword against all attributes
         //Any of (Business Title, Description, Budget) contains keyword
-        const regex = new RegExp(searchKeyword.toLowerCase()); //define regular expression for comparisons
+        //value the keyword (if it is a number, or 0 if its not) to show search results above a dollar value
+        const keywordValue = isNaN(+searchKeyword.replace(/^\$/, ""))
+          ? 0
+          : searchKeyword.replace(/^\$/, "");
+        /* 
+          SEARCH LOGIC BELOW - may be useful to wrap this behaviour in a different function
+
+        */
         if (
           regex.test(gig.author.toLowerCase()) ||
           regex.test(gig.description.toLowerCase()) ||
-          regex.test(gig.budget)
+          regexBudget.test(gig.budget) ||
+          keywordValue < gig.budget
         ) {
-          //add the gig to the new array if it mathces the fitler
+          //add the gig to the new array if it matches the fitler
           newGigsList.push(gig);
         }
       });

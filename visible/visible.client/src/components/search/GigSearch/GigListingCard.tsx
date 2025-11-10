@@ -9,7 +9,7 @@ const GigListingCard = ({
   budget = 0,
 }: GigProps) => {
   return (
-    <li className="border border-green-400" key={id}>
+    <li key={id}>
       {/* Image */}
       <img src={imagePath} alt="business image" />
       {/* Business Name */}

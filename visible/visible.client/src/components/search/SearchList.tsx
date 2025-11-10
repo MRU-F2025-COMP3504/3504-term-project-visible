@@ -11,7 +11,7 @@ const SearchList = ({ listItems }) => {
     //Fragment wrapper so as to not add a redundant div
     <Fragment key={item.key}>
       {/* adds a seperator for every gig after the first */}
-      {index > 0 && <Separator className="my-4 bg-amber-700!" />}
+      {index > 0 && <Separator className="my-4 bg-white!" />}
       {item}
     </Fragment>
   ));

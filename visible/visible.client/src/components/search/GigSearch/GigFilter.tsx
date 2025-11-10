@@ -72,7 +72,7 @@ const GigFilter = ({ setSearchKeyword }: gigFilterProps) => {
           <Input
             id="keyword"
             type="text"
-            placeholder="Search by keyword"
+            placeholder="Search by keyword or minimum budget"
             className="mt-4"
             value={keywordForm}
             onChange={(e) => {
