@@ -31,7 +31,9 @@ builder.Services.AddScoped<IQueryBuilder, NpgsqlQueryBuilder>(p => new NpgsqlQue
 builder.Services.AddSingleton<InitService>();
 builder.Services.AddSingleton<IGigListingRepository, GigListingRepository>();
 builder.Services.AddSingleton<IAuthenticationRepository, AuthenticationRepository>();
-builder.Services.AddScoped<IInfluencerRepository, InfluencerRepository>();
+builder.Services.AddSingleton<IInfluencerRepository, InfluencerRepository>();
+builder.Services.AddSingleton<IBusinessRepository, BusinessRepository>();
+
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 builder
     .Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

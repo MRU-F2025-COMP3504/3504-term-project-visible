@@ -40,7 +40,6 @@ public class InfluencerRepository(IQueryBuilder builder) : IInfluencerRepository
                 }
             );
         }
-
         return influencers.ToList();
     }
 
@@ -59,6 +58,7 @@ public class InfluencerRepository(IQueryBuilder builder) : IInfluencerRepository
             JOIN users u ON i.user_id = u.user_id
             WHERE u.email = @Email";
         var query = builder.CreateQuery(emailQuery);
+
         query.AddParameter("@Email", email);
 
         await foreach (var row in query.ExecuteAsync())
