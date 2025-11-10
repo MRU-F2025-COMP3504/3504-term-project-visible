@@ -12,21 +12,44 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
+
+//define that GigFilter is looking for a setter function
+type gigFilterProps = {
+  setSearchKeyword: Dispatch<SetStateAction<string>>;
+};
 
 //GigFilter component implements the form to filter the gig list
-const GigFilter = () => {
+const GigFilter = ({ setSearchKeyword }: gigFilterProps) => {
   //Dialog (modal) open state
   const [isOpen, setIsOpen] = useState(false);
+  //Search keyword input use state
+  const [keywordForm, setKeywordForm] = useState("");
+
+  //Submit handler function
+  const searchFormSubmit = () => {
+    console.log(`received '${keywordForm}' as search parameter`);
+    //Confirm a parameter was received
+    if (!(keywordForm == "")) {
+      //set the search parameter
+      setSearchKeyword(keywordForm);
+    } else {
+      //bandaid until clear button made
+      setSearchKeyword("");
+    }
+    setIsOpen(false);
+  };
+
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger>
-        {/* overriding some annoying inheritted css size attribute somewhere */}
+        {/* class name is overriding some annoying inheritted css size attribute somewhere */}
         <Search
           className="w-8! h-8! min-w-8! min-h-8!"
           strokeWidth={2}
           onClick={(e) => {
             e.preventDefault();
+            //open the modal
             setIsOpen(true);
           }}
         />
@@ -43,8 +66,7 @@ const GigFilter = () => {
           // Submit Function
           onSubmit={(e) => {
             e.preventDefault();
-            console.log(`form submitted`);
-            setIsOpen(false);
+            searchFormSubmit();
           }}
         >
           <Input
@@ -52,6 +74,11 @@ const GigFilter = () => {
             type="text"
             placeholder="Search by keyword"
             className="mt-4"
+            value={keywordForm}
+            onChange={(e) => {
+              e.preventDefault();
+              setKeywordForm(e.target.value);
+            }}
           />
           <DialogFooter>
             <Button variant="secondary" type="submit" className="mt-4!">

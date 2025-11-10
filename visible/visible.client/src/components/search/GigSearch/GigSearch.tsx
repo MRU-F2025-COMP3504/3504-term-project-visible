@@ -1,10 +1,11 @@
 import { Context } from "@/App";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BudgetRange } from "@/modules/interfaces";
 import GigListingCard from "./GigListingCard";
 import { Separator } from "@/components/ui/separator";
 import GigFilter from "./GigFilter";
 import { Button } from "@/components/ui/button";
+import SearchList from "@/components/search/SearchList";
 
 //This component implements the view for searching gig listings
 //It manages the state of the array used to build a list of gigs, and produces that list
@@ -16,34 +17,65 @@ const GigSearch = () => {
   //State to hold the search filter keyword - setter passed to filter component
   const [searchKeyword, setSearchKeyword] = useState("");
 
-  //build array of listing components
-  const listItems = filteredGigs.map((gig) => (
-    <div key={gig.id}>
-      {/* adds a seperator for every gig after the first */}
-      {!(filteredGigs[0] === gig) && <Separator className="my-4" />}
-      <GigListingCard
-        id={gig.id}
-        imagePath={gig.image}
-        businessTitle={gig.author}
-        description={gig.description}
-        budget={gig.budget}
-      />
-    </div>
-  ));
-
-  //build strucure of list items
-  const listView = () => {
-    let isFirst = true;
-    listItems.forEach;
+  //Function to implement behaviour for filtering & unfiltering the list
+  const filterListFunction = () => {
+    // If search keyword is empty, reset the list to full list
+    if (searchKeyword == "") {
+      setFilteredGigs(gigs);
+    }
+    // if search is not empty, filter the list -> checking every attribute for the keyword, item included in list if any attribute includes the keyword
+    else {
+      const newGigsList: any = [];
+      gigs.forEach((gig) => {
+        //check keyword against all attributes
+        //Any of (Business Title, Description, Budget) contains keyword
+        const regex = new RegExp(searchKeyword.toLowerCase()); //define regular expression for comparisons
+        if (
+          regex.test(gig.author.toLowerCase()) ||
+          regex.test(gig.description.toLowerCase()) ||
+          regex.test(gig.budget)
+        ) {
+          //add the gig to the new array if it mathces the fitler
+          newGigsList.push(gig);
+        }
+      });
+      //update filteredGigs with new filtered list
+      console.log(`Updating filtered array to ${JSON.stringify(newGigsList)}`);
+      setFilteredGigs(newGigsList);
+    }
   };
 
+  //USE EFFECTS
+  //populate default filteredGigs when gigs is received from context
+  useEffect(() => {
+    if (!(gigs.length === 0)) {
+      setFilteredGigs(gigs);
+    }
+  }, [gigs]);
+
+  //Updating the list of gigs whenever the search keyword is changed
+  useEffect(() => {
+    filterListFunction();
+  }, [searchKeyword]);
+
+  //build array of listing components
+  const listItems = filteredGigs.map((gig) => (
+    <GigListingCard
+      key={gig.id}
+      id={gig.id}
+      imagePath={gig.image}
+      businessTitle={gig.author}
+      description={gig.description}
+      budget={gig.budget}
+    />
+  ));
+
   return (
-    <div className="border-2 border-amber-400">
+    <div>
       {/* Filter Component */}
-      <GigFilter />
+      <GigFilter setSearchKeyword={setSearchKeyword} />
       {/* List Component */}
-      {/* TODO: Put this in it's own component */}
-      <ul>{listItems}</ul>
+      <SearchList listItems={listItems} />
     </div>
   );
 };
