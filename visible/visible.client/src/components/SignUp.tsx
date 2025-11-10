@@ -44,7 +44,6 @@ const SignUp = ({ parentOnSubmit }) => {
         e.preventDefault();
         handleSubmit();
       }}
-      className="border-2 border-indigo-400 p-4"
     >
       <FieldGroup>
         {/* Username Input */}
@@ -87,9 +86,7 @@ const SignUp = ({ parentOnSubmit }) => {
           />
           {/* Conditional Note Shown if Confirm password does not match */}
           {!isPasswordIdentical && (
-            <FieldDescription className="text-red-400">
-              Error: Passwords must match.
-            </FieldDescription>
+            <FieldDescription>Error: Passwords must match.</FieldDescription>
           )}
           <FieldDescription>
             <i>

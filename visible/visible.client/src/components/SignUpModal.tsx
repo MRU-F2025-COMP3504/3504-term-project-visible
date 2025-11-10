@@ -35,7 +35,7 @@ const SignUpModal = () => {
           Sign Up
         </Button>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className="bg-black">
         <DialogTitle hidden={true}>Sign Up Form</DialogTitle>
         <DialogDescription hidden={true}>
           Sign up using a form containing Username, Password, Confirm Password,
