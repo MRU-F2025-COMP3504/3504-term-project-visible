@@ -12,9 +12,8 @@ CREATE TABLE IF NOT EXISTS users(
     password text NOT NULL,
     first_name text NOT NULL,
     last_name text NOT NULL,
-    created_at timestamp with time zone not null default now()                                    
+    created_at timestamp with time zone not null default now()
 );
-
 
 CREATE TABLE IF NOT EXISTS businesses (
   business_id bigint GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -28,3 +27,14 @@ CREATE TABLE IF NOT EXISTS businesses (
   CONSTRAINT user_id_fkey FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
+CREATE TABLE IF NOT EXISTS influencers(
+    influencer_id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    user_id int NOT NULL,
+    display_name text,
+    bio text,
+    avatar text,
+    portfolio text,
+    created_at timestamp with time zone NOT NULL DEFAULT now(),
+    updated_at timestamp with time zone NOT NULL DEFAULT now(),
+    CONSTRAINT fk_user_id FOREIGN KEY(user_id) REFERENCES users(user_id)
+);

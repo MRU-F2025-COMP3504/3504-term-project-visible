@@ -1,5 +1,4 @@
-using System.Data;
-using Npgsql;
+using visible.Services.Data.Interfaces;
 using visible.Services.Interfaces;
 using visible.Services.Models;
 
@@ -9,49 +8,38 @@ namespace visible.Services.Repositories;
 /// The implementation of IInfluencerRepository interface.
 /// Provides data access methods for managing influencer profiles.
 /// </summary>
-/// <param name="connection">Connection to the PostgreSQL database.</param>
-public class InfluencerRepository(NpgsqlConnection connection) : IInfluencerRepository, IDisposable
+/// <param name="builder">Connection to the PostgreSQL database.</param>
+public class InfluencerRepository(IQueryBuilder builder) : IInfluencerRepository
 {
-    public void Dispose()
-    {
-        if (connection.State != ConnectionState.Closed)
-            connection.Close();
-        GC.SuppressFinalize(this);
-    }
-
     /// <summary>
     /// Retrieves all influencer profiles from the database.
     /// </summary>
     public async Task<IEnumerable<Influencer>> GetAllInfluencers()
     {
         var influencers = new List<Influencer>();
-        using var cmd = connection.CreateCommand();
-        cmd.CommandText =
+        string influencerQuery =
             @"
             SELECT influencer_id, user_id, display_name, bio, avatar, portfolio, created_at, updated_at
             FROM influencers";
 
-        await connection.OpenAsync();
-        using var reader = await cmd.ExecuteReaderAsync();
+        var query = builder.CreateQuery(influencerQuery);
 
-        while (await reader.ReadAsync())
+        await foreach (var row in query.ExecuteAsync())
         {
             influencers.Add(
                 new Influencer
                 {
-                    InfluencerId = Convert.ToInt32(reader["influencer_id"]),
-                    UserId = Convert.ToInt32(reader["user_id"]),
-                    DisplayName = Convert.ToString(reader["display_name"]),
-                    Bio = Convert.ToString(reader["bio"]),
-                    Avatar = Convert.ToString(reader["avatar"]),
-                    Portfolio = reader["portfolio"]?.ToString(),
-                    CreatedAt = Convert.ToDateTime(reader["created_at"]),
-                    UpdatedAt = Convert.ToDateTime(reader["updated_at"]),
+                    InfluencerId = Convert.ToInt32(row.GetColumn("influencer_id")),
+                    UserId = Convert.ToInt32(row.GetColumn("user_id")),
+                    DisplayName = Convert.ToString(row.GetColumn("display_name")),
+                    Bio = Convert.ToString(row.GetColumn("bio")),
+                    Avatar = Convert.ToString(row.GetColumn("avatar")),
+                    Portfolio = row.GetColumn("portfolio")?.ToString(),
+                    CreatedAt = Convert.ToDateTime(row.GetColumn("created_at")),
+                    UpdatedAt = Convert.ToDateTime(row.GetColumn("updated_at")),
                 }
             );
         }
-
-        await connection.CloseAsync();
         return influencers.ToList();
     }
 
@@ -61,35 +49,33 @@ public class InfluencerRepository(NpgsqlConnection connection) : IInfluencerRepo
     public async Task<Influencer?> GetInfluencerByEmail(string email)
     {
         Influencer? influencer = null;
-        using var cmd = connection.CreateCommand();
-        cmd.CommandText =
+
+        string emailQuery =
             @"
             SELECT i.influencer_id, i.user_id, i.display_name, i.bio, i.avatar, i.portfolio,
                    i.created_at, i.updated_at
             FROM influencers i
             JOIN users u ON i.user_id = u.user_id
             WHERE u.email = @Email";
-        cmd.Parameters.AddWithValue("@Email", email);
+        var query = builder.CreateQuery(emailQuery);
 
-        await connection.OpenAsync();
-        using var reader = await cmd.ExecuteReaderAsync();
+        query.AddParameter("@Email", email);
 
-        if (await reader.ReadAsync())
+        await foreach (var row in query.ExecuteAsync())
         {
             influencer = new Influencer
             {
-                InfluencerId = Convert.ToInt32(reader["influencer_id"]),
-                UserId = Convert.ToInt32(reader["user_id"]),
-                DisplayName = Convert.ToString(reader["display_name"]),
-                Bio = Convert.ToString(reader["bio"]),
-                Avatar = Convert.ToString(reader["avatar"]),
-                Portfolio = reader["portfolio"]?.ToString(),
-                CreatedAt = Convert.ToDateTime(reader["created_at"]),
-                UpdatedAt = Convert.ToDateTime(reader["updated_at"]),
+                InfluencerId = Convert.ToInt32(row.GetColumn("influencer_id")),
+                UserId = Convert.ToInt32(row.GetColumn("user_id")),
+                DisplayName = Convert.ToString(row.GetColumn("display_name")),
+                Bio = Convert.ToString(row.GetColumn("bio")),
+                Avatar = Convert.ToString(row.GetColumn("avatar")),
+                Portfolio = row.GetColumn("portfolio")?.ToString(),
+                CreatedAt = Convert.ToDateTime(row.GetColumn("created_at")),
+                UpdatedAt = Convert.ToDateTime(row.GetColumn("updated_at")),
             };
         }
 
-        await connection.CloseAsync();
         return influencer;
     }
 
@@ -100,22 +86,25 @@ public class InfluencerRepository(NpgsqlConnection connection) : IInfluencerRepo
     /// <returns>The ID of the newly created influencer.</returns>
     public async Task<int> CreateInfluencerProfile(Influencer influencer)
     {
-        using var cmd = connection.CreateCommand();
-        cmd.CommandText =
+        string createStatement =
             @"
             INSERT INTO influencers (user_id, display_name, bio, avatar, portfolio)
             VALUES (@UserId, @DisplayName, @Bio, @Avatar, @Portfolio)
             RETURNING influencer_id";
 
-        cmd.Parameters.AddWithValue("@UserId", influencer.UserId);
-        cmd.Parameters.AddWithValue("@DisplayName", influencer.DisplayName ?? (object)DBNull.Value);
-        cmd.Parameters.AddWithValue("@Bio", influencer.Bio ?? (object)DBNull.Value);
-        cmd.Parameters.AddWithValue("@Avatar", influencer.Avatar ?? (object)DBNull.Value);
-        cmd.Parameters.AddWithValue("@Portfolio", influencer.Portfolio ?? (object)DBNull.Value);
+        var query = builder.CreateQuery(createStatement);
+        query.AddParameter("@UserId", influencer.UserId);
+        query.AddParameter("@DisplayName", influencer.DisplayName);
+        query.AddParameter("@Bio", influencer.Bio);
+        query.AddParameter("@Avatar", influencer.Avatar);
+        query.AddParameter("@Portfolio", influencer.Portfolio);
 
-        await connection.OpenAsync();
-        var newId = Convert.ToInt32(await cmd.ExecuteScalarAsync());
-        await connection.CloseAsync();
+        var newId = 0;
+
+        await foreach (var row in query.ExecuteAsync())
+        {
+            newId = Convert.ToInt32(row.GetColumn("influencer_id"));
+        }
 
         return newId;
     }
