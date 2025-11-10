@@ -4,14 +4,20 @@ import { Context } from "@/App";
 import { Button } from "@/components/ui/button";
 import { fetchAllGigListings } from "@/modules/data";
 import { MouseEvent } from "react";
-import SignIn from "@/components/SignIn";
-import SignUp from "@/components/SignUp";
+import GigListingCard from "./search/GigSearch/GigListingCard";
+import GigSearch from "./search/GigSearch/GigSearch";
 
 const DevComponent = () => {
+  const [gigs, setGigs] = useContext(Context).gigs;
+
+  //testing gig listings
+  useEffect(() => {
+    fetchAllGigListings(setGigs);
+  }, []);
+
   return (
     <div>
-      <SignIn />
-      <SignUp />
+      <GigSearch />
     </div>
   );
 };

@@ -3,15 +3,16 @@ import "./App.css";
 import { GigListings } from "./modules/interfaces";
 import DevComponent from "./components/DevComponent";
 
+//define structure of context provider
 export const Context = createContext<any>({
-  gigs: [undefined, () => {}],
+  gigs: [[], () => {}],
 });
 
 function App() {
   //data state declarations
-  const [gigs, setGigs] = useState<GigListings[]>();
+  const [gigs, setGigs] = useState<GigListings[]>([]);
 
-  //context object
+  //context object to pass
   const contextObj = {
     gigs: [gigs, setGigs],
   };
