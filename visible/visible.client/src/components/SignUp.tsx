@@ -12,7 +12,7 @@ import { submitSignUp } from "@/modules/data";
 //This component impletements the basic sign up form html
 //Documentation for the 'Field' components can be found here: https://ui.shadcn.com/docs/components/field
 //The form uses a function from the data module to submit the 2 fields 'Username' and 'Password' using a POST request to api/authentication/sign-up
-const signUp = () => {
+const SignUp = ({ parentOnSubmit }) => {
   //form use states
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -33,6 +33,7 @@ const signUp = () => {
         FirstName: firstName,
         LastName: lastName,
       });
+      parentOnSubmit();
     }
   };
 
@@ -43,7 +44,6 @@ const signUp = () => {
         e.preventDefault();
         handleSubmit();
       }}
-      className="border-2 border-indigo-400 p-4"
     >
       <FieldGroup>
         {/* Username Input */}
@@ -86,9 +86,7 @@ const signUp = () => {
           />
           {/* Conditional Note Shown if Confirm password does not match */}
           {!isPasswordIdentical && (
-            <FieldDescription className="text-red-400">
-              Error: Passwords must match.
-            </FieldDescription>
+            <FieldDescription>Error: Passwords must match.</FieldDescription>
           )}
           <FieldDescription>
             <i>
@@ -132,4 +130,4 @@ const signUp = () => {
   );
 };
 
-export default signUp;
+export default SignUp;
