@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import SignInModal from "./SignInModal";
 import SignUpModal from "./SignUpModal";
+import CreateGigListingModal from "./GigListingModal";
 
 const LandingPage = () => {
   return (
@@ -23,6 +24,8 @@ const LandingPage = () => {
         <SignInModal />
         {/* Sign In */}
         <SignUpModal />
+        {/* Gig Listing Creation */}
+        <CreateGigListingModal />
       </div>
     </div>
   );
