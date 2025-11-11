@@ -34,3 +34,51 @@ export async function submitSignUp(dataToSend) {
     body: JSON.stringify(dataToSend),
   });
 }
+
+// Handler to create an influencer profile
+export async function createInfluencerProfile(influencerProfileData) {
+  //POST request to server with given data
+  fetch(`api/influencer`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(influencerProfileData),
+  });
+}
+
+// Handler to create a business profile
+export async function createBusinessProfile(businessProfileData) {
+  //POST request to server with given data
+  fetch(`api/business`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(businessProfileData),
+  });
+}
+
+// Handler to create a gig listing
+export async function createGigListing(gigListingData) {
+  //POST request to server with given data
+  fetch(`api/giglistings/create`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(gigListingData),
+  });
+}
+
+// Handler to submit a gig application
+export async function submitGigApplication(gigApplicationData) {
+  //POST request to server with given data
+  fetch(`api/application/create`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(gigApplicationData),
+  });
+}
