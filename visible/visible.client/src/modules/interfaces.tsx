@@ -30,6 +30,7 @@ export interface GigProps {
   id: number;
   imagePath: string;
   businessTitle: string;
+  gigTitle: string;
   description: string;
   budget: number;
 }
