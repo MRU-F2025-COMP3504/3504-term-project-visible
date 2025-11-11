@@ -6,10 +6,17 @@
 
 //GigListing Object - defines the data attatched to a unqiue gig listing
 export interface GigListings {
-  id: number;
-  author: string;
+  gigId: number;
+  businessId: number;
+  title: string;
   description: string;
-  budget: string;
+  location: string;
+  budget: number;
+  requirements: string;
+  status: string;
+  deadline: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 //Budget range object - used while filtering gig listings
@@ -25,4 +32,38 @@ export interface GigProps {
   businessTitle: string;
   description: string;
   budget: number;
+}
+
+export interface SignUpRequest {
+  username: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+}
+
+export interface SignInRequest {
+  username: string;
+  password: string;
+}
+
+export interface InfluencerProfile {
+  influencerId: number;
+  userId: number;
+  displayName: string;
+  bio: string;
+  avatar: string;
+  portfolio: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface BusinessProfile {
+  businessId: number;
+  userId: number;
+  businessName: string;
+  location: string;
+  industry: string;
+  displayImage: string;
+  createdAt: string;
+  updatedAt: string;
 }
