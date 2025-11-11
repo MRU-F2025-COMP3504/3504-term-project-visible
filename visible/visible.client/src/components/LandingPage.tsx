@@ -12,6 +12,7 @@ import {
 import SignInModal from "./SignInModal";
 import SignUpModal from "./SignUpModal";
 import CreateGigListingModal from "./GigListingModal";
+import CreateInfluencerProfileModal from "./InfluencerProfileModal";
 
 const LandingPage = () => {
   return (
@@ -26,6 +27,8 @@ const LandingPage = () => {
         <SignUpModal />
         {/* Gig Listing Creation */}
         <CreateGigListingModal />
+        {/* Influencer Profile Creation */}
+        <CreateInfluencerProfileModal />
       </div>
     </div>
   );

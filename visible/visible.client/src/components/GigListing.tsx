@@ -5,9 +5,16 @@ import {
   FieldGroup,
   FieldLabel,
 } from "@/components/ui/field";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
-import { submitCreateGigListing } from "@/modules/data";
+import { createGigListing } from "@/modules/data";
 
 //This component impletements the basic sign up form html
 //Documentation for the 'Field' components can be found here: https://ui.shadcn.com/docs/components/field
@@ -23,9 +30,25 @@ const GigListing = ({ parentOnSubmit }) => {
   const [status, setStatus] = useState("Open");
   const [deadline, setDeadline] = useState("");
 
+  const GigStatus = () => {
+    return (
+      <Select>
+        <SelectTrigger>
+          <SelectValue placeholder="Select a status for this gig listing (required)" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="draft">Draft</SelectItem>
+          <SelectItem value="open">Open</SelectItem>
+          <SelectItem value="closed">Closed</SelectItem>
+          <SelectItem value="filled">Filled</SelectItem>
+          <SelectItem value="removed">Removed</SelectItem>
+        </SelectContent>
+      </Select>
+    );
+  };
   //form submit handler - checks if passwords match, sends the username and password to the api function if they do
   const handleSubmit = () => {
-    submitCreateGigListing({
+    createGigListing({
       BusinessId: businessId,
       Title: title,
       Location: location,
@@ -134,12 +157,18 @@ const GigListing = ({ parentOnSubmit }) => {
         {/* Status Input */}
         <Field>
           <FieldLabel htmlFor="Status">Status</FieldLabel>
-          <Input
+          {/* <Input
             id="Status"
             type="text"
             placeholder="Enter the gig's status (required)*"
             required
             onChange={(e) => {
+              setStatus(e.target.value);
+            }}
+          /> */}
+          <GigStatus
+            id="Status"
+            onSelectedChange={(e) => {
               setStatus(e.target.value);
             }}
           />
