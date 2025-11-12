@@ -4,7 +4,7 @@ const GigListingCard = ({
   //Defining requested parameters, and their default values
   id,
   imagePath,
-  businessTitle,
+  businessName,
   gigTitle,
   description,
   budget = 0,
@@ -16,11 +16,12 @@ const GigListingCard = ({
       {/* Gig Title */}
       <h2>{gigTitle}</h2>
       {/* Business Name */}
-      {/* <h3>{businessTitle}</h3> */}
+      <h3>{businessName}</h3>
       {/* Gig Description */}
       <p>{description}</p>
       {/* Budget */}
       <h3>${budget}</h3>
+      <button type="submit">Apply</button>
     </li>
   );
 };

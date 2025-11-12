@@ -21,7 +21,8 @@ function App() {
   return (
     <main className="bg-black border-8 border-indigo-500 h-dvh p-[2em] aspect-9/16 mx-auto flex">
       <Context.Provider value={contextObj}>
-        <LandingPage />
+        {/* <LandingPage /> */}
+        <DevComponent />
       </Context.Provider>
     </main>
   );

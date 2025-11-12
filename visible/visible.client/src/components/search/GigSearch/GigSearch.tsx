@@ -42,7 +42,7 @@ const GigSearch = () => {
 
         */
         if (
-          regex.test(gig.title.toLowerCase()) ||
+          regex.test(gig.businessName.toLowerCase()) ||
           regex.test(gig.description.toLowerCase()) ||
           regexBudget.test(gig.budget) ||
           keywordValue < gig.budget
@@ -76,7 +76,7 @@ const GigSearch = () => {
       key={gig.gigId}
       id={gig.gigId}
       imagePath={gig.image}
-      businessTitle={gig.author}
+      businessName={gig.businessName}
       gigTitle={gig.title}
       description={gig.description}
       budget={gig.budget}
