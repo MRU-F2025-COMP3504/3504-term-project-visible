@@ -17,6 +17,7 @@ public class GigRepositoryTests
             {
                 { "gig_id", "1" },
                 { "business_id", "1" },
+                { "business_name", "Euphoria" },
                 { "title", "Open Mic Poetry Host" },
                 { "description", "Making connections through the arts" },
                 { "location", "Edmonton, AB" },
@@ -33,6 +34,7 @@ public class GigRepositoryTests
             {
                 { "gig_id", "2" },
                 { "business_id", "1" },
+                { "business_name", "Bass Pro Shop" },
                 { "title", "Shop til we drop" },
                 { "description", "Supporting Local Businesses this Christmas" },
                 { "location", "Calgary, AB" },
