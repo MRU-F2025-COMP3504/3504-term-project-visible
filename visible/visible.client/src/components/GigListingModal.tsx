@@ -16,7 +16,7 @@ const CreateGigListingModal = () => {
   //Dialog (modal) open state
   const [isOpen, setIsOpen] = useState(false);
 
-  //onSubmit -> passed to the SignIn Component to be appended into the end of the on submit function
+  //onSubmit -> passed to the GigListing Component to be appended onto the end of the form's submit function
   const onSubmit = () => {
     setIsOpen(false);
   };
@@ -36,10 +36,9 @@ const CreateGigListingModal = () => {
         </Button>
       </DialogTrigger>
       <DialogContent className="bg-black">
-        <DialogTitle hidden={true}>Sign Up Form</DialogTitle>
+        <DialogTitle hidden={true}>Create Gig Listing Form</DialogTitle>
         <DialogDescription hidden={true}>
-          Sign up using a form containing Username, Password, Confirm Password,
-          and optional First Name, and Last Name fields.
+          Create a gig listing.
         </DialogDescription>
         <GigListing parentOnSubmit={onSubmit} />
       </DialogContent>
