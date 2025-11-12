@@ -30,10 +30,10 @@ const GigListing = ({ parentOnSubmit }) => {
   const [status, setStatus] = useState("Open");
   const [deadline, setDeadline] = useState("");
 
-  const GigStatus = () => {
+  const GigStatus = ({ id, onSelectedChange }) => {
     return (
-      <Select>
-        <SelectTrigger>
+      <Select onValueChange={onSelectedChange}>
+        <SelectTrigger id={id}>
           <SelectValue placeholder="Select a status for this gig listing (required)" />
         </SelectTrigger>
         <SelectContent>
