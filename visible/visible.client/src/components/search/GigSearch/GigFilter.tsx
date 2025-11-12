@@ -53,7 +53,7 @@ const GigFilter = ({ setSearchKeyword }: gigFilterProps) => {
           }}
         />
       </DialogTrigger>
-      <DialogContent className="max-w-[600px]">
+      <DialogContent className="max-w-[600px] bg-black!">
         <DialogHeader>
           <DialogTitle>Search Gigs</DialogTitle>
         </DialogHeader>
