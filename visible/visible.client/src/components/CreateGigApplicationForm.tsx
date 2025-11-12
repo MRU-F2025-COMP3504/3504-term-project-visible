@@ -20,9 +20,9 @@ import { submitGigApplication } from "@/modules/data";
 //Documentation for the 'Field' components can be found here: https://ui.shadcn.com/docs/components/field
 //The form uses a function from the data module to submit the Gig Application information using a POST request to api/application/create
 
-const CreateGigApplicationForm = ({ parentOnSubmit }) => {
+const CreateGigApplicationForm = ({ parentOnSubmit, propGigId }) => {
   //form use states
-  const [gigId, setGigId] = useState("");
+  const [gigId, setGigId] = useState(propGigId);
   const [applicantId, setApplicantId] = useState("");
   const [applicationText, setApplicationText] = useState("");
   const [status, setApplicationStatus] = useState("");
@@ -32,7 +32,7 @@ const CreateGigApplicationForm = ({ parentOnSubmit }) => {
       // USING A VARIABLE SCOPED OUTSIDE THIS BLOCK - ONLY USE ONCE
       <Select
         onValueChange={(value) => {
-          setStatus(value);
+          setApplicationStatus(value);
         }}
         defaultValue={status}
       >
@@ -41,9 +41,7 @@ const CreateGigApplicationForm = ({ parentOnSubmit }) => {
         </SelectTrigger>
         <SelectContent className="bg-black!">
           <SelectItem value="draft">Draft</SelectItem>
-          <SelectItem value="submitted" default>
-            Submitted
-          </SelectItem>
+          <SelectItem value="submitted">Submitted</SelectItem>
           <SelectItem value="pending">Pending</SelectItem>
           <SelectItem value="accepted">Accepted</SelectItem>
           <SelectItem value="rejected">Rejected</SelectItem>
@@ -79,6 +77,7 @@ const CreateGigApplicationForm = ({ parentOnSubmit }) => {
             id="GigId"
             type="numeric"
             placeholder="Enter the gig id (required)*"
+            defaultValue={propGigId}
             required
             onChange={(e) => {
               setGigId(e.target.value);
@@ -88,7 +87,7 @@ const CreateGigApplicationForm = ({ parentOnSubmit }) => {
 
         {/* Applicant Input - should be removed later once we can get this id from a session token*/}
         <Field>
-          <FieldLabel htmlFor="ApplicantId">Applicant Id</FieldLabel>
+          <FieldLabel htmlFor="ApplicantId">Applicant Id #</FieldLabel>
           <Input
             id="ApplicantId"
             type="numeric"

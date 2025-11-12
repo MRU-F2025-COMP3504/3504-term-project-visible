@@ -12,7 +12,7 @@ import {
 import { useState } from "react";
 import CreateGigApplicationForm from "./CreateGigApplicationForm";
 
-const CreateGigApplicationModal = () => {
+const CreateGigApplicationModal = ({ label, propGigId }) => {
   //Dialog (modal) open state
   const [isOpen, setIsOpen] = useState(false);
 
@@ -32,7 +32,7 @@ const CreateGigApplicationModal = () => {
             setIsOpen(true);
           }}
         >
-          Apply to this Gig
+          {label}
         </Button>
       </DialogTrigger>
       <DialogContent className="bg-black">
@@ -40,7 +40,10 @@ const CreateGigApplicationModal = () => {
         <DialogDescription hidden={true}>
           Create a gig listing.
         </DialogDescription>
-        <CreateGigApplicationForm parentOnSubmit={onSubmit} />
+        <CreateGigApplicationForm
+          parentOnSubmit={onSubmit}
+          propGigId={propGigId}
+        />
       </DialogContent>
     </Dialog>
   );
