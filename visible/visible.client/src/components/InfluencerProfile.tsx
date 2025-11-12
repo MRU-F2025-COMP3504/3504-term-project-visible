@@ -9,9 +9,9 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { createInfluencerProfile } from "@/modules/data";
 
-//This component impletements the basic sign up form html
+//This component impletements the basic Influencer Profile form html
 //Documentation for the 'Field' components can be found here: https://ui.shadcn.com/docs/components/field
-//The form uses a function from the data module to submit the 2 fields 'Username' and 'Password' using a POST request to api/authentication/sign-up
+//The form uses a function from the data module to submit the Influencer Profile data via a POST request to api/influencer
 const InfluencerProfile = ({ parentOnSubmit }) => {
   //form use states
   const [userId, setUserId] = useState("");

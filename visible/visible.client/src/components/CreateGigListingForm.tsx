@@ -16,9 +16,9 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { createGigListing } from "@/modules/data";
 
-//This component impletements the basic sign up form html
+//This component impletements the basic Create Gig Listing form html
 //Documentation for the 'Field' components can be found here: https://ui.shadcn.com/docs/components/field
-//The form uses a function from the data module to submit the 2 fields 'Username' and 'Password' using a POST request to api/authentication/sign-up
+//The form uses a function from the data module to submit the GigListing information using a POST request to api/giglistings/create
 
 //TODO:
 //- Add date selection validation (confirm date is later than current time)
