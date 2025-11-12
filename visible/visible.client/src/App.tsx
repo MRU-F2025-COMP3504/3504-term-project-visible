@@ -3,6 +3,7 @@ import "./App.css";
 import { GigListings } from "./modules/interfaces";
 import DevComponent from "./components/DevComponent";
 import LandingPage from "./components/LandingPage";
+import CreateGigListingModal from "./components/GigListingModal";
 
 //define structure of context provider
 export const Context = createContext<any>({
