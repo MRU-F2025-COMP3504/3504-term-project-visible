@@ -29,7 +29,8 @@ export interface BudgetRange {
 export interface GigProps {
   id: number;
   imagePath: string;
-  businessTitle: string;
+  businessName: string;
+  gigTitle: string;
   description: string;
   budget: number;
 }
