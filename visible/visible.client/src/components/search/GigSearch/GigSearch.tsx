@@ -42,6 +42,7 @@ const GigSearch = () => {
 
         */
         if (
+          regex.test(gig.title.toLowerCase()) ||
           regex.test(gig.businessName.toLowerCase()) ||
           regex.test(gig.description.toLowerCase()) ||
           regexBudget.test(gig.budget) ||
@@ -52,7 +53,6 @@ const GigSearch = () => {
         }
       });
       //update filteredGigs with new filtered list
-      console.log(`Updating filtered array to ${JSON.stringify(newGigsList)}`);
       setFilteredGigs(newGigsList);
     }
   };
