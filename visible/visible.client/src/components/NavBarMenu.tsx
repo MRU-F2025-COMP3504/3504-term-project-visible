@@ -7,6 +7,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Menu } from "lucide-react";
+import CreateGigListingModal from "./CreateGigListingModal";
 
 const NavBarMenu = () => {
   return (
@@ -25,7 +26,7 @@ const NavBarMenu = () => {
         </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuItem className="flex items-center">
-            Post A Gig
+            <CreateGigListingModal />
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
