@@ -1,4 +1,5 @@
 import { GigProps } from "@/modules/interfaces";
+import CreateGigApplicationModal from "@/components/CreateGigApplicationModal";
 
 const GigListingCard = ({
   //Defining requested parameters, and their default values
@@ -21,7 +22,7 @@ const GigListingCard = ({
       <p>{description}</p>
       {/* Budget */}
       <h3>${budget}</h3>
-      <button type="submit">Apply</button>
+      <CreateGigApplicationModal label="Apply" propGigId={id} />
     </li>
   );
 };
