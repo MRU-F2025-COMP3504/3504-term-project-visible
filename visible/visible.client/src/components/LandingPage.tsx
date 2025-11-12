@@ -17,7 +17,7 @@ import CreateGigApplicationModal from "./CreateGigApplicationModal";
 
 const LandingPage = () => {
   return (
-    <div className="border-2 border-white items-center justify-center gap-10 flex grow flex-col">
+    <div className="items-center justify-center gap-10 flex grow flex-col">
       {/* Visible Title Component */}
       <h1>Visible</h1>
       {/* Sign In / Sign Up Buttons */}
