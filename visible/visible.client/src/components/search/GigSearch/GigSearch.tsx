@@ -42,7 +42,7 @@ const GigSearch = () => {
 
         */
         if (
-          regex.test(gig.author.toLowerCase()) ||
+          regex.test(gig.title.toLowerCase()) ||
           regex.test(gig.description.toLowerCase()) ||
           regexBudget.test(gig.budget) ||
           keywordValue < gig.budget
