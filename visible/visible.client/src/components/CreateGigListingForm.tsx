@@ -22,7 +22,7 @@ import { createGigListing } from "@/modules/data";
 
 //TODO:
 //- Add date selection validation (confirm date is later than current time)
-const GigListing = ({ parentOnSubmit }) => {
+const CreatGigListingForm = ({ parentOnSubmit }) => {
   //form use states
   const [businessId, setBusinessId] = useState("");
   const [title, setTitle] = useState("");
@@ -230,4 +230,4 @@ const GigListing = ({ parentOnSubmit }) => {
   );
 };
 
-export default GigListing;
+export default CreatGigListingForm;

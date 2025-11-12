@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import SignInModal from "./SignInModal";
 import SignUpModal from "./SignUpModal";
-import CreateGigListingModal from "./GigListingModal";
+import CreateGigListingModal from "./CreateGigListingModal";
 import CreateInfluencerProfileModal from "./InfluencerProfileModal";
 
 const LandingPage = () => {
