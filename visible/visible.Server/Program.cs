@@ -1,5 +1,6 @@
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using visible.Server.Configuration;
 using visible.Services;
@@ -58,7 +59,14 @@ builder
                 return Task.CompletedTask;
             },
         };
+    })
+    .Services.AddAuthentication()
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/api/authentication/";
+        options.LogoutPath = "/api/authentication/sign-out";
     });
+
 builder.Services.AddAuthorization();
 
 var app = builder.Build();

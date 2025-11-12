@@ -1,6 +1,9 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using visible.Services.Interfaces;
@@ -78,6 +81,18 @@ namespace visible.Server.Controllers
             }
 
             return Ok(await authenticationRepository.CreateNewUserAsync(signupRequest));
+        }
+
+        [HttpGet("sign-out")]
+        public async Task<IActionResult> SignOutUser()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            Response.Cookies.Delete("token");
+
+            var returnUrl = _configuration["callback"];
+            logger.LogInformation("ReturnUrl: {returnUrl}", returnUrl);
+
+            return Redirect(returnUrl);
         }
     }
 }

@@ -82,3 +82,12 @@ export async function submitGigApplication(gigApplicationData) {
     body: JSON.stringify(gigApplicationData),
   });
 }
+
+export async function signOut() {
+  fetch(`api/authentication/sign-out`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+}
