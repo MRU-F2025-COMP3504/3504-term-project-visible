@@ -19,6 +19,9 @@ import { createGigListing } from "@/modules/data";
 //This component impletements the basic sign up form html
 //Documentation for the 'Field' components can be found here: https://ui.shadcn.com/docs/components/field
 //The form uses a function from the data module to submit the 2 fields 'Username' and 'Password' using a POST request to api/authentication/sign-up
+
+//TODO:
+//- Add date selection validation (confirm date is later than current time)
 const GigListing = ({ parentOnSubmit }) => {
   //form use states
   const [businessId, setBusinessId] = useState("");
