@@ -4,6 +4,7 @@ public class GigListing
 {
     public int GigId { get; set; }
     public int BusinessId { get; set; }
+    public string BusinessName { get; set; } = string.Empty;
     public string Title { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
     public string Location { get; set; } = string.Empty;

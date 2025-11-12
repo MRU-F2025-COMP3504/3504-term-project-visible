@@ -14,7 +14,9 @@ public class GigListingRepository(IQueryBuilder builder) : IGigListingRepository
     {
         var gigs = new List<GigListing>();
 
-        var query = builder.CreateQuery("SELECT * FROM gig_listings");
+        var query = builder.CreateQuery(
+            @"SELECT g.gig_id, g.business_id, b.business_name, g.title, g.description, g.location, g.budget, g.requirements, g.status, g.application_deadline, g.created_at, g.updated_at FROM gig_listings g LEFT JOIN businesses b ON g.business_id = b.business_id"
+        );
 
         await foreach (var row in query.ExecuteAsync())
         {
@@ -23,6 +25,7 @@ public class GigListingRepository(IQueryBuilder builder) : IGigListingRepository
                 {
                     GigId = Convert.ToInt32(row.GetColumn("gig_id")),
                     BusinessId = Convert.ToInt32(row.GetColumn("business_id")),
+                    BusinessName = Convert.ToString(row.GetColumn("business_name")),
                     Title = Convert.ToString(row.GetColumn("title")),
                     Description = Convert.ToString(row.GetColumn("description")),
                     Location = Convert.ToString(row.GetColumn("location")),

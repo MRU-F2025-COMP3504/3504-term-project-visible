@@ -19,6 +19,7 @@ public class GigListingsControllerTests
             {
                 GigId = 1,
                 BusinessId = 1,
+                BusinessName = "Canela",
                 Title = "New Product Launch",
                 Description = "We want to hype up this new product on Instagram and YouTube.",
                 Location = "Calgary, AB",
@@ -31,6 +32,7 @@ public class GigListingsControllerTests
             {
                 GigId = 2,
                 BusinessId = 2,
+                BusinessName = "Bass Pro Shop",
                 Title = "Spring into Savings",
                 Description = "Test description",
                 Location = "Edmonton, AB",

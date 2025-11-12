@@ -42,7 +42,7 @@ const GigSearch = () => {
 
         */
         if (
-          regex.test(gig.author.toLowerCase()) ||
+          regex.test(gig.businessName.toLowerCase()) ||
           regex.test(gig.description.toLowerCase()) ||
           regexBudget.test(gig.budget) ||
           keywordValue < gig.budget
@@ -73,10 +73,11 @@ const GigSearch = () => {
   //build array of listing components
   const listItems = filteredGigs.map((gig) => (
     <GigListingCard
-      key={gig.id}
-      id={gig.id}
+      key={gig.gigId}
+      id={gig.gigId}
       imagePath={gig.image}
-      businessTitle={gig.author}
+      businessName={gig.businessName}
+      gigTitle={gig.title}
       description={gig.description}
       budget={gig.budget}
     />
