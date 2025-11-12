@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using visible.Services.Interfaces;
 using visible.Services.Models;
+using SameSiteMode = Microsoft.AspNetCore.Http.SameSiteMode;
 
 namespace visible.Server.Controllers
 {
@@ -16,7 +17,6 @@ namespace visible.Server.Controllers
     [Route("api/[controller]")]
     public class AuthenticationController(
         IAuthenticationRepository authenticationRepository,
-        ILogger<AuthenticationController> logger,
         IConfiguration configuration
     ) : ControllerBase
     {
@@ -26,20 +26,28 @@ namespace visible.Server.Controllers
         public async Task<ActionResult> SignIn([FromBody] SignInRequest signInRequest)
         {
             var username = signInRequest.Username;
-            logger.LogInformation("Creating login request for {username}", signInRequest.Username);
 
-            var success = await authenticationRepository.SignInAsync(signInRequest);
-            if (!success)
+            var id = await authenticationRepository.SignInAsync(signInRequest);
+            if (id == 0)
                 return Unauthorized();
-            var token = GenerateJwtToken(signInRequest.Username);
-            return Ok(token);
+            var token = GenerateJwtToken(id.ToString());
+            var options = new CookieOptions
+            {
+                HttpOnly = true,
+                Expires = DateTime.Now.AddMinutes(30),
+                Secure = true,
+                SameSite = SameSiteMode.Lax,
+            };
+            Response.Cookies.Append("token", token, options);
+
+            return Ok();
         }
 
-        private string GenerateJwtToken(string username)
+        private string GenerateJwtToken(string userId)
         {
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Sub, username),
+                new Claim(JwtRegisteredClaimNames.Sub, userId),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             };
 

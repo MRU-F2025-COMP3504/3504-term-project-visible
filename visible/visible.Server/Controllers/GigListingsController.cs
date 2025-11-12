@@ -15,6 +15,9 @@ public class GigListingsController(IGigListingRepository gigListingRepository) :
     [HttpGet]
     public async Task<ActionResult> Get()
     {
+        string token = "";
+        Request.Cookies.TryGetValue("token", out token);
+
         return Ok(await gigListingRepository.GetRecentGigListings());
     }
 

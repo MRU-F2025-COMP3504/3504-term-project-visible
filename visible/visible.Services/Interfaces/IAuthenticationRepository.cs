@@ -7,7 +7,7 @@ namespace visible.Services.Interfaces
     /// </summary>
     public interface IAuthenticationRepository
     {
-        Task<bool> SignInAsync(SignInRequest signInRequest);
+        Task<int> SignInAsync(SignInRequest signInRequest);
         Task<bool> SearchForUserAsync(SignupRequest signupRequest);
         Task<bool> CreateNewUserAsync(SignupRequest signupRequest);
     }

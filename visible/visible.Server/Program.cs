@@ -34,6 +34,7 @@ builder.Services.AddSingleton<IAuthenticationRepository, AuthenticationRepositor
 builder.Services.AddSingleton<IInfluencerRepository, InfluencerRepository>();
 builder.Services.AddSingleton<IBusinessRepository, BusinessRepository>();
 builder.Services.AddSingleton<IGigApplicationRepository, GigApplicationRepository>();
+builder.Services.AddSingleton<IProfileRepository, ProfileRepository>();
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 builder
     .Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -48,6 +49,14 @@ builder
             ValidIssuer = jwtIssuer,
             ValidAudience = jwtIssuer,
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey)),
+        };
+        options.Events = new JwtBearerEvents
+        {
+            OnMessageReceived = context =>
+            {
+                context.Token = context.Request.Cookies["token"];
+                return Task.CompletedTask;
+            },
         };
     });
 builder.Services.AddAuthorization();
