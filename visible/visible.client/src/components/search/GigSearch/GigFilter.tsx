@@ -28,7 +28,6 @@ const GigFilter = ({ setSearchKeyword }: gigFilterProps) => {
 
   //Submit handler function
   const searchFormSubmit = () => {
-    console.log(`received '${keywordForm}' as search parameter`);
     //Confirm a parameter was received
     if (!(keywordForm == "")) {
       //set the search parameter
@@ -54,7 +53,7 @@ const GigFilter = ({ setSearchKeyword }: gigFilterProps) => {
           }}
         />
       </DialogTrigger>
-      <DialogContent className="max-w-[600px]">
+      <DialogContent className="max-w-[600px] bg-black!">
         <DialogHeader>
           <DialogTitle>Search Gigs</DialogTitle>
         </DialogHeader>
