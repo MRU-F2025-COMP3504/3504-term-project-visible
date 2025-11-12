@@ -27,16 +27,22 @@ const GigListing = ({ parentOnSubmit }) => {
   const [description, setDescription] = useState("");
   const [budget, setBudget] = useState("");
   const [requirements, setRequirements] = useState("");
-  const [status, setStatus] = useState("Open");
+  const [status, setStatus] = useState("");
   const [deadline, setDeadline] = useState("");
 
   const GigStatus = ({ id, onSelectedChange }) => {
     return (
-      <Select onValueChange={onSelectedChange}>
+      // USING A VARIABLE SCOPED OUTSIDE THIS BLOCK - ONLY USE ONCE
+      <Select
+        onValueChange={(value) => {
+          setStatus(value);
+        }}
+        defaultValue={status}
+      >
         <SelectTrigger id={id}>
           <SelectValue placeholder="Select a status for this gig listing (required)" />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent className="bg-black!">
           <SelectItem value="draft">Draft</SelectItem>
           <SelectItem value="open">Open</SelectItem>
           <SelectItem value="closed">Closed</SelectItem>
@@ -51,7 +57,18 @@ const GigListing = ({ parentOnSubmit }) => {
     // confirm that budget is a valid number
     if (!isNaN(+budget.replace("$", ""))) {
       //Submit the listing to the API
-      createGigListing({
+      // createGigListing({
+      //   BusinessId: businessId,
+      //   Title: title,
+      //   Location: location,
+      //   Description: description,
+      //   // strip any leading '$' - should strictly be a number at this point.
+      //   Budget: budget.replace("$", ""),
+      //   Requirements: requirements,
+      //   Status: status,
+      //   Deadline: deadline,
+      // });
+      console.log({
         BusinessId: businessId,
         Title: title,
         Location: location,
@@ -146,7 +163,9 @@ const GigListing = ({ parentOnSubmit }) => {
           />
           {/* Coniditionally displayed error message - budget must be a number, can have leading $, handled later */}
           {isNaN(+budget.replace("$", "")) && (
-            <FieldDescription>Error: Budget must be a number.</FieldDescription>
+            <FieldDescription>
+              Error: Budget must be a valid number.
+            </FieldDescription>
           )}
         </Field>
 
