@@ -60,18 +60,7 @@ const GigListing = ({ parentOnSubmit }) => {
     // confirm that budget is a valid number
     if (!isNaN(+budget.replace("$", ""))) {
       //Submit the listing to the API
-      // createGigListing({
-      //   BusinessId: businessId,
-      //   Title: title,
-      //   Location: location,
-      //   Description: description,
-      //   // strip any leading '$' - should strictly be a number at this point.
-      //   Budget: budget.replace("$", ""),
-      //   Requirements: requirements,
-      //   Status: status,
-      //   Deadline: deadline,
-      // });
-      console.log({
+      createGigListing({
         BusinessId: businessId,
         Title: title,
         Location: location,
@@ -82,6 +71,18 @@ const GigListing = ({ parentOnSubmit }) => {
         Status: status,
         Deadline: deadline,
       });
+      //testing
+      // console.log({
+      //   BusinessId: businessId,
+      //   Title: title,
+      //   Location: location,
+      //   Description: description,
+      //   // strip any leading '$' - should strictly be a number at this point.
+      //   Budget: budget.replace("$", ""),
+      //   Requirements: requirements,
+      //   Status: status,
+      //   Deadline: deadline,
+      // });
       //Run the parent component's submission handler (close the modal)
       parentOnSubmit();
     }
