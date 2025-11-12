@@ -16,7 +16,7 @@ const DevComponent = () => {
   }, []);
 
   return (
-    <div>
+    <div className="border border-amber-50 grow">
       <GigSearch />
     </div>
   );
