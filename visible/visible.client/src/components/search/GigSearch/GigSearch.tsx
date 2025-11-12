@@ -87,7 +87,7 @@ const GigSearch = () => {
   const gigsFound = listItems.length > 0;
 
   return (
-    <div>
+    <div className="max-h-full flex flex-col">
       {/* Filter Component */}
       <GigFilter setSearchKeyword={setSearchKeyword} />
       {/* List Component */}

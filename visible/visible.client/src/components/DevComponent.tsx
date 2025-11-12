@@ -16,7 +16,7 @@ const DevComponent = () => {
   }, []);
 
   return (
-    <div>
+    <div className="grow flex flex-col max-h-full overflow-hidden pr-[2em] pl-[2em]">
       <GigSearch />
     </div>
   );
