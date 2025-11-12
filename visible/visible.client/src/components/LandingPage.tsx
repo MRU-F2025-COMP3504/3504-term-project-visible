@@ -13,10 +13,11 @@ import SignInModal from "./SignInModal";
 import SignUpModal from "./SignUpModal";
 import CreateGigListingModal from "./CreateGigListingModal";
 import CreateInfluencerProfileModal from "./InfluencerProfileModal";
+import CreateGigApplicationModal from "./CreateGigApplicationModal";
 
 const LandingPage = () => {
   return (
-    <div className="border-2 border-white items-center justify-center gap-10 flex grow flex-col">
+    <div className="items-center justify-center gap-10 flex grow flex-col">
       {/* Visible Title Component */}
       <h1>Visible</h1>
       {/* Sign In / Sign Up Buttons */}
@@ -25,10 +26,6 @@ const LandingPage = () => {
         <SignInModal />
         {/* Sign In */}
         <SignUpModal />
-        {/* Gig Listing Creation */}
-        <CreateGigListingModal />
-        {/* Influencer Profile Creation */}
-        <CreateInfluencerProfileModal />
       </div>
     </div>
   );

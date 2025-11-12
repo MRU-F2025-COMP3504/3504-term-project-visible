@@ -9,40 +9,30 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import CreateGigListingForm from "./CreateGigListingForm";
 import { useState } from "react";
+import CreateGigApplicationForm from "./CreateGigApplicationForm";
 
-const CreateGigListingModal = ({ isParentOpen, isParentMenuHidden }) => {
+const CreateGigApplicationModal = ({ label, propGigId }) => {
   //Dialog (modal) open state
   const [isOpen, setIsOpen] = useState(false);
 
-  //onSubmit -> passed to the GigListing Component to be appended onto the end of the form's submit function
+  //onSubmit -> passed to the GigApplication Component to be appended onto the end of the form's submit function
   const onSubmit = () => {
     setIsOpen(false);
-    isParentMenuHidden(false);
-    isParentOpen(false);
   };
 
   return (
-    <Dialog
-      open={isOpen}
-      onOpenChange={(bool) => {
-        setIsOpen(bool);
-        isParentMenuHidden(bool);
-        isParentOpen(bool);
-      }}
-    >
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button
           variant="outline"
           onClick={(e) => {
             e.preventDefault();
-            isParentMenuHidden(true);
             //open the modal
             setIsOpen(true);
           }}
         >
-          Post A Gig
+          {label}
         </Button>
       </DialogTrigger>
       <DialogContent className="bg-black">
@@ -50,10 +40,13 @@ const CreateGigListingModal = ({ isParentOpen, isParentMenuHidden }) => {
         <DialogDescription hidden={true}>
           Create a gig listing.
         </DialogDescription>
-        <CreateGigListingForm parentOnSubmit={onSubmit} />
+        <CreateGigApplicationForm
+          parentOnSubmit={onSubmit}
+          propGigId={propGigId}
+        />
       </DialogContent>
     </Dialog>
   );
 };
 
-export default CreateGigListingModal;
+export default CreateGigApplicationModal;

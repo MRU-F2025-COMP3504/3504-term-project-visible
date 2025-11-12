@@ -8,6 +8,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { submitSignIn } from "@/modules/data";
+import { Context } from "@/App";
+import { useContext } from "react";
 
 //This component implements the basic sign-in form html.
 //Documentation for the 'Field' components can be found here: https://ui.shadcn.com/docs/components/field
@@ -16,6 +18,8 @@ const SignIn = ({ parentOnSubmit }) => {
   //field input states
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  //logged in context
+  const [loggedIn, setLoggedIn] = useContext(Context).loggedIn;
 
   return (
     <form
@@ -25,6 +29,9 @@ const SignIn = ({ parentOnSubmit }) => {
         submitSignIn({
           Username: username,
           Password: password,
+        }).then((resp) => {
+          console.log("signed in!");
+          setLoggedIn(true);
         });
         parentOnSubmit();
       }}

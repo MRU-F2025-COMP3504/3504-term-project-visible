@@ -17,7 +17,7 @@ const SearchList = ({ listItems }) => {
   ));
   return (
     // Scroll area in case the list is too long
-    <ScrollArea>
+    <ScrollArea className="overflow-y-auto pb-5">
       <ul>{listElements}</ul>
     </ScrollArea>
   );

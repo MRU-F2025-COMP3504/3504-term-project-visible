@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import GigListingCard from "./GigListingCard";
 import GigFilter from "./GigFilter";
 import SearchList from "@/components/search/SearchList";
+import { fetchAllGigListings } from "@/modules/data";
 
 //TODO:
 // - Add a clear search button
@@ -58,6 +59,11 @@ const GigSearch = () => {
   };
 
   //USE EFFECTS
+  //fetch initial gig list
+  useEffect(() => {
+    fetchAllGigListings(setGigs);
+  }, []);
+
   //populate default filteredGigs when gigs is received from context
   useEffect(() => {
     if (!(gigs.length === 0)) {
@@ -87,7 +93,7 @@ const GigSearch = () => {
   const gigsFound = listItems.length > 0;
 
   return (
-    <div>
+    <div className="max-h-full flex flex-col">
       {/* Filter Component */}
       <GigFilter setSearchKeyword={setSearchKeyword} />
       {/* List Component */}
