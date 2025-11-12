@@ -8,22 +8,15 @@ namespace visible.Server.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class ProfileController(IProfileRepository profileRepository) : ControllerBase
+public class ProfileController(IProfileRepository profileRepository) : BaseController
 {
     [HttpGet]
     [Authorize]
     public async Task<IActionResult> Get()
     {
-        string token = "";
-        Request.Cookies.TryGetValue("token", out token);
-
-        var decoded = new JwtSecurityTokenHandler().ReadJwtToken(token);
-        var userIdClaim = decoded.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Sub);
-        var user = await profileRepository.GetUserProfile(Convert.ToInt32(userIdClaim.Value));
-        var businesses = await profileRepository.GetBusinesses(Convert.ToInt32(userIdClaim.Value));
-        var influencers = await profileRepository.GetInfluencers(
-            Convert.ToInt32(userIdClaim.Value)
-        );
+        var user = await profileRepository.GetUserProfile(UserId);
+        var businesses = await profileRepository.GetBusinesses(UserId);
+        var influencers = await profileRepository.GetInfluencers(UserId);
         user.BusinessProfiles = (List<Business>?)businesses;
         user.InfluencerProfiles = (List<Influencer>?)influencers;
         return Ok(user);

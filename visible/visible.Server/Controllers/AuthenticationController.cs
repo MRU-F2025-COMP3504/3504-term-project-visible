@@ -20,8 +20,9 @@ namespace visible.Server.Controllers
     [Route("api/[controller]")]
     public class AuthenticationController(
         IAuthenticationRepository authenticationRepository,
-        IConfiguration configuration
-    ) : ControllerBase
+        IConfiguration configuration,
+        ILogger<AuthenticationController> logger
+    ) : BaseController
     {
         private IConfiguration _configuration => configuration;
 

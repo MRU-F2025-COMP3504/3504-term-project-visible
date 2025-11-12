@@ -9,7 +9,7 @@ namespace visible.Server.Controllers;
 public class ApplicationController(
     IGigApplicationRepository gigApplicationRepository,
     ILogger<ApplicationController> logger
-) : ControllerBase
+) : BaseController
 {
     [HttpPost("create")]
     public async Task<ActionResult> ApplyToGigListing([FromBody] GigApplication application)
