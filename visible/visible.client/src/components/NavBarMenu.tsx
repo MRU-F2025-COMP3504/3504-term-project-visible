@@ -9,8 +9,12 @@ import {
 import { Menu } from "lucide-react";
 import CreateGigListingModal from "./CreateGigListingModal";
 import { useState } from "react";
+import { Button } from "./ui/button";
+import { Context } from "@/App";
+import { useContext } from "react";
 
 const NavBarMenu = () => {
+  const [loggedIn, setLoggedIn] = useContext(Context).loggedIn;
   const [isOpen, setIsOpen] = useState(false);
   const [isMenuHidden, setIsMenuHidden] = useState(false);
   return (
@@ -23,10 +27,20 @@ const NavBarMenu = () => {
           <Menu className="text-white hover:text-orange-400 grow h-full pt-1 pb-1 border-none!" />
         </DropdownMenuTrigger>
         <DropdownMenuContent hidden={isMenuHidden}>
-          <CreateGigListingModal
-            isParentOpen={setIsOpen}
-            isParentMenuHidden={setIsMenuHidden}
-          />
+          <div className="flex flex-col items-center justify-center">
+            <CreateGigListingModal
+              isParentOpen={setIsOpen}
+              isParentMenuHidden={setIsMenuHidden}
+            />
+            <Button
+              onClick={(e) => {
+                e.preventDefault();
+                setLoggedIn(false);
+              }}
+            >
+              Sign Out
+            </Button>
+          </div>
         </DropdownMenuContent>
       </DropdownMenu>
     </div>
