@@ -25,7 +25,7 @@ const GigListing = ({ parentOnSubmit }) => {
   const [title, setTitle] = useState("");
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
-  const [budget, setBudget] = useState();
+  const [budget, setBudget] = useState("");
   const [requirements, setRequirements] = useState("");
   const [status, setStatus] = useState("Open");
   const [deadline, setDeadline] = useState("");
@@ -48,17 +48,23 @@ const GigListing = ({ parentOnSubmit }) => {
   };
   //form submit handler - checks if passwords match, sends the username and password to the api function if they do
   const handleSubmit = () => {
-    createGigListing({
-      BusinessId: businessId,
-      Title: title,
-      Location: location,
-      Description: description,
-      Budget: budget,
-      Requirements: requirements,
-      Status: status,
-      Deadline: deadline,
-    });
-    parentOnSubmit();
+    // confirm that budget is a valid number
+    if (!isNaN(+budget.replace("$", ""))) {
+      //Submit the listing to the API
+      createGigListing({
+        BusinessId: businessId,
+        Title: title,
+        Location: location,
+        Description: description,
+        // strip any leading '$' - should strictly be a number at this point.
+        Budget: budget.replace("$", ""),
+        Requirements: requirements,
+        Status: status,
+        Deadline: deadline,
+      });
+      //Run the parent component's submission handler (close the modal)
+      parentOnSubmit();
+    }
   };
 
   return (
@@ -70,7 +76,7 @@ const GigListing = ({ parentOnSubmit }) => {
       }}
     >
       <FieldGroup>
-        {/* BusinessId Input */}
+        {/* BusinessId Input - should be removed later once we can get this id from a session token*/}
         <Field>
           <FieldLabel htmlFor="BusinessId">Business ID</FieldLabel>
           <Input
@@ -138,6 +144,10 @@ const GigListing = ({ parentOnSubmit }) => {
               setBudget(e.target.value);
             }}
           />
+          {/* Coniditionally displayed error message - budget must be a number, can have leading $, handled later */}
+          {isNaN(+budget.replace("$", "")) && (
+            <FieldDescription>Error: Budget must be a number.</FieldDescription>
+          )}
         </Field>
 
         {/* Requirements Input */}
