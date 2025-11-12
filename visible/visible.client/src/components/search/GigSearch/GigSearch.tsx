@@ -53,7 +53,6 @@ const GigSearch = () => {
         }
       });
       //update filteredGigs with new filtered list
-      console.log(`Updating filtered array to ${JSON.stringify(newGigsList)}`);
       setFilteredGigs(newGigsList);
     }
   };

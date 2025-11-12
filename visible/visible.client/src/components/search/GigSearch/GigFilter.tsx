@@ -28,7 +28,6 @@ const GigFilter = ({ setSearchKeyword }: gigFilterProps) => {
 
   //Submit handler function
   const searchFormSubmit = () => {
-    console.log(`received '${keywordForm}' as search parameter`);
     //Confirm a parameter was received
     if (!(keywordForm == "")) {
       //set the search parameter
