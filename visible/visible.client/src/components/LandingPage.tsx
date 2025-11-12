@@ -26,12 +26,6 @@ const LandingPage = () => {
         <SignInModal />
         {/* Sign In */}
         <SignUpModal />
-        {/* Gig Listing Creation */}
-        <CreateGigListingModal />
-        {/* Influencer Profile Creation */}
-        <CreateInfluencerProfileModal />
-        {/* Gig Application Modal */}
-        <CreateGigApplicationModal />
       </div>
     </div>
   );
