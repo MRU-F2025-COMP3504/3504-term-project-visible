@@ -61,10 +61,10 @@ builder
             },
         };
     })
-    .Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .Services.AddAuthentication()
     .AddCookie(options =>
     {
-        options.LoginPath = "/api/authentication/";
+        options.LoginPath = "/api/authentication/sign-in";
         options.LogoutPath = "/api/authentication/sign-out";
     });
 
