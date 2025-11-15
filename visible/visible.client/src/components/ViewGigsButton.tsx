@@ -1,5 +1,12 @@
 import { Button } from "@/components/ui/button";
 import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+  DialogTitle,
+  DialogDescription,
+} from "./ui/dialog";
+import {
   Field,
   FieldDescription,
   FieldGroup,
@@ -37,7 +44,6 @@ const ViewGigsButton = () => {
         <DialogDescription hidden={true}>
           Takes the user to the view gigs screen
         </DialogDescription>
-        <SignIn parentOnSubmit={onSubmit} />
       </DialogContent>
     </Dialog>
   );

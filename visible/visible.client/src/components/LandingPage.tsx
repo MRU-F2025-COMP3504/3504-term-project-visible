@@ -11,8 +11,8 @@ import {
 } from "@/components/ui/dialog";
 import SignInModal from "./SignInModal";
 import SignUpModal from "./SignUpModal";
-import viewGigsButton from "./ViewGigsButton";
-import profileButton from "./ProfileButon";
+import ViewGigsButton from "./ViewGigsButton";
+import ProfileButton from "./ProfileButon";
 
 const LandingPage = () => {
   return (
@@ -28,9 +28,9 @@ const LandingPage = () => {
       </div>
       <div>
         {/* profile buton */}
-        <viewGigsButton />
+        <ViewGigsButton />
         {/* gigs buton */}
-        <profileButton />
+        <ProfileButton />
       </div>
     </div>
   );

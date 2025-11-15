@@ -1,5 +1,15 @@
 import { Button } from "@/components/ui/button";
 import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+  DialogTitle,
+  DialogDescription,
+} from "./ui/dialog";
+import { Icon } from "lucide-react";
+import { User } from "lucide-react";
+
+import {
   Field,
   FieldDescription,
   FieldGroup,
@@ -36,7 +46,6 @@ const ProfileButton = () => {
         <DialogDescription hidden={true}>
           Takes the user to their profile using this button
         </DialogDescription>
-        <SignIn parentOnSubmit={onSubmit} />
       </DialogContent>
     </Dialog>
   );
