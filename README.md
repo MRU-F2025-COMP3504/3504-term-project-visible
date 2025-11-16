@@ -15,47 +15,50 @@
 - Roman Little
 - Matthew McCusker
 
+---
+
+# Developer Guide
+
+## Obtaining Source Code
+
 ## About
 
 This project utilizes **Docker** to containerize the application and database.
 
-## Getting Started
+**Note:** This project has been designed so that it should be able to build and run on Windows, Mac, and Linux systems. Please ensure that you have the dependencies installed on your system as outlined below.
 
-- Follow this link to install [Docker Desktop](https://www.docker.com/get-started/). You will need to create an account, which can be done by linking your Google or GitHub profile.
+## System Requirements
 
-- Follow this link to install [.NET](https://dotnet.microsoft.com/en-us/download). You will need to install .NET 9.0 to ensure compatibility with the project.
-
-- Install Node and npm via the [NodeJS](https://nodejs.org/en/download) website.
-
-- Open **Docker Desktop**, and ensure that you are signed in to your Docker account.
-
-- In a terminal, navigate to the repository's `visible` directory.
+<!-- prettier-ignore -->
+| Dependency | Minimum Version (if known) | Source | Notes |
+|:----------:|:---------------:|:------:| :----|
+| Docker Desktop |  | [Docker.com](https://www.docker.com/get-started/) | After installation, you will need to sign in to your Docker account. If you need to create one, you can do so using your Google or GitHub credentials. |
+| .NET | 9.0 | [Download .NET 9.0](https://dotnet.microsoft.com/en-us/download/dotnet/9.0) | Select the appropriate installer for your system's architecture: ![](images/dotnet.png) |
+| Node.js & npm | Node: 22, npm: 11 | [NodeJS](https://nodejs.org/en/download) |
+| Python (pip) | python3 |  | pip is required to install `pre-commit` |
 
 ### Configuring Local Secrets
 
-- In order to authenticate the database instance, you will need to create a `postgres_user_password` file. Use the following two commands:
+- In a terminal, navigate to the repository's `visible` directory, and make a directory called `secrets`:
 
         mkdir secrets
-        echo [your-password] > secrets/postgres_user_password
 
-  This file is only for your machine, and should not be added to the repository. The password can be anything you want.
+- Create the following secret files:
 
-- The front-end application utilizes https, so you will need to create local dev certificates. From the `visible` directory, run the following command:
-
-        dotnet dev-certs https --export-path secrets/visible.client.pem --format Pem --no-password
-
-- The application also implements authorization using JWT tokens. You will need to create two additional secret files in the `secrets` directory:
-  - **JwtIssuer**: for development purposes, this can be set to _localhost_.
-
-        echo "localhost" > secrets/JwtIssuer
-
-  - **JwtKey**: this file needs to contain a secret that is at least 256 bits long. [Jwt.io](https://www.jwt.io/) can provide a sample string that meets this criteria.
-
-        echo "a-string-secret-at-least-256-bits-long" > secrets/JwtKey
+<!-- prettier-ignore -->
+| Secret | Command to Create | Notes |
+| :-------:| --------------- | :---- |
+| **postgres_user_password** | `echo [your-password] > secrets/postgres_user_password` | This file is only for your machine, and should not be added to the repository. The password can be anything you want. |
+| **HTTPS Certificate & Key** | `dotnet dev-certs https --export-path secrets/visible.client.pem --format Pem --no-password` | The front-end application utilizes HTTPS, so this command will generate development certificates. |
+| **JwtIssuer** | `echo "localhost" > secrets/JwtIssuer` |
+| **JwtKey** | `echo "a-string-secret-at-least-256-bits-long" > secrets/JwtKey` | |
 
 - **Note:** If you have run any of the above commands in Powershell, you may need to swap the file encoding from `UTF-16LE` to `UTF-8` to ensure compatability.
 
-- Once you have created the file, start the Docker containers by running the following command:
+## Building the Project
+
+- Open **Docker Desktop**, and ensure that you are signed in to your Docker account.
+- Start the Docker containers by running the following command:
 
         docker compose up --build --watch
 
@@ -65,7 +68,7 @@ This project utilizes **Docker** to containerize the application and database.
         docker compose up --build --watch
 
 - You should now be able to view the local instance of the project.
-  Visit http://localhost:5173 in your browser to see the result.
+  Visit https://localhost:5173 in your browser to see the result.
 
 ### Set Up Pre-Commit
 
@@ -131,6 +134,8 @@ They consist of a directory 'node_modules/' and a file 'package-lock.json'.
 
 ## Populating the Database with Test Data
 
+<!-- TODO: Update to include tables not previously documented -->
+
 ### Creating Users
 
 Because the user table will contain emails and passwords, I have not committed this file to the repository at this point. The format required to create test users is as seen in the following code snippet.
@@ -145,6 +150,8 @@ VALUES ('email', 'password', 'First Name', 'Last Name');
 The `visible/visible.Server/Data` directory contains a file called `gigs.sql` which can be used to populate the Gigs table if you are currently not seeing gig listings on the home page.
 
 To create additional gig listings, use the following format:
+
+<!-- TODO: Update example to use new table schema.-->
 
 ```SQL
 INSERT INTO gigs (author, description, budget)
@@ -161,26 +168,35 @@ VALUES ('Author Name', 'Gig Description', Amount);
 
 - The project tests should be set up to follow the **Arrange, Act, Assert** pattern, as shown below:
 
-        [Fact]
-        public async Task Test_CanGetGigListings()
-        {
-                // Arrange
-                var mockRepository = new Mock<IGigListingRepository>();
-                var gigListings = new List<GigListing>
-                {
-                new GigListing(1,"Canela","New Product Launch", 300),
-                new GigListing(2,"Breakaway","Instagram Follower Drive", 1000),
-                };
-                mockRepository.Setup(r => r.GetRecentGigListings()).ReturnsAsync(gigListings);
+```cs
+[Fact]
+public async Task Test_CanGetGigListings()
+{
+    // Arrange
+    var mockRepository = new Mock<IGigListingRepository>();
+    var gigListings = new List<GigListing>
+    {
+        new GigListing(1,"Canela","New Product Launch", 300),
+        new GigListing(2,"Breakaway","Instagram Follower Drive", 1000),
+    };
+    mockRepository.Setup(r => r.GetRecentGigListings()).ReturnsAsync(gigListings);
 
-                // Act
-                var controller = new GigListingsController(mockRepository.Object);
-                var result = await controller.Get();
+    // Act
+    var controller = new GigListingsController(mockRepository.Object);
+    var result = await controller.Get();
 
-                // Assert
-                Assert.IsType<OkObjectResult>(result);
-                var okResult = result as OkObjectResult;
-                Assert.NotNull(okResult);
-        }
+    // Assert
+    Assert.IsType<OkObjectResult>(result);
+    var okResult = result as OkObjectResult;
+    Assert.NotNull(okResult);
+}
+```
 
 - Ensure that you mock any dependencies as part of the **Arrange** step.
+
+### Running xUnit Tests
+
+- In a terminal, navigate to the `visible` directory.
+- To run all existing tests, run the following command:
+
+        dotnet test
