@@ -90,7 +90,7 @@ namespace visible.Server.Controllers
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             Response.Cookies.Delete("token");
 
-            var returnUrl = _configuration["callback"];
+            var returnUrl = "/";
             logger.LogInformation("ReturnUrl: {returnUrl}", returnUrl);
 
             return Redirect(returnUrl);

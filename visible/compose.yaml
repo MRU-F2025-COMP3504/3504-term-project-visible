@@ -26,7 +26,6 @@
       - postgres_user_password
       - jwtKey
       - jwtIssuer
-      - callback
 
   visible.client:
     container_name: visible.client
@@ -63,5 +62,3 @@ secrets:
     file: secrets/JwtKey
   jwtIssuer:
     file: secrets/JwtIssuer
-  callback:
-    file: secrets/callback
