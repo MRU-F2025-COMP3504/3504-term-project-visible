@@ -55,7 +55,7 @@ The visible directory is the root of our application's source code. It holds the
 #### _visible.Tests_
 
 - `visible.Tests` is the unit testing project for the **visible.Server** and **visible.Services** projects.
-- Noteable Folders:
+- Notable Folders:
   - _ControllerTests:_ Contains test for for API endpoint functionality.
   - _Models:_ Contains utilities required for unit testing, but not production.
   - _Services:_ Contains test files for data accessor functionality.
@@ -63,7 +63,7 @@ The visible directory is the root of our application's source code. It holds the
 #### _visible.client_
 
 - Contains source files and assets for the web application project.
-- Noteable Folders:
+- Notable Folders:
   - _src:_
     - _components:_
     - _hooks:_
