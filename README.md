@@ -48,11 +48,10 @@ The visible directory is the root of our application's source code. It holds the
 | _visible.Tests_ | `visible.Tests` is the unit testing project for the **visible.Server** and **visible.Services** projects. | _ControllerTests:_ Contains test for for API endpoint functionality. |
 | | | _Models:_ Contains utilities required for unit testing, but not production. |
 | | | _Services:_ Contains test files for data accessor functionality. |
-| _visible.client_ | Contains source files and assets for the web application project. | _src:_  |
-| | | _src/components:_ |
-| | | _src/hooks:_ |
-| | | _src/lib:_ |
-| | | _src/modules:_ |
+| _visible.client_ | Contains source files and assets for the web application project. | _src:_ Contains the react source code used to build and implement views for end users |
+| | | _src/assets:_ Contains general media files (such as images) used by the web application (does not include specific assets, such as a user's profile picture). |
+| | | _src/components:_ Contains react components meant to implement the structure and behaviour of the web application, and their test files. |
+| | | _src/modules:_ Contains auxiliary files that define behaviour the behaviour and structure of data used in the projects react components, such as a module to compartmentalize interactions with the project's database APIs. |
 
 ## How to Build Visible
 
