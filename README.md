@@ -21,6 +21,14 @@
 
 ## Obtaining Source Code
 
+- Option 1: Clone the repository:
+
+        git clone https://github.com/MRU-F2025-COMP3504/3504-term-project-visible.git
+
+- Option 2: Fork the repository (on GitHub), and then clone your fork of the project:
+
+        git clone https://github.com/YOUR_USERNAME/FORKED_REPOSITORY_NAME.git
+
 ## About
 
 This project utilizes **Docker** to containerize the application and database.
