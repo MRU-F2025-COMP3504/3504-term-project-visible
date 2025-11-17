@@ -70,13 +70,13 @@ The visible directory is the root of our application's source code. It holds the
     - _lib:_
     - _modules:_
 
-## About
+## How to Build Visible
 
 This project utilizes **Docker** to containerize the application and database.
 
 **Note:** This project has been designed so that it should be able to build and run on Windows, Mac, and Linux systems. Please ensure that you have the dependencies installed on your system as outlined below.
 
-## System Requirements
+### System Requirements
 
 <!-- prettier-ignore -->
 | Dependency | Minimum Version (if known) | Source | Notes |
@@ -104,9 +104,10 @@ This project utilizes **Docker** to containerize the application and database.
 
 - **Note:** If you have run any of the above commands in Powershell, you may need to swap the file encoding from `UTF-16LE` to `UTF-8` to ensure compatability.
 
-## Building the Project
+### Build the Docker Containers
 
 - Open **Docker Desktop**, and ensure that you are signed in to your Docker account.
+- In a terminal, navigate to the `visible` directory (`path-to-local/3504-term-project-visible/visible`).
 - Start the Docker containers by running the following command:
 
         docker compose up --build --watch
@@ -116,23 +117,39 @@ This project utilizes **Docker** to containerize the application and database.
         docker compose down
         docker compose up --build --watch
 
-- You should now be able to view the local instance of the project.
-  Visit https://localhost:5173 in your browser to see the result.
+- You should now be able to view the project. Visit https://localhost:5173 in your browser to see the result.
 
-### Set Up Pre-Commit
+## Populating the Database with Test Data
 
-- This project is using `pre-commit` to enforce C# code styling prescriptively set via `CSharpier`. From the repository's root (`3504-term-project-visible`), install `pre-commit` using the following commands:
+<!-- TODO: Update to include tables not previously documented -->
 
-        pip3 install pre-commit
-        pre-commit install
+- In order to add data to your instance of the database, please configure a new Postgres connection as shown in the following image.
 
-### Using Pre-Commit
+![](images/database-config.png)
 
-- When you attempt to create a commit (`git commit -m "..."`), pre-commit will validate that any changed C# files are conforming to the code styles outlined. If it detects failures, it will modify the files appropriately, and abort the commit. You must then accept the changes by adding the modified files using `git add`, and re-attempt the commit.
+- **Note:** You will need to authenticate using the `postgres_user_password` from your local secrets.
 
-- `pre-commit` can be run at any time using the following command:
-  pre-commit run
-  - **Note:** pre-commit will only validate files that are currently staged.
+### Creating Users
+
+Because the user table will contain emails and passwords, I have not committed this file to the repository at this point. The format required to create test users is as seen in the following code snippet.
+
+```SQL
+INSERT INTO users (email, password, first_name, last_name)
+VALUES ('email', 'password', 'First Name', 'Last Name');
+```
+
+### Creating Gig Listings
+
+The `visible/visible.Server/Data` directory contains a file called `gigs.sql` which can be used to populate the Gigs table if you are currently not seeing gig listings on the home page.
+
+To create additional gig listings, use the following format:
+
+<!-- TODO: Update example to use new table schema.-->
+
+```SQL
+INSERT INTO gigs (author, description, budget)
+VALUES ('Author Name', 'Gig Description', Amount);
+```
 
 ## Front End Developement
 
@@ -156,7 +173,16 @@ They consist of a directory 'node_modules/' and a file 'package-lock.json'.
 
 - **Note:** Missing these files will cause your IDE to flag the use of the npm libraries as an error. If these files are ever missing from your local repository, they can be reinstalled via the above command.
 
-## Front End Testing
+## How to Test Visible
+
+### Running Back-End Tests (xUnit)
+
+- In a terminal, navigate to the `visible` directory.
+- Run the following command:
+
+        dotnet test
+
+### Front End Testing
 
 - This project is using vitest to deploy tests for the front end components.
 
@@ -181,37 +207,11 @@ They consist of a directory 'node_modules/' and a file 'package-lock.json'.
   - [React Testing Library Documentation can be found here](https://testing-library.com/docs/react-testing-library/intro/)
   - [A video tutorial including simple example component tests can be found here](https://www.youtube.com/watch?v=CxSL0knFxAs)
 
-## Populating the Database with Test Data
-
-<!-- TODO: Update to include tables not previously documented -->
-
-### Creating Users
-
-Because the user table will contain emails and passwords, I have not committed this file to the repository at this point. The format required to create test users is as seen in the following code snippet.
-
-```SQL
-INSERT INTO users (email, password, first_name, last_name)
-VALUES ('email', 'password', 'First Name', 'Last Name');
-```
-
-### Creating Gig Listings
-
-The `visible/visible.Server/Data` directory contains a file called `gigs.sql` which can be used to populate the Gigs table if you are currently not seeing gig listings on the home page.
-
-To create additional gig listings, use the following format:
-
-<!-- TODO: Update example to use new table schema.-->
-
-```SQL
-INSERT INTO gigs (author, description, budget)
-VALUES ('Author Name', 'Gig Description', Amount);
-```
-
-## Back End Unit Testing
+### Back End Unit Testing
 
 - This project utilizes the `xUnit` framework for unit testing the C#/.NET backend.
 
-### Adding an xUnit Test
+#### Adding an xUnit Test
 
 - Go to `visible.Tests`. The tests are organized into files based on the unit being tested. For example, `Controllers/GigListingsControllerTests.cs` contains the current tests for the `visible.Server/Controllers/GigListingController.cs` file.
 
@@ -243,9 +243,13 @@ public async Task Test_CanGetGigListings()
 
 - Ensure that you mock any dependencies as part of the **Arrange** step.
 
-### Running xUnit Tests
+## Building a Release of Visible
 
-- In a terminal, navigate to the `visible` directory.
-- To run all existing tests, run the following command:
+- To generate a new release of _Visible_, the steps required are the same as building for development.
 
-        dotnet test
+1.  Update your local repository by running `git fetch` and `git pull` as required.
+2.  In a terminal, navigate to the root of the repository (`path-to-local/3504-term-project-visible`), and then run the following command:
+
+        docker compose --file visible/compose.yaml up --build --watch
+
+3.  In a browser, navigate to https://localhost:5173. You should now see the most recent changes.
