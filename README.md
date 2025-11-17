@@ -119,39 +119,35 @@ This project utilizes **Docker** to containerize the application and database.
 
 - You should now be able to view the project. Visit https://localhost:5173 in your browser to see the result.
 
-## Populating the Database with Test Data
-
-<!-- TODO: Update to include tables not previously documented -->
+### Populating the Database with Test Data
 
 - In order to add data to your instance of the database, please configure a new Postgres connection as shown in the following image.
 
 ![](images/database-config.png)
 
 - **Note:** You will need to authenticate using the `postgres_user_password` from your local secrets.
+- We have provided sample data in the `seed.sql` file (found in **visible.Server/Data/**). This will not populate by default, so your tables will be initialized, but empty at startup.
 
-### Creating Users
+## How to Contribute to Visible
 
-Because the user table will contain emails and passwords, I have not committed this file to the repository at this point. The format required to create test users is as seen in the following code snippet.
+- In order to contribute to visible, you will need to have `pre-commit` installed.
 
-```SQL
-INSERT INTO users (email, password, first_name, last_name)
-VALUES ('email', 'password', 'First Name', 'Last Name');
-```
+### Set Up Pre-Commit
 
-### Creating Gig Listings
+- This project is using `pre-commit` to enforce C# code styling prescriptively set via `CSharpier`. From the repository's root (`3504-term-project-visible`), install `pre-commit` using the following commands:
 
-The `visible/visible.Server/Data` directory contains a file called `gigs.sql` which can be used to populate the Gigs table if you are currently not seeing gig listings on the home page.
+        pip3 install pre-commit
+        pre-commit install
 
-To create additional gig listings, use the following format:
+### Using Pre-Commit
 
-<!-- TODO: Update example to use new table schema.-->
+- When you attempt to create a commit (`git commit -m "..."`), pre-commit will validate that any changed C# files are conforming to the code styles outlined. If it detects failures, it will modify the files appropriately, and abort the commit. You must then accept the changes by adding the modified files using `git add`, and re-attempt the commit.
 
-```SQL
-INSERT INTO gigs (author, description, budget)
-VALUES ('Author Name', 'Gig Description', Amount);
-```
+- `pre-commit` can be run at any time using the following command:
+  pre-commit run
+  - **Note:** pre-commit will only validate files that are currently staged.
 
-## Front End Developement
+### Front End Developement
 
 This project uses **npm** (node package manager) to manage dependencies required by front-end components.
 
@@ -177,12 +173,19 @@ They consist of a directory 'node_modules/' and a file 'package-lock.json'.
 
 ### Running Back-End Tests (xUnit)
 
-- In a terminal, navigate to the `visible` directory.
-- Run the following command:
+- This project utilizes the `xUnit` framework for unit testing the C#/.NET backend.
 
-        dotnet test
+- Option 1: Run tests in the command line:
+  - In a terminal, navigate to the `visible` directory.
+  - Run the following command:
 
-### Front End Testing
+            dotnet test
+
+    -Option 2: Use the test utility found in your IDE:
+
+  - Assuming that you have opened the repository in your IDE, you should be able to run the unit tests for `visible.Server` and `visible.Services` by clicking on the test buttons within VSCode or your IDE of choice. With this method, you can control which tests are run at a given time.
+
+### Running Front-End Tests (vitest)
 
 - This project is using vitest to deploy tests for the front end components.
 
@@ -192,30 +195,18 @@ They consist of a directory 'node_modules/' and a file 'package-lock.json'.
     - jest-dom
   - jsdom
 
-- To test a front end component, a test file for that component should be created in the same directory with the following name scheme:
-
-        {component_to_test}.tsx
-
-        {component_to_test}.test.tsx
-
-- To run created tests, navigate to the visible.client directory in a terminal, then run the following command:
+- To run created tests, navigate to the `visible.client` directory in a terminal, then run the following command:
 
         npm run test
 
-- Specific instructions to create a test will depend on the component and purpose of the specific test.
-  - [Vitest documentation can be found here](https://vitest.dev/guide/)
-  - [React Testing Library Documentation can be found here](https://testing-library.com/docs/react-testing-library/intro/)
-  - [A video tutorial including simple example component tests can be found here](https://www.youtube.com/watch?v=CxSL0knFxAs)
+## How to Add Tests to Visible
 
-### Back End Unit Testing
-
-- This project utilizes the `xUnit` framework for unit testing the C#/.NET backend.
-
-#### Adding an xUnit Test
+### Adding an xUnit Test
 
 - Go to `visible.Tests`. The tests are organized into files based on the unit being tested. For example, `Controllers/GigListingsControllerTests.cs` contains the current tests for the `visible.Server/Controllers/GigListingController.cs` file.
+- If there is not a test file for the component you want to test, please create a test file in the appropriate directory using the naming convention shown above.
 
-- The project tests should be set up to follow the **Arrange, Act, Assert** pattern, as shown below:
+- When creating a should be set up to follow the **Arrange, Act, Assert** pattern, as shown below:
 
 ```cs
 [Fact]
@@ -225,8 +216,32 @@ public async Task Test_CanGetGigListings()
     var mockRepository = new Mock<IGigListingRepository>();
     var gigListings = new List<GigListing>
     {
-        new GigListing(1,"Canela","New Product Launch", 300),
-        new GigListing(2,"Breakaway","Instagram Follower Drive", 1000),
+        new()
+        {
+                GigId = 1,
+                BusinessId = 1,
+                BusinessName = "Canela",
+                Title = "New Product Launch",
+                Description = "We want to hype up this new product on Instagram and YouTube.",
+                Location = "Calgary, AB",
+                Budget = 1500,
+                Requirements = "Minimum 1K followers on Instagram",
+                Status = "Open",
+                Deadline = new DateTime(2025, 11, 30, 19, 30, 00, DateTimeKind.Local),
+        },
+        new()
+        {
+                GigId = 2,
+                BusinessId = 2,
+                BusinessName = "Bass Pro Shop",
+                Title = "Spring into Savings",
+                Description = "Test description",
+                Location = "Edmonton, AB",
+                Budget = 750,
+                Requirements = "",
+                Status = "Open",
+                Deadline = new DateTime(2025, 12, 31, 19, 30, 00, DateTimeKind.Local),
+        },
     };
     mockRepository.Setup(r => r.GetRecentGigListings()).ReturnsAsync(gigListings);
 
@@ -242,6 +257,19 @@ public async Task Test_CanGetGigListings()
 ```
 
 - Ensure that you mock any dependencies as part of the **Arrange** step.
+
+### Adding vitest Tests
+
+- To test a front end component, a test file for that component should be created in the same directory with the following name scheme:
+
+        {component_to_test}.tsx
+
+        {component_to_test}.test.tsx
+
+- Specific instructions to create a test will depend on the component and purpose of the specific test.
+  - [Vitest documentation can be found here](https://vitest.dev/guide/)
+  - [React Testing Library Documentation can be found here](https://testing-library.com/docs/react-testing-library/intro/)
+  - [A video tutorial including simple example component tests can be found here](https://www.youtube.com/watch?v=CxSL0knFxAs)
 
 ## Building a Release of Visible
 
