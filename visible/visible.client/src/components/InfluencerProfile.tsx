@@ -9,12 +9,12 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { createInfluencerProfile } from "@/modules/data";
 
-//This component impletements the basic Influencer Profile form html
+//This component implements the basic Influencer Profile form html
 //Documentation for the 'Field' components can be found here: https://ui.shadcn.com/docs/components/field
 //The form uses a function from the data module to submit the Influencer Profile data via a POST request to api/influencer
 const InfluencerProfile = ({ parentOnSubmit }) => {
   //form use states
-  const [userId, setUserId] = useState("");
+  const [userId] = useState(1);
   const [displayName, setDisplayName] = useState("");
   const [bio, setBio] = useState("");
   const [avatar, setAvatar] = useState("");
@@ -41,20 +41,6 @@ const InfluencerProfile = ({ parentOnSubmit }) => {
       }}
     >
       <FieldGroup>
-        {/* UserId Input */}
-        <Field>
-          <FieldLabel htmlFor="UserId">User ID</FieldLabel>
-          <Input
-            id="UserId"
-            type="numeric"
-            placeholder="Enter your user ID(required)*"
-            required
-            onChange={(e) => {
-              setUserId(e.target.value);
-            }}
-          />
-        </Field>
-
         {/* Display Name Input */}
         <Field>
           <FieldLabel htmlFor="DisplayName">Display Name</FieldLabel>
