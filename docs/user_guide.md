@@ -1,4 +1,6 @@
-**_Welcome to Visible!_**
+# User Guide
+
+## Welcome to Visible!
 
 Visible is a two-way marketplace that connects local businesses with local influencers.
 The platform lets businesses create gigs and promote their products/services, while influencers can browse these gigs, apply to them, and build real collaborations that help them grow.
@@ -7,9 +9,14 @@ A user would want to use Visible because it simplifies the whole collaboration p
 
 ---
 
-**_How to Install Visible_**
+## How to Install Visible
 
-Currently visible can be run locally using Docker. These steps are for someone who wants to host their own instance of the visible app. In the future it will beh osted locally at visibleapp.ca.
+Right now, users can access our public beta by going to https://visibleapp.ca. However, if a user wishes to run a local instance of Visible, they can do so by follow the instructions within [the Developer Guide](../README.md#developer-guide). To run a local instance, you will need to complete the steps outlined in the following sections in their entirety:
+
+- [Obtaining Source Code](../README.md#obtaining-source-code)
+- [How to Build Visible](../README.md#how-to-build-visible) - this section ends after **Populating the Database with Test Data**
+
+<!-- Currently visible can be run locally using Docker. These steps are for someone who wants to host their own instance of the visible app. In the future it will beh osted locally at visibleapp.ca.
 Before you start, make sure you have:
 
 1. Prequsite
@@ -68,11 +75,16 @@ You can generate one using a site like https://jwt.io/ or any secure random gene
    When Docker is up:
    Open your browser and go to: http://localhost:5173
 
-## BOO YEAH! You’re now running your own local instance of Visible.
+## BOO YEAH! You’re now running your own local instance of Visible. -->
 
-**_How to use the software_**
+## How to Run Visible
 
-Visible is designed to be simple and intuitive to use. The platform supports two primary user types (1) Influencers and (2 )Businesses. Below is a breakdown of how users interact with the core features of the system. FYI features still in development are marked as (WIP).
+- If you are using the public version of Visible, you can simply navigate to https://visibleapp.ca in the browser of your choice. We currently support both mobile and desktop access, and are not aware of any modern browser compatibility issues.
+- If you are using a local version of Visible, you will need to build the Docker images as outlined in the Developer Guide, and can access the site by going to https://localhost:5173.
+
+## How to Use Visible
+
+Visible is designed to be simple and intuitive to use. The platform supports two primary user types: Influencers and Businesses. Below is a breakdown of how users interact with the core features of the system. FYI features still in development are marked as (WIP).
 
 1. Browsing Gig Listings (Influencer)
 
@@ -161,46 +173,36 @@ Keywords
 
 ## Follower requirements
 
-**_How to Report a Bug_**
+## How to Report a Bug
 
-If you encounter an issue while using Visible, we as a team want to resolve that as quickly and effectively as possible. To help us do that, please follow the steps below when submitting a bug report.
+If you encounter an issue while using Visible, we as a team want to resolve that as quickly and effectively as possible. To help us do that, please create a **Bug Report** using the issue template available in our [GitHub Issues](https://github.com/MRU-F2025-COMP3504/3504-term-project-visible/issues).
 
-Where to Report Bugs
+The template provided should prompt you for the relevant information we as a team need in order to effectively understand and address the issues you are encountering.
 
-Please report all bugs to our GitHub repository’s Issues page:
-
-👉 GitHub Issues:
-https://github.com/MRU-F2025-COMP3504/3504-term-project-visible/issues
-
-What to Include in a Bug Report
+### Example Bug Report:
 
 1. Short summary of the issue
 
-Example:
-"Unable to submit influencer application when all the required fields are filled."
+- Example: "Unable to submit influencer application when all the required fields are filled."
 
 2. How can we reproduce the error
 
-Example:
-
-Log in as an influencer.
-
-Navigate to "Apply for Gig".
-
-Fill out all fields.
-
-Click Submit.
+- Example:
+  1.  Log in as an influencer.
+  2.  Navigate to "Apply for Gig".
+  3.  Fill out all fields.
+  4.  Click Apply.
 
 3. Expected Result
 
-Example:
-"The application should submit successfully."
+- Example: "The application should submit successfully."
 
 4. Actual Result
 
-Example:
-"The page reloads with no confirmation."
+- Example: "The page reloads with no confirmation."
 
 5. Additional Information is also appreciated such as screenshots or error messages
 
----
+## Known Bugs
+
+-
