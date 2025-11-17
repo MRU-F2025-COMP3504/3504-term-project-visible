@@ -88,90 +88,74 @@ Visible is designed to be simple and intuitive to use. The platform supports two
 
 1. Browsing Gig Listings (Influencer)
 
-Influencers can explore postings by local businesses
+- Influencers can explore postings by local businesses
+- How to use it:
+  - Open the Visible web application in your browser.
+  - On the home page, scroll through the list of available gigs. Each gig "card" shows:
+    - Business name
+    - Description
+    - Budget
+    - Minimum follower requirement
 
-How to use it:
-
-Open the Visible web application in your browser.
-On the home page, scroll through the list of available gigs.
-
-Each gig "card" shows:
-
-Business name
-
-Description
-
-Budget
-
-Minimum follower requirement
-
-Click a gig to view more details (WIP).
-
-Influencers can apply to a gig (WIP).
+- Click a gig to view more details (WIP).
+- Influencers can apply to a gig (WIP).
 
 2. Business Gig Posting (Business Users)
 
-Businesses can create promotional opportunities for influencers.
-
-How to use it:
-
-Log in as a business user (WIP).
-
-Navigate to “Create a Gig” (WIP).
-
-Enter details the form such as:
-
-Title
-
-Description
-
-Budget
-
-Required niche or follower count
-
-Submit the form to publish the gig (WIP).
+- Businesses can create promotional opportunities for influencers.
+- How to use it:
+  - Log in as a business user (WIP).
+  - Navigate to “Create a Gig” (WIP).
+  - Enter details the form such as:
+    - Title
+    - Description
+    - Budget
+    - Required niche or follower count
+  - Submit the form to publish the gig (WIP).
 
 3. Viewing Applications (Business) — (WIP)
 
-Businesses will be able to see who has applied to their gigs.
+- Businesses will be able to see who has applied to their gigs.
+- Expected functionality:
+  - View all incoming influencer applications
+  - Filter applications by some metric
+  - Approve or decline applicants
 
-Expected functionality:
-
-View all incoming influencer applications
-
-Filter applications by some metric
-
-Approve or decline applicants
-
-This feature is still being implemented.
+- \*\*This feature is still being implemented.
 
 4. Secure Login & Authorization — (WIP)
 
-The platform uses JWT-based authentication to keep user sessions secure.
-
-Expected functionality:
-
-Users log in with an email and password
-
-JWT token verifies their identity
+- The platform uses JWT-based authentication to keep user sessions secure.
+- Expected functionality:
+  - Users log in with an email and password
+  - JWT token verifies their identity
 
 5. Responsive User Interface
 
-Visible is built using React + Vite, so the interface is built to be fast, smooth, and workable on almsot any browser.
-
-Browser requirements: Chrome, Edge, Firefox, or Safari
+- Visible is built using React + Vite, so the interface is built to be fast, smooth, and workable on almost any browser.
+- Browser requirements: Chrome, Edge, Firefox, or Safari
 
 6. Searching & Filtering Gigs — (WIP)
 
-A search feature will allow influencers to find gigs by:
+- A search feature will allow influencers to find gigs by:
+  - Category
+  - Budget
+  - Keywords
 
-Category
+### Currently Implemented Features
 
-Budget
+- [x] User sign-up
+- [x] Sign-in with username and password
+- [x] Create a Business profile
+- [x] Create an Influencer profile
+- [x] Create a Gig Listnig (Business Owner)
+- [x] Apply to a Gig Listing (Influencer)
+- [x] Search for a Gig by keywords, budget, etc.
 
-Keywords
+### Work-in-Progress (WIP) Features
 
-## Follower requirements
+- [ ]
+- [ ]
 
 ## How to Report a Bug
 
@@ -205,4 +189,5 @@ The template provided should prompt you for the relevant information we as a tea
 
 ## Known Bugs
 
--
+- [BUG: User can create multiple influencer profiles with the same information #170](https://github.com/MRU-F2025-COMP3504/3504-term-project-visible/issues/170)
+- [BUG: User can create multiple business profiles with the exact same information #171](https://github.com/MRU-F2025-COMP3504/3504-term-project-visible/issues/171)
