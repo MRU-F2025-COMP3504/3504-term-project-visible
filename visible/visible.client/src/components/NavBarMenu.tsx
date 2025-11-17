@@ -13,6 +13,8 @@ import { Button } from "./ui/button";
 import { Context } from "@/App";
 import { useContext } from "react";
 import { signOut } from "@/modules/data";
+import CreateInfluencerProfileModal from "./InfluencerProfileModal";
+import CreateBusinessProfileModal from "@/components/BusinessProfileModal.tsx";
 
 const NavBarMenu = () => {
   const [loggedIn, setLoggedIn] = useContext(Context).loggedIn;
@@ -29,6 +31,14 @@ const NavBarMenu = () => {
         </DropdownMenuTrigger>
         <DropdownMenuContent hidden={isMenuHidden}>
           <div className="flex flex-col items-center justify-center">
+            <CreateInfluencerProfileModal
+              isParentOpen={setIsOpen}
+              isParentMenuHidden={setIsMenuHidden}
+            />
+            <CreateBusinessProfileModal
+              isParentOpen={setIsOpen}
+              isParentMenuHidden={setIsMenuHidden}
+            />
             <CreateGigListingModal
               isParentOpen={setIsOpen}
               isParentMenuHidden={setIsMenuHidden}
