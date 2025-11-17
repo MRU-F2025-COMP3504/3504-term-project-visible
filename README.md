@@ -35,40 +35,24 @@
 
 The visible directory is the root of our application's source code. It holds the React front-end project, as well as the .NET server-side and unit testing projects.
 
-#### _visible.Server_
-
-- This is our server-side project for the back-end API endpoints.
-- Notable Folders:
-  - _Configurations:_ Provides infrastructure to include Docker secrets as part of the application's configuration properties.
-  - _Controllers:_ Contains the controller classes that define our API endpoints.
-  - _Data:_ Contains SQL files used for database initialization and test-data population.
-
-#### _visible.Services_
-
-- This server-side project contains utilities not directly related to servicing web requests.
-- Notable Folders:
-  - _Data:_ Contains custom classes meant to serve as wrappers for the `NpgsqlConnection` and `NpgsqlCommand` utilities, in order to facilitate unit testing of database functionality.
-  - _Interfaces:_ Defines contracts for the various data accessor types, categorized by feature type (e.g., Authentication, Businesses, Influencer).
-  - _Models:_ Contains classes defining the types of objects that are expected to be sent to/received from the database.
-  - _Repositories:_ Contains the concrete implementations of our various data accessors types.
-
-#### _visible.Tests_
-
-- `visible.Tests` is the unit testing project for the **visible.Server** and **visible.Services** projects.
-- Notable Folders:
-  - _ControllerTests:_ Contains test for for API endpoint functionality.
-  - _Models:_ Contains utilities required for unit testing, but not production.
-  - _Services:_ Contains test files for data accessor functionality.
-
-#### _visible.client_
-
-- Contains source files and assets for the web application project.
-- Notable Folders:
-  - _src:_
-    - _components:_
-    - _hooks:_
-    - _lib:_
-    - _modules:_
+<!-- prettier-ignore -->
+| Directory | Overview | Notable Folders|
+|:---------:|:--------:|:--------------:|
+| _visible.Server_ | This is our server-side project for the back-end API endpoints. | _Configurations:_ Provides infrastructure to include Docker secrets as part of the application's configuration properties. |
+| | | _Controllers:_ Contains the controller classes that define our API endpoints. |
+| | | _Data:_ Contains SQL files used for database initialization and test-data population. |
+| _visible.Services_ | This server-side project contains utilities not directly related to servicing web requests. | _Data:_ Contains custom classes meant to serve as wrappers for the `NpgsqlConnection` and `NpgsqlCommand` utilities, in order to facilitate unit testing of database functionality. |
+| | | _Interfaces:_ Defines contracts for the various data accessor types, categorized by feature type (e.g., Authentication, Businesses, Influencer). |
+| | | _Models:_ Contains classes defining the types of objects that are expected to be sent to/received from the database. |
+| | | _Repositories:_ Contains the concrete implementations of our various data accessors types. |
+| _visible.Tests_ | `visible.Tests` is the unit testing project for the **visible.Server** and **visible.Services** projects. | _ControllerTests:_ Contains test for for API endpoint functionality. |
+| | | _Models:_ Contains utilities required for unit testing, but not production. |
+| | | _Services:_ Contains test files for data accessor functionality. |
+| _visible.client_ | Contains source files and assets for the web application project. | _src:_  |
+| | | _src/components:_ |
+| | | _src/hooks:_ |
+| | | _src/lib:_ |
+| | | _src/modules:_ |
 
 ## How to Build Visible
 
