@@ -17,6 +17,10 @@
 
 ---
 
+# Beta Release
+
+Our current release is labelled with the tag `v0.1.0-beta`.
+
 # User Guide
 
 - Please refer to our [User Guide](docs/user_guide.md) for instructions on how to use Visible, as well as an updated record of implemented features and known bugs.
