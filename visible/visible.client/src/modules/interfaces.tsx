@@ -35,6 +35,13 @@ export interface GigProps {
   budget: number;
 }
 
+export interface InfluencerProps {
+  id: number;
+  avatar: string;
+  displayName: string;
+  bio: string;
+}
+
 export interface SignUpRequest {
   username: string;
   password: string;

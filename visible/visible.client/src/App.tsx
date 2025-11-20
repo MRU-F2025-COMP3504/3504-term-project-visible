@@ -1,25 +1,28 @@
 import { useEffect, useState, createContext } from "react";
 import "./App.css";
-import { GigListings } from "./modules/interfaces";
+import { GigListings, InfluencerProfile } from "./modules/interfaces";
 import DevComponent from "./components/DevComponent";
 import LandingPage from "./components/LandingPage";
 import NavBar from "./components/NavBar";
-import GigSearch from "./components/search/GigSearch/GigSearch";
-
+//import GigSearch from "./components/search/GigSearch/GigSearch";
+import InfluencerSearch from "./components/search/InfluencerSearch/InfluencerSearch";
 //define structure of context provider
 export const Context = createContext<any>(undefined);
 
 function App() {
   //data state declarations
   const [loggedIn, setLoggedIn] = useState(false);
-  const [pageView, setPageView] = useState("GigSearch");
-  const [gigs, setGigs] = useState<GigListings[]>([]);
+  //const [pageView, setPageView] = useState("GigSearch");
+  const [pageView, setPageView] = useState("InfluencerSearch");
+  const [influencers, setInfluencers] = useState<InfluencerProfile[]>([]);
+  //const [gigs, setGigs] = useState<GigListings[]>([]);
 
   //context object to pass
   const contextObj = {
     loggedIn: [loggedIn, setLoggedIn],
     pageView: [pageView, setPageView],
-    gigs: [gigs, setGigs],
+    //gigs: [gigs, setGigs],
+    influencers: [influencers, setInfluencers],
   };
 
   return (
@@ -32,7 +35,7 @@ function App() {
           <>
             {/* Content Container - holds everything but navbar */}
             <div className="grow flex flex-col max-h-full overflow-hidden pr-[2em] pl-[2em]">
-              {pageView === "GigSearch" && <GigSearch />}
+              {pageView === "InfluencerSearch" && <InfluencerSearch />}
             </div>
             {/* NavBar - always visible */}
             <NavBar />
