@@ -42,6 +42,13 @@ export interface InfluencerProps {
   bio: string;
 }
 
+export interface BusinessProps {
+  id: number;
+  businessName: string;
+  location: string;
+  industry: string;
+  displayImage: string;
+}
 export interface SignUpRequest {
   username: string;
   password: string;

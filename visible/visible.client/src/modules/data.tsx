@@ -42,6 +42,12 @@ export async function fetchAllInfluencers(setter: any) {
   setter(data);
 }
 
+// All Business Profiles - Theoretically shouldn't be using this as there could be too many businesses in the db to reasonably request
+export async function fetchAllBusinesses(setter: any) {
+  const response = await fetch(`api/business`);
+  const data = await response.json();
+  setter(data);
+}
 // Handler to create an influencer profile
 export async function createInfluencerProfile(influencerProfileData) {
   //POST request to server with given data
