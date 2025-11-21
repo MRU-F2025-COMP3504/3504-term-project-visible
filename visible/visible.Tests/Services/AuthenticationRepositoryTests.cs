@@ -13,7 +13,7 @@ public class AuthenticationRepositoryTests
     {
         var builderMock = new Mock<IQueryBuilder>();
         var queryMock = new Mock<IQuery>();
-        var rows = new[] { new SimpleRow(new Dictionary<string, object> { { "c", 1 } }) };
+        var rows = new[] { new SimpleRow(new Dictionary<string, object> { { "user_id", 1 } }) };
 
         builderMock.Setup(c => c.CreateQuery(It.IsAny<string>())).Returns(queryMock.Object);
         queryMock.Setup(q => q.AddParameter("@username", "test@test.com"));
@@ -25,7 +25,7 @@ public class AuthenticationRepositoryTests
             new SignInRequest { Username = "test@test.com", Password = "test123" }
         );
 
-        Assert.True(success);
+        Assert.Equal(1, success);
     }
 
     [Fact]

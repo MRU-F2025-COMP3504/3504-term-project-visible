@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using visible.Services.Interfaces;
 using visible.Services.Models;
 
@@ -10,7 +11,7 @@ namespace visible.Server.Controllers;
 /// <param name="influencerRepository">The influencer data accessor.</param>
 [ApiController]
 [Route("api/[controller]")]
-public class InfluencerController(IInfluencerRepository influencerRepository) : ControllerBase
+public class InfluencerController(IInfluencerRepository influencerRepository) : BaseController
 {
     /// <summary>
     /// Retrieves all influencer profiles.
@@ -44,7 +45,7 @@ public class InfluencerController(IInfluencerRepository influencerRepository) : 
         if (influencer == null)
             return BadRequest("Influencer data is required.");
 
-        var newId = await influencerRepository.CreateInfluencerProfile(influencer);
+        var newId = await influencerRepository.CreateInfluencerProfile(influencer, UserId);
         return Ok(new { InfluencerId = newId });
     }
 }

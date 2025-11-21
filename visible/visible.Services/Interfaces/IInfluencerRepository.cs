@@ -22,6 +22,6 @@ namespace visible.Services.Interfaces
         /// </summary>
         /// <param name="influencer">The influencer object containing user ID and profile details.</param>
         /// <returns>The ID of the newly created influencer.</returns>
-        Task<int> CreateInfluencerProfile(Influencer influencer);
+        Task<int> CreateInfluencerProfile(Influencer influencer, int id);
     }
 }

@@ -13,13 +13,23 @@ export async function fetchAllGigListings(setter: any) {
 //encrypt / hashing of user data should be added
 export async function submitSignIn(dataToSend) {
   //Post request to server with given data
-  fetch(`api/authentication/sign-in`, {
+  const login = await fetch(`api/authentication/sign-in`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(dataToSend),
   });
+  if (login.ok) {
+    let response = await fetch("api/profile", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    let data = await response.json();
+    localStorage.setItem("profile", JSON.stringify(data));
+  }
 }
 
 // Sign up request handler - functions expects an object with 'Username' and 'Password' fields
@@ -80,5 +90,14 @@ export async function submitGigApplication(gigApplicationData) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(gigApplicationData),
+  });
+}
+
+export async function signOut() {
+  fetch(`api/authentication/sign-out`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
 }
