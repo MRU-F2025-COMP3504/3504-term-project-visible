@@ -25,7 +25,7 @@ const SignUpModal = () => {
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button
-          variant="outline"
+          variant="mainPage"
           onClick={(e) => {
             e.preventDefault();
             //open the modal

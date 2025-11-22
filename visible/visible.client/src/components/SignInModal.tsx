@@ -25,7 +25,9 @@ const SignInModal = () => {
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button
-          variant="outline"
+          className="bg-blue-500"
+          //background-color: #007bff;
+          variant="mainPage"
           onClick={(e) => {
             e.preventDefault();
             //open the modal
