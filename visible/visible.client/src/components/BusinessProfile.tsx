@@ -40,6 +40,7 @@ const BusinessProfile = ({ parentOnSubmit }) => {
         <Field>
           <FieldLabel htmlFor="BusinessName">Business Name</FieldLabel>
           <Input
+            className="bg-white!"
             id="BusinessName"
             type="text"
             placeholder="Enter the business name (required)*"
@@ -54,6 +55,7 @@ const BusinessProfile = ({ parentOnSubmit }) => {
         <Field>
           <FieldLabel htmlFor="Location">Location</FieldLabel>
           <Input
+            className="bg-white!"
             id="Location"
             type="text"
             placeholder="Enter the business location (required)*"
@@ -68,6 +70,7 @@ const BusinessProfile = ({ parentOnSubmit }) => {
         <Field>
           <FieldLabel htmlFor="Industry">Industry</FieldLabel>
           <Input
+            className="bg-white!"
             id="Industry"
             type="text"
             placeholder="Choose your industry (required)*"
@@ -82,6 +85,7 @@ const BusinessProfile = ({ parentOnSubmit }) => {
         <Field>
           <FieldLabel htmlFor="Image">Display Image</FieldLabel>
           <Input
+            className="bg-white!"
             id="Image"
             type="text"
             placeholder="Provide an image path (required)*"
@@ -94,7 +98,9 @@ const BusinessProfile = ({ parentOnSubmit }) => {
 
         {/* Submit Button */}
         <Field orientation="horizontal">
-          <Button type="submit">Submit</Button>
+          <Button type="submit" className="bg-pink-600! hover:bg-pink-500!">
+            Submit
+          </Button>
         </Field>
       </FieldGroup>
     </form>

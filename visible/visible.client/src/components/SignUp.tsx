@@ -50,6 +50,7 @@ const SignUp = ({ parentOnSubmit }) => {
         <Field>
           <FieldLabel htmlFor="Username">Username</FieldLabel>
           <Input
+            className="bg-white!"
             id="Username"
             type="text"
             placeholder="Enter a username (required)*"
@@ -63,6 +64,7 @@ const SignUp = ({ parentOnSubmit }) => {
         <Field>
           <FieldLabel htmlFor="Password">Password</FieldLabel>
           <Input
+            className="bg-white!"
             id="Password"
             type="password"
             placeholder="Enter a password (required)*"
@@ -76,6 +78,7 @@ const SignUp = ({ parentOnSubmit }) => {
         <Field>
           <FieldLabel htmlFor="Password">Confirm Password</FieldLabel>
           <Input
+            className="bg-white!"
             id="PasswordConfirm"
             type="password"
             placeholder="Confirm your password (required)*"
@@ -101,6 +104,7 @@ const SignUp = ({ parentOnSubmit }) => {
         <Field>
           <FieldLabel htmlFor="FirstName">First Name</FieldLabel>
           <Input
+            className="bg-white!"
             id="FirstName"
             type="text"
             placeholder="Enter your first name"
@@ -113,6 +117,7 @@ const SignUp = ({ parentOnSubmit }) => {
         <Field>
           <FieldLabel htmlFor="LastName">Last Name</FieldLabel>
           <Input
+            className="bg-white!"
             id="LastName"
             type="text"
             placeholder="Enter your last name"

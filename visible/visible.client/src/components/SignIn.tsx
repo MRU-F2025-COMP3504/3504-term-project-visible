@@ -22,7 +22,7 @@ const SignIn = ({ parentOnSubmit }) => {
   const [loggedIn, setLoggedIn] = useContext(Context).loggedIn;
 
   return (
-    <form
+    <form //className = "bg-white!"
       // Submit function
       onSubmit={(e) => {
         e.preventDefault();
@@ -41,6 +41,7 @@ const SignIn = ({ parentOnSubmit }) => {
         <Field>
           <FieldLabel htmlFor="Username">Username</FieldLabel>
           <Input
+            className="bg-white!"
             id="Username"
             type="text"
             placeholder="Enter your username."
@@ -54,6 +55,7 @@ const SignIn = ({ parentOnSubmit }) => {
         <Field>
           <FieldLabel htmlFor="Password">Password</FieldLabel>
           <Input
+            className="bg-white!"
             id="Password"
             type="password"
             placeholder="********"

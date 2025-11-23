@@ -45,7 +45,7 @@ const CreatGigListingForm = ({ parentOnSubmit }) => {
         <SelectTrigger id={id}>
           <SelectValue placeholder="Select a status for this gig listing (required)" />
         </SelectTrigger>
-        <SelectContent className="bg-black!">
+        <SelectContent className="bg-white! text-black!">
           <SelectItem value="draft">Draft</SelectItem>
           <SelectItem value="open">Open</SelectItem>
           <SelectItem value="closed">Closed</SelectItem>
@@ -101,6 +101,7 @@ const CreatGigListingForm = ({ parentOnSubmit }) => {
         <Field>
           <FieldLabel htmlFor="BusinessId">Business ID</FieldLabel>
           <Input
+            className="bg-white!"
             id="BusinessId"
             type="numeric"
             placeholder="Enter a business id (required)*"
@@ -115,6 +116,7 @@ const CreatGigListingForm = ({ parentOnSubmit }) => {
         <Field>
           <FieldLabel htmlFor="Title">Title</FieldLabel>
           <Input
+            className="bg-white!"
             id="Title"
             type="text"
             placeholder="Enter a title (required)*"
@@ -129,6 +131,7 @@ const CreatGigListingForm = ({ parentOnSubmit }) => {
         <Field>
           <FieldLabel htmlFor="Location">Location</FieldLabel>
           <Input
+            className="bg-white!"
             id="Location"
             type="text"
             placeholder="Enter a location (required)*"
@@ -143,6 +146,7 @@ const CreatGigListingForm = ({ parentOnSubmit }) => {
         <Field>
           <FieldLabel htmlFor="Description">Description</FieldLabel>
           <Input
+            className="bg-white!"
             id="Description"
             type="text"
             placeholder="Enter a description (required)*"
@@ -157,6 +161,7 @@ const CreatGigListingForm = ({ parentOnSubmit }) => {
         <Field>
           <FieldLabel htmlFor="Budget">Budget</FieldLabel>
           <Input
+            className="bg-white!"
             id="Budget"
             type="numeric"
             placeholder="Enter the budget (required)*"
@@ -177,6 +182,7 @@ const CreatGigListingForm = ({ parentOnSubmit }) => {
         <Field>
           <FieldLabel htmlFor="Requirements">Requirements:</FieldLabel>
           <Input
+            className="bg-white!"
             id="Requirements"
             type="text"
             placeholder="Enter the requirements (required)*"
@@ -190,6 +196,7 @@ const CreatGigListingForm = ({ parentOnSubmit }) => {
         {/* Status Input */}
         <Field>
           <FieldLabel htmlFor="Status">Status</FieldLabel>
+
           {/* <Input
             id="Status"
             type="text"
@@ -211,6 +218,7 @@ const CreatGigListingForm = ({ parentOnSubmit }) => {
         <Field>
           <FieldLabel htmlFor="Deadline">Deadline</FieldLabel>
           <Input
+            className="bg-white!"
             id="Deadline"
             type="datetime-local"
             placeholder="Enter the deadline (required)*"
@@ -223,7 +231,9 @@ const CreatGigListingForm = ({ parentOnSubmit }) => {
 
         {/* Submit Button */}
         <Field orientation="horizontal">
-          <Button type="submit">Submit</Button>
+          <Button type="submit" className="bg-pink-600! hover:bg-pink-500!">
+            Submit
+          </Button>
         </Field>
       </FieldGroup>
     </form>

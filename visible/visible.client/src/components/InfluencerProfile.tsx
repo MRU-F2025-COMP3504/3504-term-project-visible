@@ -45,6 +45,7 @@ const InfluencerProfile = ({ parentOnSubmit }) => {
         <Field>
           <FieldLabel htmlFor="DisplayName">Display Name</FieldLabel>
           <Input
+            className="bg-white!"
             id="DisplayName"
             type="text"
             placeholder="Enter a display name (required)*"
@@ -59,6 +60,7 @@ const InfluencerProfile = ({ parentOnSubmit }) => {
         <Field>
           <FieldLabel htmlFor="Bio">Bio</FieldLabel>
           <Input
+            className="bg-white!"
             id="Bio"
             type="text"
             placeholder="Enter a bio (required)*"
@@ -73,6 +75,7 @@ const InfluencerProfile = ({ parentOnSubmit }) => {
         <Field>
           <FieldLabel htmlFor="Avatar">Avatar</FieldLabel>
           <Input
+            className="bg-white!"
             id="Avatar"
             type="text"
             placeholder="Upload an avatar (required)*"
@@ -87,6 +90,7 @@ const InfluencerProfile = ({ parentOnSubmit }) => {
         <Field>
           <FieldLabel htmlFor="Portfolio">Portfolio</FieldLabel>
           <Input
+            className="bg-white!"
             id="Portfolio"
             type="text"
             placeholder="Update your portfolio (required)*"
@@ -99,7 +103,9 @@ const InfluencerProfile = ({ parentOnSubmit }) => {
 
         {/* Submit Button */}
         <Field orientation="horizontal">
-          <Button type="submit">Submit</Button>
+          <Button type="submit" className="bg-pink-600! hover:bg-pink-500!">
+            Submit
+          </Button>
         </Field>
       </FieldGroup>
     </form>
