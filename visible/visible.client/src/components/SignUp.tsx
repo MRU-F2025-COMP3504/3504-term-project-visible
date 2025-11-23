@@ -123,7 +123,9 @@ const SignUp = ({ parentOnSubmit }) => {
         </Field>
         {/* Submit Button */}
         <Field orientation="horizontal">
-          <Button type="submit">Sign Up</Button>
+          <Button type="submit" className="bg-pink-600! hover:bg-pink-500!">
+            Sign Up
+          </Button>
         </Field>
       </FieldGroup>
     </form>

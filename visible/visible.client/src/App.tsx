@@ -31,7 +31,7 @@ function App() {
         {loggedIn && (
           <>
             {/* Content Container - holds everything but navbar */}
-            <div className="grow flex flex-col max-h-full overflow-hidden pr-[2em] pl-[2em]">
+            <div className="grow flex flex-col max-h-full overflow-hidden pr-[2em] pl-[2em] bg-gradient-to-br from-violet-950 via-pink-900 to-violet-950">
               {pageView === "GigSearch" && <GigSearch />}
             </div>
             {/* NavBar - always visible */}

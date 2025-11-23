@@ -35,7 +35,7 @@ const CreateGigApplicationModal = ({ label, propGigId }) => {
           {label}
         </Button>
       </DialogTrigger>
-      <DialogContent className="bg-black">
+      <DialogContent className="bg-violet-500 text-black">
         <DialogTitle hidden={true}>Create Gig Listing Form</DialogTitle>
         <DialogDescription hidden={true}>
           Create a gig listing.

@@ -37,7 +37,7 @@ const SignInModal = () => {
           Sign In
         </Button>
       </DialogTrigger>
-      <DialogContent className="bg-black">
+      <DialogContent className="bg-violet-500 text-black">
         <DialogTitle hidden={true}>Sign In Form</DialogTitle>
         <DialogDescription hidden={true}>
           Sign in using a form containing Username, and Password fields.

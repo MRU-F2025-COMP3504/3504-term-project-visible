@@ -22,6 +22,7 @@ const CreateBusinessProfileModal = () => {
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button
+          className="bg-pink-600! hover:bg-pink-500!"
           variant="outline"
           onClick={(e) => {
             e.preventDefault();
@@ -32,7 +33,7 @@ const CreateBusinessProfileModal = () => {
           Create Business
         </Button>
       </DialogTrigger>
-      <DialogContent className="bg-black">
+      <DialogContent className="bg-violet-500 text-black">
         <DialogTitle hidden={true}>Create Business Profile</DialogTitle>
         <DialogDescription hidden={true}>
           Create a Business Profile

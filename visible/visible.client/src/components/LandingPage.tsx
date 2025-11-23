@@ -19,8 +19,8 @@ const LandingPage = () => {
   return (
     <div className="items-center justify-center gap-15 flex grow flex-col bg-gradient-to-br from-violet-950 via-pink-900 to-violet-950 ">
       {/* Visible Title Component */}
-      <h1 className="text-violet-500">Visible</h1>
-      <h2 className="text-violet-500">Be Seen by others</h2>
+      <h1 className="text-white">Visible</h1>
+      <h2 className="text-white">Be Seen by others</h2>
       {/* Sign In / Sign Up Buttons */}
       <div className="gap-10">
         {/* Sign Up */}
