@@ -32,7 +32,7 @@ function App() {
   };
 
   return (
-    <main className="bg-black border h-dvh aspect-9/16 mx-auto flex flex-col justify-between">
+    <main className="bg-black border h-dvh md:aspect-9/16 overflow-hidden mx-auto flex flex-col justify-between">
       <Context.Provider value={contextObj}>
         {/* If not logged in - display landing page */}
         {!loggedIn && <LandingPage />}
