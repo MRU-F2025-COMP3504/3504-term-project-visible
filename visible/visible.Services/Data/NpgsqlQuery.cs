@@ -3,7 +3,7 @@ using visible.Services.Data.Interfaces;
 
 namespace visible.Services.Data;
 
-public class NpgsqlQuery : IQuery
+public class NpgsqlQuery : IQuery, IDisposable
 {
     private readonly NpgsqlConnection _connection;
     private readonly NpgsqlCommand _command;
@@ -47,5 +47,10 @@ public class NpgsqlQuery : IQuery
     public void AddParameter(string name, object value)
     {
         _command.Parameters.AddWithValue(name, value);
+    }
+
+    public void Dispose()
+    {
+        _connection.Dispose();
     }
 }
