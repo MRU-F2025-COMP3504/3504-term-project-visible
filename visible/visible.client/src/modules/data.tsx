@@ -45,6 +45,19 @@ export async function submitSignUp(dataToSend) {
   });
 }
 
+// All Influencer Profiles - Theoretically shouldn't be using this as there could be too many influencers in the db to reasonably request
+export async function fetchAllInfluencers(setter: any) {
+  const response = await fetch(`api/influencer`);
+  const data = await response.json();
+  setter(data);
+}
+
+// All Business Profiles - Theoretically shouldn't be using this as there could be too many businesses in the db to reasonably request
+export async function fetchAllBusinesses(setter: any) {
+  const response = await fetch(`api/business`);
+  const data = await response.json();
+  setter(data);
+}
 // Handler to create an influencer profile
 export async function createInfluencerProfile(influencerProfileData) {
   //POST request to server with given data
