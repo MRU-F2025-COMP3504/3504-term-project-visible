@@ -1,4 +1,4 @@
-import { Briefcase } from "lucide-react";
+import { Briefcase, Store, User } from "lucide-react";
 import NavBarMenu from "./NavBarMenu";
 import { useContext } from "react";
 import { Context } from "@/App";
@@ -14,6 +14,20 @@ const NavBar = () => {
         className={`${pageView === "GigSearch" ? "text-orange-400" : "text-white"} hover:text-orange-300 grow h-full pt-2 pb-1`}
         onClick={() => {
           setPageView("GigSearch");
+        }}
+      />
+      <User
+        // text colour -> orange if selected or hovered
+        className={`${pageView === "InfluencerSearch" ? "text-orange-400" : "text-white"} hover:text-orange-400 grow h-full pt-2 pb-1`}
+        onClick={() => {
+          setPageView("InfluencerSearch");
+        }}
+      />
+      <Store
+        // text colour -> orange if selected or hovered
+        className={`${pageView === "BusinessSearch" ? "text-orange-400" : "text-white"} hover:text-orange-400 grow h-full pt-2 pb-1`}
+        onClick={() => {
+          setPageView("BusinessSearch");
         }}
       />
       {/* Hamburger Menu */}
