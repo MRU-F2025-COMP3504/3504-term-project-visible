@@ -33,7 +33,7 @@ const CreateBusinessProfileModal = () => {
           Create Business
         </Button>
       </DialogTrigger>
-      <DialogContent className="bg-violet-500 text-black">
+      <DialogContent className="bg-violet-400 text-black">
         <DialogTitle hidden={true}>Create Business Profile</DialogTitle>
         <DialogDescription hidden={true}>
           Create a Business Profile

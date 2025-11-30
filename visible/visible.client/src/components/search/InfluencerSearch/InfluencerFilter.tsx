@@ -54,7 +54,7 @@ const InfluencerFilter = ({ setSearchKeyword }: influencerFilterProps) => {
             }}
           />
         </DialogTrigger>
-        <DialogContent className="max-w-[600px] bg-black!">
+        <DialogContent className="max-w-[600px] bg-purple-400! text-black">
           <DialogHeader>
             <DialogTitle>Search Influencers</DialogTitle>
           </DialogHeader>
@@ -73,7 +73,7 @@ const InfluencerFilter = ({ setSearchKeyword }: influencerFilterProps) => {
               id="keyword"
               type="text"
               placeholder="Search by keyword or name"
-              className="mt-4"
+              className="mt-4 bg-white"
               value={keywordForm}
               onChange={(e) => {
                 e.preventDefault();
@@ -81,7 +81,11 @@ const InfluencerFilter = ({ setSearchKeyword }: influencerFilterProps) => {
               }}
             />
             <DialogFooter>
-              <Button variant="secondary" type="submit" className="mt-4!">
+              <Button
+                variant="secondary"
+                type="submit"
+                className="mt-4! bg-pink-500!"
+              >
                 Submit
               </Button>
             </DialogFooter>

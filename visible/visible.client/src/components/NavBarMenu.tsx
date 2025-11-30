@@ -26,7 +26,7 @@ const NavBarMenu = () => {
           asChild
           className="grow flex p-0! hover:border-none! border-none! focus:outline-none! focus-visible:outline-none! focus:ring-0! focus-visible:ring-0! bg-purple!"
         >
-          <Menu className="text-orange-400 hover:text-orange-300 grow h-full pt-1 pb-1 border-none!" />
+          <Menu className="text-white hover:text-orange-300 grow h-full pt-1 pb-1 border-none!" />
         </DropdownMenuTrigger>
         <DropdownMenuContent hidden={isMenuHidden}>
           <div className="flex flex-col items-center justify-center bg-purple-500">

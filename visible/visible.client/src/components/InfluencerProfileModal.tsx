@@ -36,7 +36,7 @@ const CreateInfluencerProfileModal = () => {
           Create Influencer
         </Button>
       </DialogTrigger>
-      <DialogContent className="bg-violet-500 text-black">
+      <DialogContent className="bg-violet-400 text-black">
         <DialogTitle hidden={true}>Create Influencer Profile</DialogTitle>
         <DialogDescription hidden={true}>
           Create an Influencer Profile

@@ -18,14 +18,14 @@ const NavBar = () => {
       />
       <User
         // text colour -> orange if selected or hovered
-        className={`${pageView === "InfluencerSearch" ? "text-orange-400" : "text-white"} hover:text-orange-400 grow h-full pt-2 pb-1`}
+        className={`${pageView === "InfluencerSearch" ? "text-orange-400" : "text-white"} hover:text-orange-300 grow h-full pt-2 pb-1`}
         onClick={() => {
           setPageView("InfluencerSearch");
         }}
       />
       <Store
         // text colour -> orange if selected or hovered
-        className={`${pageView === "BusinessSearch" ? "text-orange-400" : "text-white"} hover:text-orange-400 grow h-full pt-2 pb-1`}
+        className={`${pageView === "BusinessSearch" ? "text-orange-400" : "text-white"} hover:text-orange-300 grow h-full pt-2 pb-1`}
         onClick={() => {
           setPageView("BusinessSearch");
         }}

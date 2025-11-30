@@ -40,7 +40,7 @@ function App() {
         {loggedIn && (
           <>
             {/* Content Container - holds everything but navbar */}
-            <div className="grow flex flex-col max-h-full overflow-hidden pr-[2em] pl-[2em] bg-gradient-to-br from-violet-950 via-pink-900 to-violet-950">
+            <div className="grow flex flex-col max-h-full overflow-hidden pr-[2em] pl-[2em] bg-gradient-to-br from-violet-800 via-pink-800 to-violet-800">
               {pageView === "GigSearch" && <GigSearch />}
               {pageView === "InfluencerSearch" && <InfluencerSearch />}
               {pageView === "BusinessSearch" && <BusinessSearch />}

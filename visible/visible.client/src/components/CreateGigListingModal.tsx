@@ -46,7 +46,7 @@ const CreateGigListingModal = ({ isParentOpen, isParentMenuHidden }) => {
           Post A Gig
         </Button>
       </DialogTrigger>
-      <DialogContent className="bg-violet-500 text-black">
+      <DialogContent className="bg-violet-400 text-black">
         <DialogTitle hidden={true}>Create Gig Listing Form</DialogTitle>
         <DialogDescription hidden={true}>
           Create a gig listing.
