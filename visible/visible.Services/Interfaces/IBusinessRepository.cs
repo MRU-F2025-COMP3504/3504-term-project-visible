@@ -22,6 +22,6 @@ namespace visible.Services.Interfaces
         /// </summary>
         /// <param name="business">The business object containing user ID and profile details.</param>
         /// <returns>The ID of the newly created business.</return
-        Task<long> CreateBusinessProfile(Business business);
+        Task<long> CreateBusinessProfile(Business business, int id);
     }
 }

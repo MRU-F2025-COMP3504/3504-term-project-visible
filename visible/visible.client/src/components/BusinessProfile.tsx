@@ -9,7 +9,6 @@ import { createBusinessProfile } from "@/modules/data";
 //The form uses a function from the data module to submit the Business Profile data via a POST request to api/business
 const BusinessProfile = ({ parentOnSubmit }) => {
   //form use states
-  const [userId] = useState(1);
   const [businessName, setBusinessName] = useState("");
   const [location, setLocation] = useState("");
   const [industry, setIndustry] = useState("");
@@ -18,7 +17,6 @@ const BusinessProfile = ({ parentOnSubmit }) => {
   //form submit handler - sends the Business profile form data to the database.
   const handleSubmit = () => {
     createBusinessProfile({
-      UserId: userId,
       BusinessName: businessName,
       Location: location,
       Industry: industry,

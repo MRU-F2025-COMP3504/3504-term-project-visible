@@ -6,8 +6,9 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { submitSignUp } from "@/modules/data";
+import { Context } from "@/App";
 
 //This component impletements the basic sign up form html
 //Documentation for the 'Field' components can be found here: https://ui.shadcn.com/docs/components/field
@@ -21,6 +22,8 @@ const SignUp = ({ parentOnSubmit }) => {
   const [firstName, setFirstName] = useState(""); //first name
   const [lastName, setLastName] = useState(""); //last name
 
+  //logged in context
+  const [loggedIn, setLoggedIn] = useContext(Context).loggedIn;
   //form submit handler - checks if passwords match, sends the username and password to the api function if they do
   const handleSubmit = () => {
     if (!(password === passwordConfirm)) {
@@ -32,6 +35,9 @@ const SignUp = ({ parentOnSubmit }) => {
         Password: password,
         FirstName: firstName,
         LastName: lastName,
+      }).then((resp) => {
+        console.log("signed in!");
+        setLoggedIn(true);
       });
       parentOnSubmit();
     }

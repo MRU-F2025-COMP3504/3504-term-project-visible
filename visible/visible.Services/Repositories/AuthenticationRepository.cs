@@ -15,20 +15,20 @@ namespace visible.Services.Repositories
         /// </summary>
         /// <param name="signInRequest"> The user's username and password information received from form submission. </param>
         /// <returns> If the provided username/password combination exists in the Users table. </returns>
-        public async Task<bool> SignInAsync(SignInRequest signInRequest)
+        public async Task<int> SignInAsync(SignInRequest signInRequest)
         {
             string loginQuery =
-                "SELECT COUNT(*) AS c FROM users WHERE email = @username AND password = @password;";
+                "SELECT user_id FROM users WHERE email = @username AND password = @password;";
             var query = builder.CreateQuery(loginQuery);
             query.AddParameter("@username", signInRequest.Username);
             query.AddParameter("@password", signInRequest.Password);
-            int count = 0;
+            int id = 0;
             await foreach (var row in query.ExecuteAsync())
             {
-                count = Convert.ToInt32(row.GetColumn("c"));
+                id = Convert.ToInt32(row.GetColumn("user_id"));
             }
 
-            return count == 1;
+            return id;
         }
 
         /// <summary>
