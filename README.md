@@ -120,6 +120,9 @@ This project utilizes **Docker** to containerize the application and database.
 
 - **Note:** You will need to authenticate using the `postgres_user_password` from your local secrets.
 - We have provided sample data in the `seed.sql` file (found in **visible.Server/Data/**). This will not populate by default, so your tables will be initialized, but empty at startup.
+- From the `visible` directory, execute the following command to populate the database with the contents of `seed.sql`:
+
+        cat visible.Server/Data/seed.sql | docker exec -i visible-db psql -U postgres postgres
 
 ## How to Contribute to Visible
 
