@@ -1,3 +1,5 @@
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using visible.Services.Interfaces;
 using visible.Services.Models;
@@ -10,12 +12,13 @@ namespace visible.Server.Controllers;
 //</summary>
 [ApiController]
 [Route("api/[controller]")]
-public class BusinessController(IBusinessRepository businessRepository) : ControllerBase
+public class BusinessController(IBusinessRepository businessRepository) : BaseController
 {
     //<summary>
     //Retrieves all business profiles.
     //</summary>
     [HttpGet]
+    [Authorize]
     public async Task<ActionResult> GetAll()
     {
         return Ok(await businessRepository.GetAllBusinesses());
@@ -38,12 +41,13 @@ public class BusinessController(IBusinessRepository businessRepository) : Contro
     /// Creates a new business profile tied to an  user.
     /// </summary>
     [HttpPost]
+    [Authorize]
     public async Task<ActionResult> Create([FromBody] Business business)
     {
         if (business == null)
             return BadRequest("Business data required.");
 
-        var newId = await businessRepository.CreateBusinessProfile(business);
+        var newId = await businessRepository.CreateBusinessProfile(business, UserId);
         return Ok(new { BusinessId = newId });
     }
 }
