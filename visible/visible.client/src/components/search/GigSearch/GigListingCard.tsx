@@ -11,7 +11,7 @@ const GigListingCard = ({
   budget = 0,
 }: GigProps) => {
   return (
-    <li key={id}>
+    <li key={id} className="flex gap-4 items-center p-4 border rounded-xl">
       {/* Image - commented out until we add images to the database*/}
       {
         <img
@@ -19,20 +19,30 @@ const GigListingCard = ({
           width={200}
           height={200}
           alt="business image"
+          className="rounded-lg object-cover"
         />
       }
-      {/* Gig Title */}
-      <h2 className="text-xl font-bold">{gigTitle}</h2>
-      {/* Business Name */}
-      <h3 className="font-bold">Created By: </h3> <span>{businessName}</span>
-      {/* Gig Description */}
-      <h3 className="font-bold">Description: </h3>
-      <span>{description}</span>
-      {/* Budget */}
-      <h3 className="font-bold">Budget: </h3>{" "}
-      <span className="italic">${budget}</span>
-      <br />
-      <CreateGigApplicationModal label="Apply" propGigId={id} />
+      <div className="flex flex-col">
+        {/* Gig Title */}
+        <h2 className="text-xl font-bold">{gigTitle}</h2>
+        {/* Business Name */}
+        <div>
+          <h3 className="font-bold">Created By: </h3>{" "}
+          <span>{businessName}</span>
+        </div>
+        {/* Gig Description */}
+        <div>
+          <h3 className="font-bold">Description: </h3>
+          <span>{description}</span>
+        </div>
+        <div>
+          {/* Budget */}
+          <h3 className="font-bold">Budget: </h3>{" "}
+          <span className="italic">${budget}</span>
+        </div>
+        <br />
+        <CreateGigApplicationModal label="Apply" propGigId={id} />
+      </div>
     </li>
   );
 };
