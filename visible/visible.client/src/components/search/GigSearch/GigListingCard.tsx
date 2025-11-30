@@ -11,18 +11,38 @@ const GigListingCard = ({
   budget = 0,
 }: GigProps) => {
   return (
-    <li key={id}>
+    <li key={id} className="flex gap-4 items-center p-4 border rounded-xl">
       {/* Image - commented out until we add images to the database*/}
-      {/* <img src={imagePath} alt="business image" /> */}
-      {/* Gig Title */}
-      <h2>{gigTitle}</h2>
-      {/* Business Name */}
-      <h3>{businessName}</h3>
-      {/* Gig Description */}
-      <p>{description}</p>
-      {/* Budget */}
-      <h3>${budget}</h3>
-      <CreateGigApplicationModal label="Apply" propGigId={id} />
+      {
+        <img
+          src="/giglisting.png"
+          width={200}
+          height={200}
+          alt="business image"
+          className="rounded-lg object-cover"
+        />
+      }
+      <div className="flex flex-col">
+        {/* Gig Title */}
+        <h2 className="text-xl font-bold">{gigTitle}</h2>
+        {/* Business Name */}
+        <div>
+          <h3 className="font-bold">Created By: </h3>{" "}
+          <span>{businessName}</span>
+        </div>
+        {/* Gig Description */}
+        <div>
+          <h3 className="font-bold">Description: </h3>
+          <span>{description}</span>
+        </div>
+        <div>
+          {/* Budget */}
+          <h3 className="font-bold">Budget: </h3>{" "}
+          <span className="italic">${budget}</span>
+        </div>
+        <br />
+        <CreateGigApplicationModal label="Apply" propGigId={id} />
+      </div>
     </li>
   );
 };

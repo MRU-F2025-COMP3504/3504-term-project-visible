@@ -1,5 +1,7 @@
 using System.Text;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using visible.Server.Configuration;
 using visible.Services;
@@ -25,16 +27,17 @@ var connectionString = builder.Configuration.GetConnectionString("PostgreDB") + 
 var jwtKey = builder.Configuration["jwtKey"];
 var jwtIssuer = builder.Configuration["jwtIssuer"];
 
+builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
+builder.Services.AddSingleton<InitService>();
 builder.Services.AddScoped<IQueryBuilder, NpgsqlQueryBuilder>(p => new NpgsqlQueryBuilder(
     connectionString
 ));
-builder.Services.AddSingleton<InitService>();
-builder.Services.AddSingleton<IGigListingRepository, GigListingRepository>();
-builder.Services.AddSingleton<IAuthenticationRepository, AuthenticationRepository>();
-builder.Services.AddSingleton<IInfluencerRepository, InfluencerRepository>();
-builder.Services.AddSingleton<IBusinessRepository, BusinessRepository>();
-builder.Services.AddSingleton<IGigApplicationRepository, GigApplicationRepository>();
-builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
+builder.Services.AddScoped<IGigListingRepository, GigListingRepository>();
+builder.Services.AddScoped<IAuthenticationRepository, AuthenticationRepository>();
+builder.Services.AddScoped<IInfluencerRepository, InfluencerRepository>();
+builder.Services.AddScoped<IBusinessRepository, BusinessRepository>();
+builder.Services.AddScoped<IGigApplicationRepository, GigApplicationRepository>();
+builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
 builder
     .Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -49,7 +52,22 @@ builder
             ValidAudience = jwtIssuer,
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey)),
         };
+        options.Events = new JwtBearerEvents
+        {
+            OnMessageReceived = context =>
+            {
+                context.Token = context.Request.Cookies["token"];
+                return Task.CompletedTask;
+            },
+        };
+    })
+    .Services.AddAuthentication()
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/api/authentication/sign-in";
+        options.LogoutPath = "/api/authentication/sign-out";
     });
+
 builder.Services.AddAuthorization();
 
 var app = builder.Build();

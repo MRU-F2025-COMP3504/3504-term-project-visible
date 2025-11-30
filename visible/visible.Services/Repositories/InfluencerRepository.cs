@@ -30,7 +30,7 @@ public class InfluencerRepository(IQueryBuilder builder) : IInfluencerRepository
                 new Influencer
                 {
                     InfluencerId = Convert.ToInt32(row.GetColumn("influencer_id")),
-                    UserId = Convert.ToInt32(row.GetColumn("user_id")),
+                    // UserId = Convert.ToInt32(row.GetColumn("user_id")),
                     DisplayName = Convert.ToString(row.GetColumn("display_name")),
                     Bio = Convert.ToString(row.GetColumn("bio")),
                     Avatar = Convert.ToString(row.GetColumn("avatar")),
@@ -66,7 +66,7 @@ public class InfluencerRepository(IQueryBuilder builder) : IInfluencerRepository
             influencer = new Influencer
             {
                 InfluencerId = Convert.ToInt32(row.GetColumn("influencer_id")),
-                UserId = Convert.ToInt32(row.GetColumn("user_id")),
+                // UserId = Convert.ToInt32(row.GetColumn("user_id")),
                 DisplayName = Convert.ToString(row.GetColumn("display_name")),
                 Bio = Convert.ToString(row.GetColumn("bio")),
                 Avatar = Convert.ToString(row.GetColumn("avatar")),
@@ -84,7 +84,7 @@ public class InfluencerRepository(IQueryBuilder builder) : IInfluencerRepository
     /// </summary>
     /// <param name="influencer">The influencer object containing the user ID and profile details.</param>
     /// <returns>The ID of the newly created influencer.</returns>
-    public async Task<int> CreateInfluencerProfile(Influencer influencer)
+    public async Task<int> CreateInfluencerProfile(Influencer influencer, int id)
     {
         string createStatement =
             @"
@@ -93,7 +93,7 @@ public class InfluencerRepository(IQueryBuilder builder) : IInfluencerRepository
             RETURNING influencer_id";
 
         var query = builder.CreateQuery(createStatement);
-        query.AddParameter("@UserId", influencer.UserId);
+        query.AddParameter("@UserId", id);
         query.AddParameter("@DisplayName", influencer.DisplayName);
         query.AddParameter("@Bio", influencer.Bio);
         query.AddParameter("@Avatar", influencer.Avatar);

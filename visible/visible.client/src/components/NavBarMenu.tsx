@@ -12,6 +12,7 @@ import { useState } from "react";
 import { Button } from "./ui/button";
 import { Context } from "@/App";
 import { useContext } from "react";
+import { signOut } from "@/modules/data";
 import CreateInfluencerProfileModal from "./InfluencerProfileModal";
 import CreateBusinessProfileModal from "@/components/BusinessProfileModal.tsx";
 
@@ -47,6 +48,7 @@ const NavBarMenu = () => {
               onClick={(e) => {
                 e.preventDefault();
                 setLoggedIn(false);
+                signOut();
               }}
             >
               Sign Out

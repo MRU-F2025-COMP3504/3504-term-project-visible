@@ -31,7 +31,7 @@ public class BusinessRepository(IQueryBuilder builder) : IBusinessRepository
                 new Business
                 {
                     BusinessId = Convert.ToInt32(row.GetColumn("business_id")),
-                    UserId = Convert.ToInt32(row.GetColumn("user_id")),
+                    // UserId = Convert.ToInt32(row.GetColumn("user_id")),
                     BusinessName = Convert.ToString(row.GetColumn("business_name")),
                     Location = Convert.ToString(row.GetColumn("location")),
                     Industry = Convert.ToString(row.GetColumn("industry")),
@@ -52,8 +52,7 @@ public class BusinessRepository(IQueryBuilder builder) : IBusinessRepository
         Business? business = null;
 
         string bussinessNameQuery =
-            @"
-            SELECT business_id, user_id, business_name, location, industry, display_image, created_at, updated_at
+            @"SELECT business_id, user_id, business_name, location, industry, display_image, created_at, updated_at
             FROM businesses
             WHERE business_name = @business_name";
 
@@ -65,7 +64,7 @@ public class BusinessRepository(IQueryBuilder builder) : IBusinessRepository
             business = new Business
             {
                 BusinessId = Convert.ToInt32(row.GetColumn("business_id")),
-                UserId = Convert.ToInt32(row.GetColumn("user_id")),
+                // UserId = Convert.ToInt32(row.GetColumn("user_id")),
                 BusinessName = Convert.ToString(row.GetColumn("business_name")),
                 Location = Convert.ToString(row.GetColumn("location")),
                 Industry = Convert.ToString(row.GetColumn("industry")),
@@ -80,7 +79,7 @@ public class BusinessRepository(IQueryBuilder builder) : IBusinessRepository
     /// <summary>
     /// Creates a new business profile and returns its ID.
     /// </summary>
-    public async Task<long> CreateBusinessProfile(Business business)
+    public async Task<long> CreateBusinessProfile(Business business, int id)
     {
         string businessProfileCreate =
             @"
@@ -90,7 +89,7 @@ public class BusinessRepository(IQueryBuilder builder) : IBusinessRepository
 
         var query = builder.CreateQuery(businessProfileCreate);
 
-        query.AddParameter("@user_id", business.UserId);
+        query.AddParameter("@user_id", id);
         query.AddParameter("@business_name", business.BusinessName);
         query.AddParameter("@location", business.Location);
         query.AddParameter("@industry", business.Industry);
