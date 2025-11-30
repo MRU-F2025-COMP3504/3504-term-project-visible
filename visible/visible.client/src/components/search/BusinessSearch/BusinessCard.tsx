@@ -11,13 +11,20 @@ const BusinessCard = ({
   return (
     <li key={id}>
       {/* Image - commented out until we add images to the database*/}
-      {/* <img src={displayImage} alt="business image" /> */}
+      {
+        <img
+          src="/business.png"
+          width={200}
+          height={200}
+          alt="business image"
+        />
+      }
       {/* Business Name */}
-      <h2>{businessName}</h2>
+      <h2 className="text-xl font-bold">{businessName}</h2>
       {/* Industry */}
-      <h3>{industry}</h3>
+      <h3 className="font-bold">Industry: </h3> <span>{industry}</span>
       {/* Business Location */}
-      <p>{location}</p>
+      <h3 className="font-bold">Location: </h3> <span>{location}</span>
     </li>
   );
 };

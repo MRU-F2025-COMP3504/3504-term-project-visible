@@ -13,15 +13,25 @@ const GigListingCard = ({
   return (
     <li key={id}>
       {/* Image - commented out until we add images to the database*/}
-      {/* <img src={imagePath} alt="business image" /> */}
+      {
+        <img
+          src="/giglisting.png"
+          width={200}
+          height={200}
+          alt="business image"
+        />
+      }
       {/* Gig Title */}
-      <h2>{gigTitle}</h2>
+      <h2 className="text-xl font-bold">{gigTitle}</h2>
       {/* Business Name */}
-      <h3>{businessName}</h3>
+      <h3 className="font-bold">Created By: </h3> <span>{businessName}</span>
       {/* Gig Description */}
-      <p>{description}</p>
+      <h3 className="font-bold">Description: </h3>
+      <span>{description}</span>
       {/* Budget */}
-      <h3>${budget}</h3>
+      <h3 className="font-bold">Budget: </h3>{" "}
+      <span className="italic">${budget}</span>
+      <br />
       <CreateGigApplicationModal label="Apply" propGigId={id} />
     </li>
   );
