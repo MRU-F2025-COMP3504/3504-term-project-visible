@@ -14,7 +14,6 @@ import { createInfluencerProfile } from "@/modules/data";
 //The form uses a function from the data module to submit the Influencer Profile data via a POST request to api/influencer
 const InfluencerProfile = ({ parentOnSubmit }) => {
   //form use states
-  const [userId] = useState(1);
   const [displayName, setDisplayName] = useState("");
   const [bio, setBio] = useState("");
   const [avatar, setAvatar] = useState("");
@@ -23,7 +22,6 @@ const InfluencerProfile = ({ parentOnSubmit }) => {
   //form submit handler - sends the influencer profile form data to the database.
   const handleSubmit = () => {
     createInfluencerProfile({
-      UserId: userId,
       DisplayName: displayName,
       Bio: bio,
       Avatar: avatar,
