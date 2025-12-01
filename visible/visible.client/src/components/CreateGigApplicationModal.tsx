@@ -26,7 +26,7 @@ const CreateGigApplicationModal = ({ label, propGigId }) => {
       <DialogTrigger asChild>
         <Button
           variant="outline"
-          className="text-black!"
+          className="text-black! bg-white!"
           onClick={(e) => {
             e.preventDefault();
             //open the modal

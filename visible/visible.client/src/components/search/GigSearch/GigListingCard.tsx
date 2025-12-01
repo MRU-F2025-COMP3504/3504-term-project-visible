@@ -24,7 +24,7 @@ const GigListingCard = ({
       }
       <div className="flex flex-col">
         {/* Gig Title */}
-        <h2 className="text-xl font-bold">{gigTitle}</h2>
+        <h2 className="text-xl font-bold flex-wrap">{gigTitle}</h2>
         {/* Business Name */}
         <div>
           <h3 className="font-bold">Created By: </h3>{" "}
