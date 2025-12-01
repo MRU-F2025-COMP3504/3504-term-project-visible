@@ -95,7 +95,7 @@ const CreateGigApplicationForm = ({ parentOnSubmit, propGigId }) => {
             className="bg-white!"
             id="ApplicantId"
             type="numeric"
-            placeholder="Enter your user id (required)*"
+            placeholder="Enter your influencer id (required)*"
             required
             onChange={(e) => {
               setApplicantId(e.target.value);
