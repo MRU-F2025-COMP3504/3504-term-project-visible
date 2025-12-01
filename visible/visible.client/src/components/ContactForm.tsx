@@ -34,7 +34,9 @@ const ContactForm = ({ parentOnSubmit, recipientName }) => {
 
         {/* Submit Button */}
         <Field orientation="horizontal">
-          <Button type="submit">OK</Button>
+          <Button type="submit" className="bg-pink-500!">
+            OK
+          </Button>
         </Field>
       </FieldGroup>
     </form>

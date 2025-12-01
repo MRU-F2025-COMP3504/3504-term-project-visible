@@ -25,6 +25,7 @@ const ContactFormModal = ({ label, recipient }) => {
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button
+          className="text-black!"
           variant="outline"
           onClick={(e) => {
             e.preventDefault();
@@ -35,7 +36,7 @@ const ContactFormModal = ({ label, recipient }) => {
           {label}
         </Button>
       </DialogTrigger>
-      <DialogContent className="bg-black">
+      <DialogContent className="bg-purple-400! text-black!">
         <ContactForm parentOnSubmit={onSubmit} recipientName={recipient} />
       </DialogContent>
     </Dialog>
