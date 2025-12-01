@@ -27,14 +27,14 @@ const ContactForm = ({ parentOnSubmit, recipientName }) => {
       <FieldGroup>
         {/* Application Text Input */}
         <Field>
-          <FieldLabel htmlFor="Confirmation">
+          <FieldLabel htmlFor="Confirmation" className="mt-12 text-center">
             Success! Your message has been sent to {recipient}!
           </FieldLabel>
         </Field>
 
         {/* Submit Button */}
         <Field orientation="horizontal">
-          <Button type="submit" className="bg-pink-500!">
+          <Button type="submit" className="bg-pink-500! mx-auto">
             OK
           </Button>
         </Field>

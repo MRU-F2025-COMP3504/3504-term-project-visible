@@ -25,7 +25,7 @@ const ContactFormModal = ({ label, recipient }) => {
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button
-          className="text-black! bg-white-500!"
+          className="text-black! bg-white-500! flex w-auto text-wrap"
           variant="outline"
           onClick={(e) => {
             e.preventDefault();
@@ -37,6 +37,12 @@ const ContactFormModal = ({ label, recipient }) => {
         </Button>
       </DialogTrigger>
       <DialogContent className="bg-purple-400! text-black!">
+        <DialogTitle hidden={true}>
+          Create an Influencer or Business
+        </DialogTitle>
+        <DialogDescription hidden={true}>
+          Contact an influencer or business
+        </DialogDescription>
         <ContactForm parentOnSubmit={onSubmit} recipientName={recipient} />
       </DialogContent>
     </Dialog>

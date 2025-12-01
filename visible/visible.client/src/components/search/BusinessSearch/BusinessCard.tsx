@@ -13,29 +13,30 @@ const BusinessCard = ({
     <li key={id} className="flex gap-4 items-center p-4 border rounded-xl">
       {/* Image - commented out until we add images to the database*/}
       {
-        <img
-          src="/business.png"
-          width={200}
-          height={200}
-          alt="business image"
-          className="rounded-lg object-cover"
-        />
+        <div className="w-1/2">
+          <img
+            src="/business.png"
+            width={200}
+            height={200}
+            alt="business image"
+            className="rounded-lg object-cover"
+          />
+        </div>
       }
-      <div className="flex flex-col">
-        {/* Business Name */}
-        <h2 className="text-xl font-bold">{businessName}</h2>
-        {/* Industry */}
-        <div>
+      <div className="flex flex-col w-1/2 wrap-normal">
+        <div className="flex flex-col py-1">
+          {/* Business Name */}
+          <h2 className="text-xl font-bold">{businessName}</h2>
+          {/* Industry */}
+        </div>
+        <div className="flex-col wrap-normal py-2">
           <h3 className="font-bold">Industry: </h3> <span>{industry}</span>
         </div>
         {/* Business Location */}
-        <div>
+        <div className="flex-col wrap-normal pb-2">
           <h3 className="font-bold">Location: </h3> <span>{location}</span>
         </div>
-        <ContactFormModal
-          label={`Contact ${businessName}`}
-          recipient={businessName}
-        />
+        <ContactFormModal label="Contact" recipient={businessName} />
       </div>
     </li>
   );
