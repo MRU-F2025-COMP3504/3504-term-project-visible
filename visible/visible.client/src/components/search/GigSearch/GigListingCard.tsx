@@ -11,7 +11,7 @@ const GigListingCard = ({
   budget = 0,
 }: GigProps) => {
   return (
-    <li key={id} className="flex gap-4 items-center p-4 border rounded-xl">
+    <li key={id} className="flex gap-4 items-center p-4 rounded-xl">
       {/* Image - commented out until we add images to the database*/}
       {
         <div className="w-1/2">
