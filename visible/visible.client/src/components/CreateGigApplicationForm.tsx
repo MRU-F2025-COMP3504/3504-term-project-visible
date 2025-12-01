@@ -34,14 +34,15 @@ const CreateGigApplicationForm = ({ parentOnSubmit, propGigId }) => {
         onValueChange={(value) => {
           setApplicationStatus(value);
         }}
-        defaultValue={status}
+        defaultValue={"submitted"}
+        disabled
       >
         <SelectTrigger id={id}>
           <SelectValue placeholder="Select a status for this gig application (required)" />
         </SelectTrigger>
         <SelectContent className="bg-black!">
           <SelectItem value="draft">Draft</SelectItem>
-          <SelectItem value="submitted">Submitted</SelectItem>
+          <SelectItem value="submitted">Submitting</SelectItem>
           <SelectItem value="pending">Pending</SelectItem>
           <SelectItem value="accepted">Accepted</SelectItem>
           <SelectItem value="rejected">Rejected</SelectItem>
@@ -83,6 +84,7 @@ const CreateGigApplicationForm = ({ parentOnSubmit, propGigId }) => {
             onChange={(e) => {
               setGigId(e.target.value);
             }}
+            disabled
           />
         </Field>
 
@@ -93,7 +95,7 @@ const CreateGigApplicationForm = ({ parentOnSubmit, propGigId }) => {
             className="bg-white!"
             id="ApplicantId"
             type="numeric"
-            placeholder="Enter your user id (required)*"
+            placeholder="Enter your influencer id (required)*"
             required
             onChange={(e) => {
               setApplicantId(e.target.value);

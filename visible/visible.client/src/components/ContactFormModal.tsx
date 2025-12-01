@@ -25,7 +25,7 @@ const ContactFormModal = ({ label, recipient }) => {
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button
-          className="text-black! bg-white-500! flex w-auto text-wrap"
+          className="text-black! bg-white! flex w-auto text-wrap"
           variant="outline"
           onClick={(e) => {
             e.preventDefault();
