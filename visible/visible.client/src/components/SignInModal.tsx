@@ -25,7 +25,9 @@ const SignInModal = () => {
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button
-          variant="outline"
+          className="bg-blue-500"
+          //background-color: #007bff;
+          variant="mainPage"
           onClick={(e) => {
             e.preventDefault();
             //open the modal
@@ -35,7 +37,7 @@ const SignInModal = () => {
           Sign In
         </Button>
       </DialogTrigger>
-      <DialogContent className="bg-black">
+      <DialogContent className="bg-violet-500 text-black">
         <DialogTitle hidden={true}>Sign In Form</DialogTitle>
         <DialogDescription hidden={true}>
           Sign in using a form containing Username, and Password fields.

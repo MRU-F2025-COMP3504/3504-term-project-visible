@@ -25,12 +25,12 @@ const NavBarMenu = () => {
       <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
         <DropdownMenuTrigger
           asChild
-          className="grow flex p-0! hover:border-none! border-none! focus:outline-none! focus-visible:outline-none! focus:ring-0! focus-visible:ring-0! bg-black!"
+          className="grow flex p-0! hover:border-none! border-none! focus:outline-none! focus-visible:outline-none! focus:ring-0! focus-visible:ring-0! bg-purple!"
         >
-          <Menu className="text-white hover:text-orange-400 grow h-full pt-1 pb-1 border-none!" />
+          <Menu className="text-white hover:text-orange-300 grow h-full pt-1 pb-1 border-none!" />
         </DropdownMenuTrigger>
         <DropdownMenuContent hidden={isMenuHidden}>
-          <div className="flex flex-col items-center justify-center">
+          <div className="flex flex-col items-center justify-center bg-purple-500">
             <CreateInfluencerProfileModal
               isParentOpen={setIsOpen}
               isParentMenuHidden={setIsMenuHidden}
@@ -44,6 +44,7 @@ const NavBarMenu = () => {
               isParentMenuHidden={setIsMenuHidden}
             />
             <Button
+              className="bg-pink-600! hover:bg-pink-500!"
               onClick={(e) => {
                 e.preventDefault();
                 setLoggedIn(false);

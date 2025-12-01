@@ -74,6 +74,7 @@ const CreateGigApplicationForm = ({ parentOnSubmit, propGigId }) => {
         <Field>
           <FieldLabel htmlFor="GigId">Gig Id</FieldLabel>
           <Input
+            className="bg-white!"
             id="GigId"
             type="numeric"
             placeholder="Enter the gig id (required)*"
@@ -89,6 +90,7 @@ const CreateGigApplicationForm = ({ parentOnSubmit, propGigId }) => {
         <Field>
           <FieldLabel htmlFor="ApplicantId">Applicant Id #</FieldLabel>
           <Input
+            className="bg-white!"
             id="ApplicantId"
             type="numeric"
             placeholder="Enter your user id (required)*"
@@ -103,6 +105,7 @@ const CreateGigApplicationForm = ({ parentOnSubmit, propGigId }) => {
         <Field>
           <FieldLabel htmlFor="ApplicationText">Application Text</FieldLabel>
           <Input
+            className="bg-white!"
             id="Application Text"
             type="text"
             placeholder="Enter your applicaton content (required)*"
@@ -126,7 +129,9 @@ const CreateGigApplicationForm = ({ parentOnSubmit, propGigId }) => {
 
         {/* Submit Button */}
         <Field orientation="horizontal">
-          <Button type="submit">Submit</Button>
+          <Button type="submit" className="bg-pink-600! hover:bg-pink-500!">
+            Submit
+          </Button>
         </Field>
       </FieldGroup>
     </form>

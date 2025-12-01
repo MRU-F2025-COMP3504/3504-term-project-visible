@@ -25,6 +25,7 @@ const CreateInfluencerProfileModal = () => {
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button
+          className="bg-pink-600! hover:bg-pink-500!"
           variant="outline"
           onClick={(e) => {
             e.preventDefault();
@@ -35,7 +36,7 @@ const CreateInfluencerProfileModal = () => {
           Create Influencer
         </Button>
       </DialogTrigger>
-      <DialogContent className="bg-black">
+      <DialogContent className="bg-violet-400 text-black">
         <DialogTitle hidden={true}>Create Influencer Profile</DialogTitle>
         <DialogDescription hidden={true}>
           Create an Influencer Profile

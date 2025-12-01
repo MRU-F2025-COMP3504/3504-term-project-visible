@@ -12,28 +12,27 @@ const InfluencerCard = ({
     <li key={id} className="flex gap-4 items-center p-4 border rounded-xl">
       {/* Image - commented out until we add images to the database*/}
       {
-        <img
-          src="public/profile.png"
-          width={200}
-          height={200}
-          alt="influencer image"
-          className="rounded-lg object-cover"
-        />
+        <div className="w-1/2">
+          <img
+            src="public/profile.png"
+            width={200}
+            height={200}
+            alt="influencer image"
+            className="rounded-lg object-cover"
+          />
+        </div>
       }
 
-      <div className="flex flex-col">
-        <div>
+      <div className="flex flex-col w-1/2 wrap-normal">
+        <div className="flex flex-col py-1">
           {/* Influencer Display Name */}
           <h2 className="text-xl font-bold">{displayName}</h2>
         </div>
-        <div>
+        <div className="flex-col wrap-normal pb-2">
           {/* Influencer Bio */}
           <h3 className="font-bold">About {displayName}</h3> <span>{bio}</span>
         </div>
-        <ContactFormModal
-          label={`Contact ${displayName}`}
-          recipient={displayName}
-        />
+        <ContactFormModal label="Contact" recipient={displayName} />
       </div>
     </li>
   );

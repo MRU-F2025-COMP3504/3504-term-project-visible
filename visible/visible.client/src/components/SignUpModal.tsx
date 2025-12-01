@@ -25,7 +25,7 @@ const SignUpModal = () => {
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
         <Button
-          variant="outline"
+          variant="mainPage"
           onClick={(e) => {
             e.preventDefault();
             //open the modal
@@ -35,7 +35,7 @@ const SignUpModal = () => {
           Sign Up
         </Button>
       </DialogTrigger>
-      <DialogContent className="bg-black">
+      <DialogContent className="bg-violet-500 text-black">
         <DialogTitle hidden={true}>Sign Up Form</DialogTitle>
         <DialogDescription hidden={true}>
           Sign up using a form containing Username, Password, Confirm Password,

@@ -26,6 +26,7 @@ const CreateGigApplicationModal = ({ label, propGigId }) => {
       <DialogTrigger asChild>
         <Button
           variant="outline"
+          className="text-black! bg-white!"
           onClick={(e) => {
             e.preventDefault();
             //open the modal
@@ -35,7 +36,7 @@ const CreateGigApplicationModal = ({ label, propGigId }) => {
           {label}
         </Button>
       </DialogTrigger>
-      <DialogContent className="bg-black">
+      <DialogContent className="bg-violet-400 text-black">
         <DialogTitle hidden={true}>Create Gig Listing Form</DialogTitle>
         <DialogDescription hidden={true}>
           Create a gig listing.

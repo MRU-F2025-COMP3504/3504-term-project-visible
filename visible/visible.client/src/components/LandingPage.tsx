@@ -17,11 +17,12 @@ import CreateGigApplicationModal from "./CreateGigApplicationModal";
 
 const LandingPage = () => {
   return (
-    <div className="items-center justify-center gap-10 flex grow flex-col">
+    <div className="items-center justify-center gap-15 flex grow flex-col bg-gradient-to-br from-violet-800 via-pink-800 to-violet-800 ">
       {/* Visible Title Component */}
-      <h1>Visible</h1>
+      <h1 className="text-white">Visible</h1>
+      <h2 className="text-white">Be Seen by others</h2>
       {/* Sign In / Sign Up Buttons */}
-      <div>
+      <div className="gap-10">
         {/* Sign Up */}
         <SignInModal />
         {/* Sign In */}
