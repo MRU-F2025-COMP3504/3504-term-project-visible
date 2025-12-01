@@ -1,0 +1,129 @@
+//This module contains all necessary functions for database interaction & data handling
+// fetch functions query the api and set react's state objects with the received data
+// Fetch functions expect a useState setter function to be passed
+
+// All Gig Listings - Theoretically shouldn't be using this as there could be too many gig listings in the db to reasonably request
+export async function fetchAllGigListings(setter: any) {
+  const response = await fetch(`api/giglistings`);
+  const data = await response.json();
+  setter(data);
+}
+
+export async function fetchUserProfile() {
+  let response = await fetch("api/profile", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  let data = await response.json();
+  localStorage.setItem("profile", JSON.stringify(data));
+}
+
+// Sign in request handler - function expects an object with 'Username' and 'Password' fields
+//encrypt / hashing of user data should be added
+export async function submitSignIn(dataToSend) {
+  //Post request to server with given data
+  const login = await fetch(`api/authentication/sign-in`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(dataToSend),
+  });
+  if (login.ok) {
+    await fetchUserProfile();
+  }
+}
+
+// Sign up request handler - functions expects an object with 'Username' and 'Password' fields
+//encrypt / hashing of user data should be added
+export async function submitSignUp(dataToSend) {
+  //POST request to server with given data
+  await fetch(`api/authentication/sign-up`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(dataToSend),
+  });
+  let signInData = {
+    Username: dataToSend.Username,
+    Password: dataToSend.Password,
+  };
+
+  await submitSignIn(signInData);
+}
+
+// All Influencer Profiles - Theoretically shouldn't be using this as there could be too many influencers in the db to reasonably request
+export async function fetchAllInfluencers(setter: any) {
+  const response = await fetch(`api/influencer`);
+  const data = await response.json();
+  setter(data);
+}
+
+// All Business Profiles - Theoretically shouldn't be using this as there could be too many businesses in the db to reasonably request
+export async function fetchAllBusinesses(setter: any) {
+  const response = await fetch(`api/business`);
+  const data = await response.json();
+  setter(data);
+}
+// Handler to create an influencer profile
+export async function createInfluencerProfile(influencerProfileData) {
+  //POST request to server with given data
+  await fetch(`api/influencer`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(influencerProfileData),
+  });
+  await fetchUserProfile();
+}
+
+// Handler to create a business profile
+export async function createBusinessProfile(businessProfileData) {
+  //POST request to server with given data
+  await fetch(`api/business`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(businessProfileData),
+  });
+  await fetchUserProfile();
+}
+
+// Handler to create a gig listing
+export async function createGigListing(gigListingData) {
+  //POST request to server with given data
+  await fetch(`api/giglistings/create`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(gigListingData),
+  });
+}
+
+// Handler to submit a gig application
+export async function submitGigApplication(gigApplicationData) {
+  //POST request to server with given data
+  await fetch(`api/application/create`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(gigApplicationData),
+  });
+}
+
+export async function signOut() {
+  await fetch(`api/authentication/sign-out`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  localStorage.clear();
+}
